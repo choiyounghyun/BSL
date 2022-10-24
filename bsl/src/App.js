@@ -1,18 +1,8 @@
 import "./App.css";
-import { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import Router from "./routers/router";
 
 function App() {
-  return (
-    <>
-      {/* <MainNavBar /> */}
-      <Suspense>
-        <Routes>
-          <Route></Route>
-        </Routes>
-      </Suspense>
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
