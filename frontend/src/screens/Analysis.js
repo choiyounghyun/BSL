@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function Analysis(props) {
-    return (
-        <div>
-            anal
-        </div>
-    );
+  return <div>anal</div>;
 }
 
 export default Analysis;
