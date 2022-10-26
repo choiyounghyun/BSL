@@ -30,10 +30,10 @@ body {
   background: #f6f5f7;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-  height: 100vh;
+  /* height: 100vh; */
   margin: -20px 0 50px;
 }
 
@@ -137,6 +137,7 @@ input {
 
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
+  align-items: center;
 }
 
 .sign-up-container {
