@@ -60,40 +60,50 @@ const KakaoMap = ({ searchPlace }) => { // searchPlace = 검색할 장소를 나
 		let mapContainer = document.getElementById('map'); // 지도를 표시할 div ('map' = id 명)
 		let mapoptions = { // 출력할 지도의 옵션
 			center: new kakao.maps.LatLng(37.56000302825312, 126.97540593203321), // 지도의 중심좌표
-			level: 3 // 지도의 확대 레벨
+			level: 5 // 지도의 확대 레벨
 		};
 		let map = new kakao.maps.Map(mapContainer, mapoptions); // 지도 생성
 
+		let zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
 		let bounds = new kakao.maps.LatLngBounds();
 		let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
 		for (let i = 0; i < address_list.length; i++) { // 찾은 가게 개수만큼 반복 (50개)
-			// 주소-좌표 변환 객체 생성
-			let geocoder = new kakao.maps.services.Geocoder();
-			// 주소로 좌표를 검색
-			geocoder.addressSearch(address_list[i], function (result, status) {
+			let geocoder = new kakao.maps.services.Geocoder(); // 주소-좌표 변환 객체 생성
+
+			geocoder.addressSearch(address_list[i], function (result, status) { // 주소로 좌표를 검색
 				if (status === kakao.maps.services.Status.OK) {
 					displayMarker(result); // 검색된 장소 마커를 표시
-					bounds.extend(new kakao.maps.LatLng(result.y, result.x));
-
-					map.setBounds(bounds); // 영역 중심으로 설정
-				}
-
-				function displayMarker(result) {
-					let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-					let marker = new kakao.maps.Marker({
-						map: map,
-						position: coords
-					});
-
-					kakao.maps.event.addListener(marker, 'click', function () {
-						infowindow.setContent('<div style="padding:5px;font-size:12px;"> 우리회사 </div>');
-						infowindow.open(map, marker);
-					});
 				}
 			})
+		};
+
+		function displayMarker(place) {
+			let coords = new kakao.maps.LatLng(place[0].y, place[0].x);
+
+			let marker = new kakao.maps.Marker({
+				map: map,
+				position: coords
+			});
+
+			bounds.extend(coords);
+
+			map.setLevel(5, {
+				animate: {
+					duration: 1000
+				}
+			});
+
+			map.setBounds(bounds); // 영역 중심으로 설정
+
+			kakao.maps.event.addListener(marker, 'click', function () {
+				infowindow.setContent('<div style="padding:5px;font-size:12px;"> 우리회사 </div>');
+				infowindow.open(map, marker);
+			});
 		}
-	}, []);
+	});
 
 	return (
 		<div className="App">
