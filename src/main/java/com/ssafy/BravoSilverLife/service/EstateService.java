@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface EstateService {
 
-
     List<Cluster> getClusters(Condition condition) throws Exception;
 
     ArticleList getArticles(long markerId, int page, Condition condition) throws Exception;

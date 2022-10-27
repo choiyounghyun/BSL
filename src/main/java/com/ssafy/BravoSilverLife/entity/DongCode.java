@@ -1,4 +1,4 @@
-package com.ssafy.BravoSilverLife.entity;
+package com.ssafy.entity;
 
 import lombok.*;
 
