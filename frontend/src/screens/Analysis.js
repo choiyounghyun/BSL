@@ -25,7 +25,7 @@ const Analysis = () => {
 				/>
 				<button type="submit">검색</button>
 			</form>
-			<KakaoMap searchPlace={place} />\
+			<KakaoMap searchPlace={place} />
 		</>
 	);
 }
