@@ -4,17 +4,18 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import DummyImg from "../assets/images/dummy-img.png";
+import RankBanner from "../assets/images/rank-dummy.jpg";
 
 function BrandCard(props) {
   return (
     <div id="brand-card">
       <div className="ranking-banner">
-        <img src="" alt="" className="ranking-banner__img" />
-        <p>ranking</p>
+        <img src={RankBanner} alt="" className="ranking-banner__img" />
+        <p align="center">ranking</p>
       </div>
       <div className="card-list">
-        <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((_, idx) => (
+        <Row xs={1} md={3} className="g-4">
+          {Array.from({ length: 6 }).map((_, idx) => (
             <Col>
               <Card>
                 <Card.Img variant="top" src={DummyImg} />
