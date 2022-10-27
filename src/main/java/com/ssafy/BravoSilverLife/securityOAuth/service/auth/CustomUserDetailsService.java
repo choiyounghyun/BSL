@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import com.sample.advice.assertThat.DefaultAssert;
-import com.sample.config.security.token.UserPrincipal;
-import com.sample.domain.entity.user.User;
-import com.sample.repository.user.UserRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.assertThat.DefaultAssert;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.UserPrincipal;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.user.UserRepository;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -3,23 +3,23 @@ package com.ssafy.BravoSilverLife.securityOAuth.service.auth;
 import java.net.URI;
 import java.util.Optional;
 
-import com.sample.advice.assertThat.DefaultAssert;
-import com.sample.config.security.token.UserPrincipal;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.assertThat.DefaultAssert;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.UserPrincipal;
 
-import com.sample.domain.entity.user.Provider;
-import com.sample.domain.entity.user.Role;
-import com.sample.domain.entity.user.Token;
-import com.sample.domain.entity.user.User;
-import com.sample.domain.mapping.TokenMapping;
-import com.sample.payload.request.auth.ChangePasswordRequest;
-import com.sample.payload.request.auth.SignInRequest;
-import com.sample.payload.request.auth.SignUpRequest;
-import com.sample.payload.request.auth.RefreshTokenRequest;
-import com.sample.payload.response.ApiResponse;
-import com.sample.payload.response.AuthResponse;
-import com.sample.payload.response.Message;
-import com.sample.repository.auth.TokenRepository;
-import com.sample.repository.user.UserRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Provider;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Role;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Token;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.mapping.TokenMapping;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.ChangePasswordRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.SignInRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.SignUpRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.RefreshTokenRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.ApiResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.AuthResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.Message;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.auth.TokenRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.user.UserRepository;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -117,7 +117,7 @@ public class AuthService {
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/auth/")
-                .buildAndExpand(user.getId()).toUri();
+                .buildAndExpand(user.getUserIdx()).toUri();
         ApiResponse apiResponse = ApiResponse.builder().check(true).information(Message.builder().message("회원가입에 성공하였습니다.").build()).build();
 
         return ResponseEntity.created(location).body(apiResponse);

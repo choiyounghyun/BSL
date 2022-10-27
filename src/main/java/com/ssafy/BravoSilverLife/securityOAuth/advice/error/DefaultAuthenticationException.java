@@ -1,6 +1,6 @@
 package com.ssafy.BravoSilverLife.securityOAuth.advice.error;
 
-import com.sample.advice.payload.ErrorCode;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.payload.ErrorCode;
 
 import org.springframework.security.core.AuthenticationException;
 

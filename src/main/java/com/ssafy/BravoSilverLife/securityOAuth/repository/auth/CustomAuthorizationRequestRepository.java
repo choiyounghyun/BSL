@@ -3,7 +3,7 @@ package com.ssafy.BravoSilverLife.securityOAuth.repository.auth;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sample.config.security.util.CustomCookie;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.util.CustomCookie;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;

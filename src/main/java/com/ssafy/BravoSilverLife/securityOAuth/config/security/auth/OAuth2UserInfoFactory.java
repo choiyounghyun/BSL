@@ -2,13 +2,13 @@ package com.ssafy.BravoSilverLife.securityOAuth.config.security.auth;
 
 import java.util.Map;
 
-import com.sample.advice.assertThat.DefaultAssert;
-import com.sample.config.security.auth.company.Facebook;
-import com.sample.config.security.auth.company.Github;
-import com.sample.config.security.auth.company.Google;
-import com.sample.config.security.auth.company.Kakao;
-import com.sample.config.security.auth.company.Naver;
-import com.sample.domain.entity.user.Provider;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.assertThat.DefaultAssert;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.company.Facebook;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.company.Github;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.company.Google;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.company.Kakao;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.company.Naver;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Provider;
 
 public class OAuth2UserInfoFactory {
     public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) {

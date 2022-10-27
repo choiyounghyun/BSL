@@ -2,7 +2,7 @@ package com.ssafy.BravoSilverLife.securityOAuth.repository.user;
 
 import java.util.Optional;
 
-import com.sample.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

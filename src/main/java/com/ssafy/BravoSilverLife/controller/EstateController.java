@@ -1,6 +1,5 @@
 package com.ssafy.BravoSilverLife.controller;
 
-
 import com.ssafy.BravoSilverLife.dto.ArticleDetail;
 import com.ssafy.BravoSilverLife.dto.ArticleList;
 import com.ssafy.BravoSilverLife.dto.Cluster;
@@ -28,8 +27,10 @@ public class EstateController {
     @Autowired
     EstateService estateService;
 
-    Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0, 900000000, 127.15817519531251, 127.1698329, 37.563346675000005, 37.559772);
-//    Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0, 900000000, 127, 128, 38, 35);
+    Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0, 900000000, 127.15817519531251,
+            127.1698329, 37.563346675000005, 37.559772);
+    // Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0,
+    // 900000000, 127, 128, 38, 35);
 
     @Operation(summary = "매물 클러스터", description = "좌표로 매물 클러스터를 확인하는 API")
     @ApiResponses(value = {
@@ -62,6 +63,5 @@ public class EstateController {
         return ResponseEntity.status(200).body(articleDetail);
 
     }
-
 
 }

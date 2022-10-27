@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import com.sample.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,7 +30,7 @@ public class UserPrincipal implements OAuth2User, UserDetails{
     public static UserPrincipal create(User user) {
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getValue()));
         return new UserPrincipal(
-                user.getId(),
+                user.getUserIdx(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities

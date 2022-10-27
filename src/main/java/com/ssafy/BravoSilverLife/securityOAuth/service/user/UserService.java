@@ -2,11 +2,11 @@ package com.ssafy.BravoSilverLife.securityOAuth.service.user;
 
 import java.util.Optional;
 
-import com.sample.advice.assertThat.DefaultAssert;
-import com.sample.config.security.token.UserPrincipal;
-import com.sample.domain.entity.user.User;
-import com.sample.payload.response.ApiResponse;
-import com.sample.repository.user.UserRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.assertThat.DefaultAssert;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.UserPrincipal;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.ApiResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.user.UserRepository;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
