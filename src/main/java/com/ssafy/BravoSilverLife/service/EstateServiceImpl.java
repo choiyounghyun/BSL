@@ -1,30 +1,47 @@
 package com.ssafy.BravoSilverLife.service;
 
-import com.ssafy.BravoSilverLife.entity.Condition;
+import com.ssafy.BravoSilverLife.dto.*;
+import com.ssafy.BravoSilverLife.entity.DongCode;
+import com.ssafy.BravoSilverLife.repository.DongCodeRepository;
+import io.micrometer.core.instrument.util.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.net.ssl.*;
 import java.io.BufferedReader;
+
 import java.io.InputStreamReader;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Service
 public class EstateServiceImpl implements EstateService {
-    @Override
-    public void getCluster(Condition condition) throws Exception {
 
-        System.out.println("123");
-        String apiurl = "https://new.land.naver.com/api/articles/clusters?cortarNo=1168010300&zoom=16&markerId&markerType&selectedComplexNo&selectedComplexBuildingNo&fakeComplexMarker&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
+    @Autowired
+    DongCodeRepository dongCodeRepository;
+
+    @Override
+    public List<Cluster> getClusters(Condition condition) throws Exception {
+
+        System.out.println(condition.toString());
+        String apiurl = "https://new.land.naver.com/api/articles/clusters?";
+        apiurl += "cortarNo=" + condition.getCortarNo() + "&zoom=16&markerId&markerType&selectedComplexNo&selectedComplexBuildingNo&fakeComplexMarker&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
         apiurl += "&rentPriceMin=" + condition.getRentPriceMin();
         apiurl += "&rentPriceMax=" + condition.getRentPriceMax();
         apiurl += "&priceMin=" + condition.getPriceMin();
         apiurl += "&priceMax=" + condition.getPriceMax();
         apiurl += "&areaMin=" + condition.getAreaMin();
         apiurl += "&areaMax=" + condition.getAreaMax();
-        apiurl += "&oldBuildYears&recentlyBuildYears&minHouseHoldCount&maxHouseHoldCount&showArticle=false&sameAddressGroup=false&minMaintenanceCost&maxMaintenanceCost&priceType=RETAIL&directions=";
+        apiurl += "&oldBuildYears&recentlyBuildYears&minHouseHoldCount&maxHouseHoldCount&showArticle=false&sameAddressGroup=true&minMaintenanceCost&maxMaintenanceCost&priceType=RETAIL&directions=";
         apiurl += "&leftLon=" + condition.getLeftLon();
         apiurl += "&rightLon=" + condition.getRightLon();
         apiurl += "&topLat=" + condition.getTopLat();
@@ -64,27 +81,45 @@ public class EstateServiceImpl implements EstateService {
         br.close();
 
         JSONParser parser = new JSONParser();
-        System.out.println(response.toString());
-//        Object obj = parser.parse(response.toString());
 
-//        JSONObject jsonMain = (JSONObject) obj;
-//        JSONArray jsonArr = (JSONArray) jsonMain.get("items");
 
+        List<Cluster> clusters = new ArrayList<>();
+        JSONArray jsonArr = (JSONArray) parser.parse(response.toString());
+
+        if (jsonArr != null) {
+            for (int i = 0; i < jsonArr.size(); i++) {
+                JSONObject temp = (JSONObject) jsonArr.get(i);
+                Cluster cluster = Cluster.builder()
+                        .markerId(Long.parseLong((String) temp.get("markerId")))
+                        .count((Long) temp.get("count"))
+                        .latitude((Double) temp.get("latitude"))
+                        .longitude((Double) temp.get("longitude"))
+                        .leftLon((Double) temp.get("leftLon"))
+                        .rightLon((Double) temp.get("rightLon"))
+                        .bottomLat((Double) temp.get("bottomLat"))
+                        .topLat((Double) temp.get("topLat"))
+                        .build();
+
+                clusters.add(cluster);
+            }
+        }
+        return clusters;
     }
 
     @Override
-    public void getArticles(long markerId) throws Exception {
-        System.out.println("123");
+    public ArticleList getArticles(long markerId, int page, Condition condition) throws Exception {
+
         String apiurl = "https://new.land.naver.com/api/articles?";
         apiurl += "markerId=" + markerId;
-        apiurl += "&markerType=LGEOHASH_MIX_ARTICLE&prevScrollTop&order=rank&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A" +
-                "&rentPriceMin=0" +
-                "&rentPriceMax=900000000" +
-                "&priceMin=0" +
-                "&priceMax=900000000" +
-                "&areaMin=0" +
-                "&areaMax=900000000" +
-                "&oldBuildYears&recentlyBuildYears&minHouseHoldCount&maxHouseHoldCount&showArticle=false&sameAddressGroup=false&minMaintenanceCost&maxMaintenanceCost&priceType=RETAIL&directions=&page=1&articleState";
+        apiurl += "&markerType=LGEOHASH_MIX_ARTICLE&prevScrollTop&order=rank&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
+        apiurl += "&rentPriceMin=" + condition.getRentPriceMin();
+        apiurl += "&rentPriceMax=" + condition.getRentPriceMax();
+        apiurl += "&priceMin=" + condition.getPriceMin();
+        apiurl += "&priceMax=" + condition.getPriceMax();
+        apiurl += "&areaMin=" + condition.getAreaMin();
+        apiurl += "&areaMax=" + condition.getAreaMax();
+        apiurl += "&oldBuildYears&recentlyBuildYears&minHouseHoldCount&maxHouseHoldCount&showArticle=false&sameAddressGroup=true&minMaintenanceCost&maxMaintenanceCost&priceType=RETAIL&directions=&";
+        apiurl += "page=" + page + "&articleState";
 
         URL url = new URL(apiurl);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -104,10 +139,7 @@ public class EstateServiceImpl implements EstateService {
         con.addRequestProperty("sec-ch-ua-mobile", "?0");
         con.addRequestProperty("Sec-Fetch-Mode", "cors");
         con.addRequestProperty("sec-ch-ua-platform", "Windows");
-
         con.addRequestProperty("Sec-Fetch-Dest", "empty");
-
-
         con.addRequestProperty("Sec-Fetch-Site", "same-origin");
         con.addRequestProperty("User-Agent", " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36");
 
@@ -129,12 +161,68 @@ public class EstateServiceImpl implements EstateService {
         br.close();
 
         JSONParser parser = new JSONParser();
-        System.out.println(response.toString());
+        JSONObject jsonObj = (JSONObject) parser.parse(response.toString());
+        boolean isMoreData = (boolean) jsonObj.get("isMoreData");
+        List<Article> articles = new ArrayList<>();
+        JSONArray jsonArr = (JSONArray) jsonObj.get("articleList");
+
+        if (jsonArr != null) {
+            for (int i = 0; i < jsonArr.size(); i++) {
+                JSONObject temp = (JSONObject) jsonArr.get(i);
+                String[] floorInfo = ((String) temp.get("floorInfo")).split("/");
+                if (temp.get("tradeTypeName").equals("매매")) {
+                    Article article = Article.builder()
+                            .articleNo(Long.parseLong((String) temp.get("articleNo")))
+                            .articleName((String) temp.get("articleName"))
+                            .tradeTypeName((String) temp.get("tradeTypeName"))
+                            .floor(floorInfo[0])
+                            .maxFloor(floorInfo[1])
+                            .dealOrWarrantPrc((String) temp.get("dealOrWarrantPrc"))
+                            .area1((Long) temp.get("area1"))
+                            .area2((Long) temp.get("area2"))
+                            .tagList((JSONArray) temp.get("tagList"))
+                            .articleFeatureDesc((String) temp.get("articleFeatureDesc"))
+                            .cpPcArticleUrl((String) temp.get("cpPcArticleUrl"))
+                            .latitude((Double.parseDouble((String) temp.get("latitude"))))
+                            .longitude((Double.parseDouble((String) temp.get("longitude"))))
+                            .build();
+                    articles.add(article);
+                } else {
+                    Article article = Article.builder()
+                            .articleNo(Long.parseLong((String) temp.get("articleNo")))
+                            .articleName((String) temp.get("articleName"))
+                            .tradeTypeName((String) temp.get("tradeTypeName"))
+                            .floor(floorInfo[0])
+                            .maxFloor(floorInfo[1])
+                            .rentPrc(Integer.parseInt((String) temp.get("rentPrc")))
+                            .dealOrWarrantPrc((String) temp.get("dealOrWarrantPrc"))
+                            .area1((Long) temp.get("area1"))
+                            .area2((Long) temp.get("area2"))
+                            .tagList((JSONArray) temp.get("tagList"))
+                            .articleFeatureDesc((String) temp.get("articleFeatureDesc"))
+                            .cpPcArticleUrl((String) temp.get("cpPcArticleUrl"))
+                            .latitude((Double.parseDouble((String) temp.get("latitude"))))
+                            .longitude((Double.parseDouble((String) temp.get("longitude"))))
+                            .build();
+                    articles.add(article);
+                }
+
+
+            }
+        }
+
+
+        ArticleList articleList = ArticleList.builder()
+                .isMoreData(isMoreData)
+                .articles(articles)
+                .build();
+
+        return articleList;
     }
 
     @Override
-    public void getArticleDetail(long articleNo) throws Exception {
-        System.out.println("123");
+    public ArticleDetail getArticleDetail(long articleNo) throws Exception {
+
         String apiurl = "https://new.land.naver.com/api/articles/";
         apiurl += articleNo;
         apiurl += "?complexNo=";
@@ -179,6 +267,47 @@ public class EstateServiceImpl implements EstateService {
         br.close();
 
         JSONParser parser = new JSONParser();
-        System.out.println(response.toString());
+        JSONObject jsonObj = (JSONObject) parser.parse(response.toString());
+
+        JSONObject articleDetail = (JSONObject) jsonObj.get("articleDetail");
+        JSONObject articleAddition = (JSONObject) jsonObj.get("articleAddition");
+        JSONObject articlePrice = (JSONObject) jsonObj.get("articlePrice");
+        JSONArray tagList = (JSONArray) articleDetail.get("tagList");
+        JSONArray articlePhotos = (JSONArray) jsonObj.get("articlePhotos");
+        String[] floorInfo = ((String) articleAddition.get("floorInfo")).split("/");
+
+        ArticleDetail aD = ArticleDetail.builder()
+                .articleNo((Long.parseLong((String) articleDetail.get("articleNo"))))
+                .articleName((String) articleDetail.get("articleName"))
+                .cortarNo((Long.parseLong((String) articleDetail.get("cortarNo"))))
+                .buildingTypeName((String) articleDetail.get("buildingTypeName"))
+                .tradeTypeName((String) articleDetail.get("tradeTypeName"))
+                .latitude((Double.parseDouble((String) articleDetail.get("latitude"))))
+                .longitude((Double.parseDouble((String) articleDetail.get("longitude"))))
+                .cityName((String) articleDetail.get("cityName"))
+                .divisionName((String) articleDetail.get("divisionName"))
+                .sectionName((String) articleDetail.get("sectionName"))
+                .walkingTimeToNearSubway((Long) articleDetail.get("walkingTimeToNearSubway"))
+                .exposureAddress((String) articleDetail.get("exposureAddress"))
+                .monthlyManagementCost((Long) articleDetail.get("monthlyManagementCost"))
+                .articleFeatureDescription((String) articleDetail.get("articleFeatureDescription"))
+                .detailDescription((String) articleDetail.get("detailDescription"))
+                .parkingCount((Long) articleDetail.get("parkingCount"))
+                .parkingPossibleYN((String) articleDetail.get("parkingPossibleYN"))
+                .tagList(tagList)
+                .floor(floorInfo[0])
+                .maxFloor(floorInfo[1])
+                .area1((Long)articleAddition.get("area1"))
+                .area2((Long) articleAddition.get("area2"))
+                .direction((String) articleAddition.get("direction"))
+                .buildingName((String) articleAddition.get("buildingName"))
+                .cpPcArticleUrl((String) articleAddition.get("cpPcArticleUrl"))
+                .rentPrice((Long) articlePrice.get("rentPrice"))
+                .dealPrice((Long) articlePrice.get("dealPrice"))
+                .warrantPrice((Long) articlePrice.get("warrantPrice"))
+                .articlePhotos(articlePhotos)
+                .build();
+
+        return aD;
     }
 }
