@@ -1,13 +1,13 @@
 package com.ssafy.BravoSilverLife.securityOAuth.config.security.handler;
 
-import com.sample.advice.assertThat.DefaultAssert;
-import com.sample.config.security.OAuth2Config;
-import com.sample.config.security.util.CustomCookie;
-import com.sample.domain.entity.user.Token;
-import com.sample.domain.mapping.TokenMapping;
-import com.sample.repository.auth.CustomAuthorizationRequestRepository;
-import com.sample.repository.auth.TokenRepository;
-import com.sample.service.auth.CustomTokenProviderService;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.assertThat.DefaultAssert;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.OAuth2Config;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.util.CustomCookie;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Token;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.mapping.TokenMapping;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.auth.CustomAuthorizationRequestRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.auth.TokenRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.service.auth.CustomTokenProviderService;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.sample.repository.auth.CustomAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
+import static com.ssafy.BravoSilverLife.securityOAuth.repository.auth.CustomAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 import java.io.IOException;
 import java.net.URI;
@@ -54,6 +54,24 @@ public class CustomSimpleUrlAuthenticationSuccessHandler extends SimpleUrlAuthen
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
 
         TokenMapping tokenMapping = customTokenProviderService.createToken(authentication);
+
+        Cookie refreshToken = new Cookie("refreshToken", tokenMapping.getRefreshToken());
+        Cookie accessToken = new Cookie("accessToken", tokenMapping.getAccessToken());
+        refreshToken.setMaxAge(30 * 24 * 60 * 60);
+
+        // optional properties
+        refreshToken.setSecure(true);
+        refreshToken.setHttpOnly(true);
+        refreshToken.setPath("/");
+
+        accessToken.setSecure(true);
+        accessToken.setHttpOnly(true);
+        accessToken.setPath("/");
+
+        // add cookie to response
+        response.addCookie(refreshToken);
+        response.addCookie(accessToken);
+
         Token token = Token.builder()
                             .userEmail(tokenMapping.getUserEmail())
                             .refreshToken(tokenMapping.getRefreshToken())

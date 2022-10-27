@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class TimeAspect {
 
-    @Around("execution(* com.sample.controller.*.*(..))")
+    @Around("execution(* com.ssafy.BravoSilverLife.securityOAuth.controller.*.*(..))")
     public Object timerController(ProceedingJoinPoint proceedingJoinPoint) throws Throwable, Exception {
         
         long startTime = System.currentTimeMillis();

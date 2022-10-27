@@ -3,17 +3,17 @@ package com.ssafy.BravoSilverLife.securityOAuth.controller.auth;
 
 import javax.validation.Valid;
 
-import com.sample.advice.payload.ErrorResponse;
-import com.sample.config.security.token.CurrentUser;
-import com.sample.config.security.token.UserPrincipal;
-import com.sample.domain.entity.user.User;
-import com.sample.payload.request.auth.ChangePasswordRequest;
-import com.sample.payload.request.auth.SignInRequest;
-import com.sample.payload.request.auth.SignUpRequest;
-import com.sample.payload.response.AuthResponse;
-import com.sample.payload.response.Message;
-import com.sample.service.auth.AuthService;
-import com.sample.payload.request.auth.RefreshTokenRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.payload.ErrorResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.CurrentUser;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.UserPrincipal;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.ChangePasswordRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.SignInRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.SignUpRequest;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.AuthResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.Message;
+import com.ssafy.BravoSilverLife.securityOAuth.service.auth.AuthService;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.request.auth.RefreshTokenRequest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

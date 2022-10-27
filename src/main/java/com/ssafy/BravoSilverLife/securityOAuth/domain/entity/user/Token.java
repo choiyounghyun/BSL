@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.sample.domain.entity.time.DefaultTime;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.time.DefaultTime;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -16,10 +16,10 @@ import lombok.Getter;
 public class Token extends DefaultTime{
 
     @Id
-    @Column(name = "user_email", length = 1024 , nullable = false)
+    @Column(name = "user_email", length = 50 , nullable = false)
     private String userEmail;
 
-    @Column(name = "refresh_token", length = 1024 , nullable = false)
+    @Column(name = "refresh_token", length = 200 , nullable = false)
     private String refreshToken;
 
     public Token(){}

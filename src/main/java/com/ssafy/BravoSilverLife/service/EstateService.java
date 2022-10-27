@@ -1,6 +1,6 @@
 package com.ssafy.BravoSilverLife.service;
 
-import com.ssafy.BravoSilverLife.entity.Condition;
+import com.ssafy.BravoSilverLife.dto.Condition;
 
 public interface EstateService {
 

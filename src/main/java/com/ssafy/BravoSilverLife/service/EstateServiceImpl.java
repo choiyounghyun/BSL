@@ -1,8 +1,6 @@
 package com.ssafy.BravoSilverLife.service;
 
-import com.ssafy.BravoSilverLife.entity.Condition;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.ssafy.BravoSilverLife.dto.Condition;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 

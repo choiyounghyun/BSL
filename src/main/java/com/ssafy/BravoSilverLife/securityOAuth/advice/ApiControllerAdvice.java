@@ -1,12 +1,12 @@
 package com.ssafy.BravoSilverLife.securityOAuth.advice;
 
-import com.sample.advice.error.DefaultAuthenticationException;
-import com.sample.advice.error.DefaultException;
-import com.sample.advice.error.DefaultNullPointerException;
-import com.sample.advice.error.InvalidParameterException;
-import com.sample.advice.payload.ErrorCode;
-import com.sample.advice.payload.ErrorResponse;
-import com.sample.payload.response.ApiResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.error.DefaultAuthenticationException;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.error.DefaultException;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.error.DefaultNullPointerException;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.error.InvalidParameterException;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.payload.ErrorCode;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.payload.ErrorResponse;
+import com.ssafy.BravoSilverLife.securityOAuth.payload.response.ApiResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

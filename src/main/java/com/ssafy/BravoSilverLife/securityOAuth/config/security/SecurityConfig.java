@@ -1,12 +1,12 @@
 package com.ssafy.BravoSilverLife.securityOAuth.config.security;
 
-import com.sample.config.security.handler.CustomSimpleUrlAuthenticationFailureHandler;
-import com.sample.config.security.handler.CustomSimpleUrlAuthenticationSuccessHandler;
-import com.sample.config.security.token.CustomAuthenticationEntryPoint;
-import com.sample.config.security.token.CustomOncePerRequestFilter;
-import com.sample.repository.auth.CustomAuthorizationRequestRepository;
-import com.sample.service.auth.CustomDefaultOAuth2UserService;
-import com.sample.service.auth.CustomUserDetailsService;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.handler.CustomSimpleUrlAuthenticationFailureHandler;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.handler.CustomSimpleUrlAuthenticationSuccessHandler;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.CustomAuthenticationEntryPoint;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.CustomOncePerRequestFilter;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.auth.CustomAuthorizationRequestRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.service.auth.CustomDefaultOAuth2UserService;
+import com.ssafy.BravoSilverLife.securityOAuth.service.auth.CustomUserDetailsService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

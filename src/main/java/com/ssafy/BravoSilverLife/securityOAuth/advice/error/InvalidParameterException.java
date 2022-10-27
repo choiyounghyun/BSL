@@ -2,7 +2,7 @@ package com.ssafy.BravoSilverLife.securityOAuth.advice.error;
 
 import java.util.List;
 
-import com.sample.advice.payload.ErrorCode;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.payload.ErrorCode;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;

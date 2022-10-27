@@ -7,7 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.sample.repository.auth.CustomAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
+import static com.ssafy.BravoSilverLife.securityOAuth.repository.auth.CustomAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 import java.io.IOException;
 
@@ -16,8 +16,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sample.config.security.util.CustomCookie;
-import com.sample.repository.auth.CustomAuthorizationRequestRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.util.CustomCookie;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.auth.CustomAuthorizationRequestRepository;
 
 @RequiredArgsConstructor
 @Component

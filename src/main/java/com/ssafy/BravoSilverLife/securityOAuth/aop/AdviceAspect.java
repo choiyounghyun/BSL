@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class AdviceAspect {
     
-    @Around("execution(* com.sample.advice.*.*(..))")
+    @Around("execution(* com.ssafy.BravoSilverLife.securityOAuth.advice.*.*(..))")
     public Object adviceController(ProceedingJoinPoint proceedingJoinPoint) throws Throwable, Exception {
         log.error("Adivce Error = {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
         Object result = proceedingJoinPoint.proceed();

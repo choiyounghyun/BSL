@@ -2,14 +2,14 @@ package com.ssafy.BravoSilverLife.securityOAuth.service.auth;
 
 import java.util.Optional;
 
-import com.sample.advice.assertThat.DefaultAssert;
-import com.sample.config.security.auth.OAuth2UserInfo;
-import com.sample.config.security.auth.OAuth2UserInfoFactory;
-import com.sample.config.security.token.UserPrincipal;
-import com.sample.domain.entity.user.Provider;
-import com.sample.domain.entity.user.Role;
-import com.sample.domain.entity.user.User;
-import com.sample.repository.user.UserRepository;
+import com.ssafy.BravoSilverLife.securityOAuth.advice.assertThat.DefaultAssert;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.OAuth2UserInfo;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.OAuth2UserInfoFactory;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.UserPrincipal;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Provider;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Role;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.User;
+import com.ssafy.BravoSilverLife.securityOAuth.repository.user.UserRepository;
 
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -68,8 +68,8 @@ public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService{
 
     private User updateExistingUser(User user, OAuth2UserInfo oAuth2UserInfo) {
 
-        user.updateName(oAuth2UserInfo.getName());
-        user.updateImageUrl(oAuth2UserInfo.getImageUrl());
+//        user.updateName(oAuth2UserInfo.getName());
+//        user.updateImageUrl(oAuth2UserInfo.getImageUrl());
 
         return userRepository.save(user);
     }

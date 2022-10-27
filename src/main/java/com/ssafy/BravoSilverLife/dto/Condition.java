@@ -1,4 +1,4 @@
-package com.ssafy.BravoSilverLife.entity;
+package com.ssafy.BravoSilverLife.dto;
 
 import lombok.Builder;
 import lombok.Getter;

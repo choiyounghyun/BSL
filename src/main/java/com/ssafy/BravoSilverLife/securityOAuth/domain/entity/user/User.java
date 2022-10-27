@@ -1,32 +1,28 @@
 package com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sample.domain.entity.time.DefaultTime;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.time.DefaultTime;
 
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
-
-import lombok.Builder;
-import lombok.Getter;
 
 @DynamicUpdate
 @Entity
 @Getter
-@Table(name = "user")
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "User")
 public class User extends DefaultTime{
     @Id
+    @Column(name = "user_idx")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userIdx;
 
     @Column(nullable = false)
     private String name;
@@ -52,8 +48,6 @@ public class User extends DefaultTime{
 
     private String providerId;
     
-    public User(){}
-
     @Builder
     public User(String name, String email, String password, Role role, Provider provider, String providerId, String imageUrl){
         this.email = email;
@@ -70,4 +64,8 @@ public class User extends DefaultTime{
     public void updateImageUrl(String imageUrl){
         this.imageUrl = imageUrl;
     }
+
+    /*연관관계 매핑 하기*/
+//    @OneToOne(mappedBy = "user")
+
 }

@@ -1,7 +1,7 @@
 package com.ssafy.BravoSilverLife.controller;
 
 
-import com.ssafy.BravoSilverLife.entity.Condition;
+import com.ssafy.BravoSilverLife.dto.Condition;
 import com.ssafy.BravoSilverLife.service.EstateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

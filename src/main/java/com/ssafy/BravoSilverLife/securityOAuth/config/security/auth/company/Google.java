@@ -2,8 +2,8 @@ package com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.company;
 
 import java.util.Map;
 
-import com.sample.config.security.auth.OAuth2UserInfo;
-import com.sample.domain.entity.user.Provider;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.auth.OAuth2UserInfo;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.entity.user.Provider;
 
 public class Google extends OAuth2UserInfo{
 

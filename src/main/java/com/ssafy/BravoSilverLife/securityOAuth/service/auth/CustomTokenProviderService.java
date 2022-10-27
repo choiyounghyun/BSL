@@ -3,9 +3,9 @@ package com.ssafy.BravoSilverLife.securityOAuth.service.auth;
 import java.security.Key;
 import java.util.Date;
 
-import com.sample.config.security.OAuth2Config;
-import com.sample.config.security.token.UserPrincipal;
-import com.sample.domain.mapping.TokenMapping;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.OAuth2Config;
+import com.ssafy.BravoSilverLife.securityOAuth.config.security.token.UserPrincipal;
+import com.ssafy.BravoSilverLife.securityOAuth.domain.mapping.TokenMapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
