@@ -6,26 +6,32 @@
   align-items: center;
   background-color: bisque;
 }
+
 .logo {
   width: 10%;
   height: 10%;
 }
+
 .title {
   font-size: 40px;
 }
+
 .nav-container {
   display: flex;
   width: 60%;
   justify-content: space-between;
 }
+
 .left-nav {
   display: flex;
   width: 60%;
 }
+
 .right-nav {
   display: flex;
   width: 30%;
 }
+
 hr {
   border: solid;
 }
