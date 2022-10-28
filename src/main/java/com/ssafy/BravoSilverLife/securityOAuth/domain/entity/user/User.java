@@ -47,6 +47,8 @@ public class User extends DefaultTime{
     private Role role;
 
     private String providerId;
+
+    private String telno;
     
     @Builder
     public User(String name, String email, String password, Role role, Provider provider, String providerId, String imageUrl){
