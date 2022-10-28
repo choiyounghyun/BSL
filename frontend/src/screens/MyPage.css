@@ -1,0 +1,15 @@
+.page-wrapper {
+  border: 1px solid grey;
+  border-radius: 12px;
+  width: 70%;
+  height: 400px;
+  margin: auto;
+}
+.category-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.v-line {
+  border: 1px;
+}

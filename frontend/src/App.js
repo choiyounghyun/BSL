@@ -3,7 +3,9 @@ import Router from "./routers/Router";
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
-  return <Router />;
+  return (
+    <Router />
+  )
 }
 
 export default App;
