@@ -8,6 +8,22 @@ import Community from "../screens/Community.js";
 import Ranking from "../screens/Ranking.js";
 import Login from "../screens/Login.js";
 import Join from "../screens/Join.js";
+import MyPage from "../screens/MyPage.js";
+
+// const BaseRouter = withRouter(({ location }) => {
+
+//   return (
+//     <div>
+//       {/* // '/' 주소일시, 즉 Login Route를 보여줄 때에만, Navigation 메뉴가 나타나지 않도록 만든다. */}
+//       {location.pathname != '/' && <MainNavBar />}
+//       <Route path="/login" exact={true} component={Login} />
+//       <Route path="/home" component={Home} />
+//       <Route path="/about" component={About} />
+//     </div>
+
+//   )
+// })
+
 
 function router() {
   return (
@@ -22,6 +38,7 @@ function router() {
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </Suspense>
       </div>
