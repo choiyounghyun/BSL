@@ -158,7 +158,7 @@ const KakaoMap = ({ searchPlace }) => { // searchPlace = 검색할 장소를 나
 	});
 
 	return (
-		<div className="App">
+		<div className="KakaoMap">
 			<div id="map" className="map" />
 		</div>
 	);
