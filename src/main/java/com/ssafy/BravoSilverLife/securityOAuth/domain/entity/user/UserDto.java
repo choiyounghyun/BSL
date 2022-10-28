@@ -21,6 +21,7 @@ public class UserDto {
     private Provider provider;
     private Role role;
     private String providerId;
+    private String telno;
 
     public static UserDto of(User userEntity){
         UserDto userDto = ModelMapperUtils.getModelMapper().map(userEntity,UserDto.class);
