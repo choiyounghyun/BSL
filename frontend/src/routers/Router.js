@@ -8,6 +8,7 @@ import Community from "../screens/Community.js";
 import Ranking from "../screens/Ranking.js";
 import Login from "../screens/Login.js";
 import Join from "../screens/Join.js";
+import MyPage from "../screens/MyPage.js";
 
 function router() {
   return (
@@ -22,6 +23,7 @@ function router() {
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </Suspense>
       </div>
