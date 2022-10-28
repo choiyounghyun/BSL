@@ -23,8 +23,8 @@ function Login(props) {
   // });
 
   return (
-    <>
-      <h2>로그인과 회원가입 만드는 중</h2>
+    <div id="login-div">
+      <h2>                       </h2>
       <div class="container" id="container">
         <div class="form-container sign-up-container">
           <form action="#">
@@ -71,7 +71,7 @@ function Login(props) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
