@@ -18,11 +18,10 @@ const Analysis = () => {
 	return (
 		<>
 			<form className="inputForm" onSubmit={handleSubmit}>
-				<input
-					placeholder="Search Place..."
-					onChange={onChange}
-					value={inputText}
-				/>
+				<select>
+					<option value="chicken">치킨(통닭)</option>
+					<option value="pizza">피자</option>
+				</select>
 				<button type="submit">검색</button>
 			</form>
 			<KakaoMap searchPlace={place} />
