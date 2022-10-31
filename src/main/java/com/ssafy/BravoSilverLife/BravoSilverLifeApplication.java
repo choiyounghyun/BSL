@@ -7,12 +7,8 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-//@PropertySource(value = {"classpath:database/database.properties"})
-//@PropertySource(value = {"classpath:oauth2/oauth2.properties"})
-//@PropertySource(value = {"classpath:swagger/springdoc.properties"})
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @EnableJpaAuditing
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @PropertySource(value = { "classpath:database/database.properties" })
 @PropertySource(value = { "classpath:oauth2/oauth2.properties" })
 @PropertySource(value = { "classpath:swagger/springdoc.properties" })
