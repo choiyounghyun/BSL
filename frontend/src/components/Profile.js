@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "./Profile.css";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 function Profile(props) {
   const gangnam = ["강남1", "강남2", "강남3", "강남4"];

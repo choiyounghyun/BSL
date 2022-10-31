@@ -91,4 +91,4 @@ function Main(props) {
   );
 }
 
-export default SwipeableTextMobileStepper;
+export default Main;
