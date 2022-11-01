@@ -10,7 +10,7 @@ import lombok.*;
 @ToString
 @Schema(description = "검색 조건")
 public class Condition {
-    int cortarNo;
+    String dongName;
     int rentPriceMin;
     int rentPriceMax;
     int priceMin;

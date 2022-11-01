@@ -27,7 +27,7 @@ public class EstateController {
     @Autowired
     EstateService estateService;
 
-    Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0, 900000000, 127.15817519531251,
+    Condition test = new Condition("고덕동", 0, 900000000, 0, 900000000, 0, 900000000, 127.15817519531251,
             127.1698329, 37.563346675000005, 37.559772);
     // Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0,
     // 900000000, 127, 128, 38, 35);

@@ -12,9 +12,12 @@ import javax.persistence.Table;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "dong_code")
-public class DongCode {
+@Table(name = "bd_code")
+public class BDCode {
     @Id
-    int code;
-    String name;
+    int dongCode;
+    String sidoName;
+    String gugunName;
+    String dongName;
+
 }

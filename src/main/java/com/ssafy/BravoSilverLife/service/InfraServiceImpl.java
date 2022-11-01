@@ -1,13 +1,8 @@
 package com.ssafy.BravoSilverLife.service;
 
-import com.ssafy.BravoSilverLife.dto.Article;
-import com.ssafy.BravoSilverLife.dto.ArticleList;
-import com.ssafy.BravoSilverLife.dto.Cluster;
-import com.ssafy.BravoSilverLife.dto.Condition;
-import com.ssafy.BravoSilverLife.entity.DongCode;
-import com.ssafy.BravoSilverLife.repository.DongCodeRepository;
+import com.ssafy.BravoSilverLife.entity.HDCode;
+import com.ssafy.BravoSilverLife.repository.HDCodeRepository;
 import io.micrometer.core.instrument.util.IOUtils;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +12,8 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,12 +21,12 @@ import java.util.List;
 public class InfraServiceImpl implements InfraService {
 
     @Autowired
-    DongCodeRepository dongCodeRepository;
+    HDCodeRepository HDCodeRepository;
 
     @Override
     public JSONObject getPopular(String name) throws Exception {
 
-        List<DongCode> temp = dongCodeRepository.findByName(name);
+        List<HDCode> temp = HDCodeRepository.findByName(name);
         if (temp.size()==0) return null;
 
         int admiCd = temp.get(0).getCode();

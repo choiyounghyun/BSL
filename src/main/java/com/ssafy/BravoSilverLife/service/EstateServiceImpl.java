@@ -1,16 +1,14 @@
 package com.ssafy.BravoSilverLife.service;
 
 import com.ssafy.BravoSilverLife.dto.*;
-import com.ssafy.BravoSilverLife.entity.DongCode;
-import com.ssafy.BravoSilverLife.repository.DongCodeRepository;
-import io.micrometer.core.instrument.util.IOUtils;
+import com.ssafy.BravoSilverLife.entity.BDCode;
+import com.ssafy.BravoSilverLife.repository.BDCodeRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.net.ssl.*;
 import java.io.BufferedReader;
 
 import java.io.InputStreamReader;
@@ -18,7 +16,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +23,17 @@ import java.util.List;
 public class EstateServiceImpl implements EstateService {
 
     @Autowired
-    DongCodeRepository dongCodeRepository;
+    BDCodeRepository BDCodeRepository;
 
     @Override
     public List<Cluster> getClusters(Condition condition) throws Exception {
 
+        List<BDCode> bdCodes = BDCodeRepository.findByDongName(condition.getDongName());
+
+
         System.out.println(condition.toString());
         String apiurl = "https://new.land.naver.com/api/articles/clusters?";
-        apiurl += "cortarNo=" + condition.getCortarNo()
+        apiurl += "cortarNo=" + bdCodes.get(0).getDongCode()
                 + "&zoom=16&markerId&markerType&selectedComplexNo&selectedComplexBuildingNo&fakeComplexMarker&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
         apiurl += "&rentPriceMin=" + condition.getRentPriceMin();
         apiurl += "&rentPriceMax=" + condition.getRentPriceMax();
