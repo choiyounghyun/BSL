@@ -38,13 +38,6 @@ const sale_marks = [ // 매매가 슬라이더
 	{ value: 75, label: '15억' },
 	{ value: 100, label: '최대' },
 ];
-const right_marks = [ // 권리금 슬라이더
-	{ value: 0, label: '최소' },
-	{ value: 25, label: '1000만' },
-	{ value: 50, label: '5000만' },
-	{ value: 75, label: '1억' },
-	{ value: 100, label: '최대' },
-];
 const areaSize_marks = [ // 방면적 슬라이더
 	{ value: 0, label: '최소' },
 	{ value: 50, label: '100m²' },
@@ -65,7 +58,6 @@ const Analysis = () => { // 상권분석 창
 	const [monthlyPrice, setMonthlyPrice] = useState([0, 100]); // 월 임대료 변수
 	const [depositPrice, setDepositPrice] = useState([0, 100]); // 보증금 변수
 	const [salePrice, setSalePrice] = useState([0, 100]); // 매매가 변수
-	const [rightPrice, setRightPrice] = useState([0, 100]); // 권리금 변수
 
 	const [floor, setFloor] = useState('all'); // 건물 층수 변수
 	const [areaSize, setAreaSize] = useState([0, 100]); // 건물 면적 변수
@@ -127,18 +119,6 @@ const Analysis = () => { // 상권분석 창
 		}
 	};
 
-	const handleRightPriceChange = (e, newValue, activeThumb) => {
-		if (!Array.isArray(newValue)) {
-			return;
-		}
-
-		if (activeThumb === 0) {
-			setRightPrice([Math.min(newValue[0], rightPrice[1] - minDistance), rightPrice[1]]);
-		} else {
-			setRightPrice([rightPrice[0], Math.max(newValue[1], rightPrice[0] + minDistance)]);
-		}
-	};
-
 	const handleFloorChange = (e) => {
 		setFloor(e.target.value);
 	};
@@ -158,18 +138,6 @@ const Analysis = () => { // 상권분석 창
 	return (
 		// 상권 분석 div
 		<div className="analysis_wrap">
-
-			{/* 지도 div */}
-			<KakaoMap
-				searchPlace={place} // 검색 장소
-				rentPriceMin={monthlyPrice[0] * 10}
-				rentPriceMax={monthlyPrice[1] * 10}
-				priceMin={depositPrice[0] * 40}
-				priceMax={depositPrice[1] * 40}
-				areaMin={areaSize[0] * 2}
-				areaMax={areaSize[1] * 2}
-			/>
-
 			{/* 지역 검색, 업종 선택 등을 담당하는 div */}
 			<div className="menu_wrap">
 
@@ -262,12 +230,11 @@ const Analysis = () => { // 상권분석 창
 						>
 							<FormControlLabel sx={{ '& .MuiFormControlLabel-label': { fontSize: '15px' } }} value="all" control={<Radio size="small" />} label="전체" />
 							<FormControlLabel sx={{ '& .MuiFormControlLabel-label': { fontSize: '15px' } }} value="monthly" control={<Radio size="small" />} label="월세" />
-							<FormControlLabel sx={{ '& .MuiFormControlLabel-label': { fontSize: '15px' } }} value="rent" control={<Radio size="small" />} label="전세" />
 							<FormControlLabel sx={{ '& .MuiFormControlLabel-label': { fontSize: '15px' } }} value="trade" control={<Radio size="small" />} label="매매" />
 						</RadioGroup>
 					</FormControl>
 
-					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+					<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
 						<FormLabel>월 임대료</FormLabel>
 						<FormLabel>
 							{monthlyPrice[0] === 0 && monthlyPrice[1] === 100 ? "전체" :
@@ -314,21 +281,6 @@ const Analysis = () => { // 상권분석 창
 								onChange={handleSalePriceChange}
 								valueLabelDisplay="off"
 								marks={sale_marks}
-								disableSwap
-							/>
-						</Box>
-					</div>
-
-					<FormLabel id="demo-controlled-radio-buttons-group">권리금</FormLabel>
-					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-						<Box sx={{ width: '85%' }}>
-							<Slider
-								getariaLabel={() => 'Minimum distance'}
-								value={rightPrice}
-								step={5}
-								onChange={handleRightPriceChange}
-								valueLabelDisplay="off"
-								marks={right_marks}
 								disableSwap
 							/>
 						</Box>
@@ -384,6 +336,17 @@ const Analysis = () => { // 상권분석 창
 					검색
 				</Button>
 			</div>
+
+			{/* 지도 div */}
+			<KakaoMap className='map_wrap'
+				searchPlace={place} // 검색 장소
+				rentPriceMin={monthlyPrice[0] * 10}
+				rentPriceMax={monthlyPrice[1] * 10}
+				priceMin={depositPrice[0] * 40}
+				priceMax={depositPrice[1] * 40}
+				areaMin={areaSize[0] * 2}
+				areaMax={areaSize[1] * 2}
+			/>
 		</div >
 	);
 }
