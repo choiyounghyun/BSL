@@ -14,6 +14,8 @@ import Radio from '@mui/material/Radio'; // 가격 거래유형 사용
 import RadioGroup from '@mui/material/RadioGroup'; // 가격 거래유형 사용
 import Slider from '@mui/material/Slider'; // 가격 설정 사용
 
+import Button from '@mui/material/Button'; // 검색 버튼 사용
+
 const minDistance = 5; // 가격의 최소, 최대 사이의 최소 거리
 const monthly_marks = [ // 월 임대료 슬라이더
 	{ value: 0, label: '최소' },
@@ -45,8 +47,8 @@ const right_marks = [ // 권리금 슬라이더
 ];
 const areaSize_marks = [ // 방면적 슬라이더
 	{ value: 0, label: '최소' },
-	{ value: 100, label: '100m²' },
-	{ value: 200, label: '최대' },
+	{ value: 50, label: '100m²' },
+	{ value: 100, label: '최대' },
 ];
 
 const Analysis = () => { // 상권분석 창
@@ -68,14 +70,16 @@ const Analysis = () => { // 상권분석 창
 	const [floor, setFloor] = useState('all'); // 건물 층수 변수
 	const [areaSize, setAreaSize] = useState([0, 100]); // 건물 면적 변수
 
-	const onInputChange = (e) => { // 검색창 입력값 변경시 setInputText에 변경된 값 저장
-		setInputText(e.target.value);
+	const handleDataSubmit = (e) => {
+		e.preventDefault();
+		// 검색할 장소 및 역이름 확정
+		setPlace(inputText);
+		// 저장되어 있던 입력값 삭제
+		setInputText("");
 	};
 
-	const handlePlaceSubmit = (e) => {
-		e.preventDefault();
-		setPlace(inputText);
-		setInputText("");
+	const onInputChange = (e) => { // 검색창 입력값 변경시 setInputText에 변경된 값 저장
+		setInputText(e.target.value);
 	};
 
 	// 선택한 업종 변경되었을 경우 이벤트 발생
@@ -153,31 +157,34 @@ const Analysis = () => { // 상권분석 창
 
 	return (
 		// 상권 분석 div
-		<div class="analysis_wrap">
+		<div className="analysis_wrap">
 
 			{/* 지도 div */}
-			<KakaoMap searchPlace={place} />
+			<KakaoMap
+				searchPlace={place} // 검색 장소
+				rentPriceMin={monthlyPrice[0] * 10}
+				rentPriceMax={monthlyPrice[1] * 10}
+				priceMin={depositPrice[0] * 40}
+				priceMax={depositPrice[1] * 40}
+				areaMin={areaSize[0] * 2}
+				areaMax={areaSize[1] * 2}
+			/>
 
 			{/* 지역 검색, 업종 선택 등을 담당하는 div */}
-			<div class="menu_wrap">
+			<div className="menu_wrap">
 
 				{/* 지역 검색을 위한 검색창 */}
-				<div class="search_textinput_wrap">
-					<input
+				<div className="search_textinput_wrap">
+					<input type="text" className="form-control" getariaLabel="Sizing example input" aria-describedby="inputGroup-sizing-sm"
 						placeholder='지역 및 역이름'
 						onChange={onInputChange}
 						value={inputText}>
 					</input>
-					<button
-						onSubmit={handlePlaceSubmit}
-						type='submit'>
-						검색
-					</button>
 				</div>
 
 				{/* 업종, 가격 등 설정창 */}
-				<div class="option_select_wrap">
-					<button
+				<div className="option_select_wrap">
+					<button type="button" className="btn btn-primary d-grid gap-2 d-md-flex justify-content-md-end"
 						onClick={() => {
 							setSectorVisible(!sectorVisible);
 							setScoreVisible(false);
@@ -186,7 +193,7 @@ const Analysis = () => { // 상권분석 창
 						}}>
 						{sectorVisible ? "선택" : "업종"}
 					</button>
-					<button
+					<button type="button" className="btn btn-primary d-grid gap-2 d-md-flex justify-content-md-end"
 						onClick={() => {
 							setSectorVisible(false);
 							setScoreVisible(!scoreVisible);
@@ -195,7 +202,7 @@ const Analysis = () => { // 상권분석 창
 						}}>
 						{scoreVisible ? "지수닫기" : "평가지수"}
 					</button>
-					<button
+					<button type="button" className="btn btn-primary d-grid gap-2 d-md-flex justify-content-md-end"
 						onClick={() => {
 							setSectorVisible(false);
 							setScoreVisible(false);
@@ -204,7 +211,7 @@ const Analysis = () => { // 상권분석 창
 						}}>
 						{priceVisible ? "설정" : "가격"}
 					</button>
-					<button
+					<button type="button" className="btn btn-primary d-grid gap-2 d-md-flex justify-content-md-end"
 						onClick={() => {
 							setSectorVisible(false);
 							setScoreVisible(false);
@@ -238,10 +245,10 @@ const Analysis = () => { // 상권분석 창
 					</FormControl>
 				</div>}
 
-				{scoreVisible && <div class="score_wrap">
+				{scoreVisible && <div className="score_wrap">
 				</div>}
 
-				{priceVisible && <div class="price_wrap">
+				{priceVisible && <div className="price_wrap">
 					<FormControl>
 						<FormLabel id="demo-controlled-radio-buttons-group">거래유형</FormLabel>
 						<RadioGroup
@@ -271,8 +278,7 @@ const Analysis = () => { // 상권분석 창
 					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 						<Box sx={{ width: '85%' }}>
 							<Slider
-								aria-label="Custom marks"
-								getAriaLabel={() => 'Minimum distance'}
+								getariaLabel={() => 'Minimum distance'}
 								value={monthlyPrice}
 								step={5}
 								onChange={handleMonthlyPriceChange}
@@ -287,8 +293,7 @@ const Analysis = () => { // 상권분석 창
 					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 						<Box sx={{ width: '85%' }}>
 							<Slider
-								aria-label="Custom marks"
-								getAriaLabel={() => 'Minimum distance'}
+								getariaLabel={() => 'Minimum distance'}
 								value={depositPrice}
 								step={5}
 								onChange={handleDepositPriceChange}
@@ -303,8 +308,7 @@ const Analysis = () => { // 상권분석 창
 					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 						<Box sx={{ width: '85%' }}>
 							<Slider
-								aria-label="Custom marks"
-								getAriaLabel={() => 'Minimum distance'}
+								getariaLabel={() => 'Minimum distance'}
 								value={salePrice}
 								step={5}
 								onChange={handleSalePriceChange}
@@ -319,8 +323,7 @@ const Analysis = () => { // 상권분석 창
 					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 						<Box sx={{ width: '85%' }}>
 							<Slider
-								aria-label="Custom marks"
-								getAriaLabel={() => 'Minimum distance'}
+								getariaLabel={() => 'Minimum distance'}
 								value={rightPrice}
 								step={5}
 								onChange={handleRightPriceChange}
@@ -332,7 +335,7 @@ const Analysis = () => { // 상권분석 창
 					</div>
 				</div>}
 
-				{floorVisible && <div class="floor_wrap">
+				{floorVisible && <div className="floor_wrap">
 					<FormControl>
 						<FormLabel id="demo-controlled-radio-buttons-group">층수</FormLabel>
 						<RadioGroup
@@ -354,18 +357,17 @@ const Analysis = () => { // 상권분석 창
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 						<FormLabel>방크기</FormLabel>
 						<FormLabel>
-							{areaSize[0] === 0 && areaSize[1] === 200 ? "전체" :
-								areaSize[0] === 0 && areaSize[1] !== 200 ? `${areaSize[1]}m²이하` :
-									areaSize[0] !== 0 && areaSize[1] === 200 ? `${areaSize[0]}m²이상` : `${areaSize[0]}m² ~ ${areaSize[1]}m²`}
+							{areaSize[0] === 0 && areaSize[1] === 100 ? "전체" :
+								areaSize[0] === 0 && areaSize[1] !== 100 ? `${areaSize[1] * 2}m²이하` :
+									areaSize[0] !== 0 && areaSize[1] === 100 ? `${areaSize[0] * 2}m²이상` : `${areaSize[0] * 2}m² ~ ${areaSize[1] * 2}m²`}
 						</FormLabel>
 					</div>
 					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 						<Box sx={{ width: '85%' }}>
 							<Slider
-								aria-label="Custom marks"
-								getAriaLabel={() => 'Minimum distance'}
+								getariaLabel={() => 'Minimum distance'}
 								value={areaSize}
-								step={1}
+								step={0.5}
 								onChange={handleAreaSizeChange}
 								valueLabelDisplay="off"
 								marks={areaSize_marks}
@@ -374,6 +376,13 @@ const Analysis = () => { // 상권분석 창
 						</Box>
 					</div>
 				</div>}
+
+				<Button
+					variant="contained"
+					id='search_button'
+					onClick={handleDataSubmit}>
+					검색
+				</Button>
 			</div>
 		</div >
 	);

@@ -79,7 +79,7 @@
   width: 90%;
   height: 400px;
   margin: 20px 0px;
-  background-color: blueviolet;
+  background-color: plum;
   border-radius: 15px;
 
   display: flex;
@@ -101,4 +101,11 @@
 
   display: flex;
   flex-direction: column;
+}
+
+#search_button {
+  position: absolute;
+  bottom: 20px;
+
+  width: 90%;
 }
