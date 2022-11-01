@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Table(name = "bd_code")
 public class BDCode {
     @Id
-    int dongCode;
-    String sidoName;
-    String gugunName;
-    String dongName;
+    int code;
+    String sido;
+    String gugun;
+    String name;
 
 }

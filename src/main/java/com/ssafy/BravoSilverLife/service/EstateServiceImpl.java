@@ -28,12 +28,12 @@ public class EstateServiceImpl implements EstateService {
     @Override
     public List<Cluster> getClusters(Condition condition) throws Exception {
 
-        List<BDCode> bdCodes = BDCodeRepository.findByDongName(condition.getDongName());
+        List<BDCode> bdCodes = BDCodeRepository.findByName(condition.getDongName());
 
 
         System.out.println(condition.toString());
         String apiurl = "https://new.land.naver.com/api/articles/clusters?";
-        apiurl += "cortarNo=" + bdCodes.get(0).getDongCode()
+        apiurl += "cortarNo=" + bdCodes.get(0).getCode()
                 + "&zoom=16&markerId&markerType&selectedComplexNo&selectedComplexBuildingNo&fakeComplexMarker&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
         apiurl += "&rentPriceMin=" + condition.getRentPriceMin();
         apiurl += "&rentPriceMax=" + condition.getRentPriceMax();

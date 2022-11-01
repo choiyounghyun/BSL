@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface BDCodeRepository extends JpaRepository<BDCode, Long> {
 
-    List<BDCode> findByDongName(String dongName);
+    List<BDCode> findByName(String Name);
 
 }
