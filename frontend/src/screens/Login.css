@@ -104,6 +104,12 @@ button.ghost {
   border-color: #FFFFFF;
 }
 
+button.test {
+  background-color: lightgray;
+  border-color: #FFFFFF;
+  padding: 8px 25px;
+}
+
 form {
   background-color: #FFFFFF;
   display: flex;
