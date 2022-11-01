@@ -5,7 +5,7 @@ import LogoImg from "../../assets/images/mainlogo.svg";
 
 function MainNavBar() {
   return (
-    <div classname="nav-wrapper">
+    <div className="nav-wrapper">
       <nav id="main-nav-bar">
         <img className="logo" alt="logo" src={LogoImg} />
         <Link className="title" to="/">
