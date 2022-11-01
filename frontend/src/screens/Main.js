@@ -1,128 +1,94 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+import React from "react";
+import "./Main.css";
+import Carousel from "react-bootstrap/Carousel";
+import banner1Man from "../assets/images/banner1-man.svg";
+import banner1Map from "../assets/images/banner1-map.svg";
+import banner2Man from "../assets/images/banner2-man.svg";
+import banner2Map from "../assets/images/banner2-map.svg";
+import banner2Food from "../assets/images/banner2-food.svg";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const images = [
-  {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
-  },
-  {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60"
-  },
-  {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60"
-  }
-];
-
-function SwipeableTextMobileStepper() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
-
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const handleStepChange = step => {
-    setActiveStep(step);
-  };
-
+function Main(props) {
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          height: 50,
-          pl: 2,
-          bgcolor: "background.default"
-        }}
-      >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  height: 255,
-                  display: "block",
-                  maxWidth: 400,
-                  overflow: "hidden",
-                  width: "100%"
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
+    <div id="main">
+      <Carousel interval="4000" nextIcon="" prevIcon="">
+        <Carousel.Item>
+          <div className="first-banner">
+            <img src={banner1Man} alt="banner1man" className="banner1-man" />
+            <img src={banner1Map} alt="banner1map" className="banner1-map" />
           </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
-    </Box>
+          <Carousel.Caption>
+            <h3>회사에서 짤린 당신</h3>
+            <p>음식점을 차리고 싶은데 어디 좋은 자리 없나?</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="second-banner">
+            <img src={banner2Man} alt="banner2man" className="banner2-man" />
+            <img src={banner2Map} alt="banner2map" className="banner2-map" />
+            <img src={banner2Food} alt="banner2food" className="banner2-food" />
+          </div>
+          <Carousel.Caption>
+            <h3>자 새로운 인생 시작이다!</h3>
+            <p>고객맞춤형 데이터 기반 검색 서비스를 제공합니다!</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="third-banner"></div>
+
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+      <div className="main-intro">
+        <div className="main-intro__first">
+          <h2 align="center">상권분석하기</h2>
+          <div className="anal-banner">
+            <Carousel>
+              <Carousel.Item>
+                <div className="third-banner"></div>
+                <Carousel.Caption>
+                  <h3>slide label</h3>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl
+                    consectetur.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+            <img src="" alt="" className="anal-banner__img" />
+          </div>
+        </div>
+        <div className="main-intro__second">
+          <h2 align="center">커뮤니티</h2>
+          <div className="com-banner">
+            <Carousel>
+              <Carousel.Item>
+                <div className="third-banner"></div>
+                <Carousel.Caption>
+                  <h3>slide label</h3>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl
+                    consectetur.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+            <img src="" alt="" className="com-banner__img" />
+          </div>
+        </div>
+        <div className="main-intro__third">
+          <h2 align="center">랭킹보기</h2>
+          <div className="rank-banner">
+            <img src="" alt="" className="rank-banner__img" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-export default SwipeableTextMobileStepper;
+export default Main;
