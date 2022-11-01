@@ -1,14 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 
 function Profile(props) {
   const gangnam = ["강남1", "강남2", "강남3", "강남4"];
   const gangdong = ["강동1", "강동2", "강동3", "강동4"];
   const gangbook = ["강북1", "강북2", "강북3", "강북4"];
   const gangseo = ["강서1", "강서2", "강서3", "강서4"];
-
+  const selectList = ["강남", "강동", "강북", "강서"];
+  const [Selected, setSelected] = useState("");
+  const [subSelected, setSubSelected] = useState();
+  const handleSelect = e => {
+    setSelected(e.target.value);
+    if (e.target.value === "강남") {
+      setSubSelected({ gangnam });
+    } else if (e.target.value === "강동") {
+      setSubSelected({ gangdong });
+    } else if (e.target.value === "강북") {
+      setSubSelected({ gangbook });
+    } else if (e.target.value === "강서") {
+      setSubSelected({ gangseo });
+    }
+    console.log(e.target.value);
+    console.log(subSelected);
+  };
   return (
     <div id="profile">
       <div className="profile__info">
@@ -17,18 +31,18 @@ function Profile(props) {
         <p>이메일 : rdg9074@ssafy.com</p>
         <div className="profile__region">
           <p>관심지역</p>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              지역선택하기
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item value="강남">강남</Dropdown.Item>
-              <Dropdown.Item value="강동">강동</Dropdown.Item>
-              <Dropdown.Item value="강북">강북</Dropdown.Item>
-              <Dropdown.Item value="강서">강서</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <select onChange={handleSelect} value={Selected}>
+            {selectList.map(item => (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+          <select>
+            {(Selected === "강북" ? gangbook : gangdong).map(sub => (
+              <option>{sub}</option>
+            ))}
+          </select>
           <div className="profile__region-btn"></div>
         </div>
         <div className="profile__budget">
