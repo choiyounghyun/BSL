@@ -23,17 +23,3 @@ function router() {
 }
 
 export default router;
-
-    // <MainNavBar />
-    // <div id="router">
-    //   <Suspense>
-    //     <Routes>
-    //       <Route path="/" element={<Main />} />
-    //       <Route path="/anal" element={<Analysis />} />
-    //       <Route path="/community" element={<Community />} />
-    //       <Route path="/ranking" element={<Ranking />} />
-    //       <Route path="/login" element={<Login />} />
-    //       <Route path="/join" element={<Join />} />
-    //     </Routes>
-    //   </Suspense>
-    // </div>

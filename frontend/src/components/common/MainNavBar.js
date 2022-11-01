@@ -30,6 +30,9 @@ function MainNavBar() {
             <Link className="join" to="/join">
               JOIN
             </Link>
+            <Link className="mypage" to="/mypage">
+              MyPage
+            </Link>
           </nav>
         </div>
       </nav>

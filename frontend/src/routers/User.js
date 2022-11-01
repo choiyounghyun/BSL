@@ -7,7 +7,7 @@ import Analysis from "../screens/Analysis.js";
 import Community from "../screens/Community.js";
 import Ranking from "../screens/Ranking.js";
 import Join from "../screens/Join.js";
-
+import MyPage from "../screens/MyPage";
 
 
 
@@ -24,6 +24,7 @@ function User() {
             <Route path="/community" element={<Community />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </Suspense>
       </div>
