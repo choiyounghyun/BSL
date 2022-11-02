@@ -16,7 +16,7 @@ public class Article {
     String tradeTypeName;
     String floor;
     String maxFloor;
-    int rentPrc; // 월세
+    String rentPrc; // 월세
     String dealOrWarrantPrc; // 보증
     long area1; // 계약
     long area2; // 전용
