@@ -104,9 +104,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //swagger 예외 처리해야함.
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/", "/preview",
+        webSecurity.ignoring().antMatchers("/",
                 //swagger
-                "/api/**", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/swagger/**", "/sign-api/exception", "**swagger**");
+                "/api/**", "/swagger-ui/**");
     }
 
     @Bean
