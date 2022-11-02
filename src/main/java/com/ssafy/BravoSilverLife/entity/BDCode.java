@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name = "bd_code")
 public class BDCode {
+
     @Id
     long code;
     String sido;
