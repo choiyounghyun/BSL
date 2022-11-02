@@ -158,10 +158,10 @@ public class SignService {
 
 
     //중복검사
-    public int validateDuplicateEmail(String email) {
+    public int validateDuplicateId(String id) {
         //이메일 중복검사
         //중복 시 0 / 정상 1
-        User findByIdUser = userRepository.findById(email);
+        User findByIdUser = userRepository.findById(id);
         if (findByIdUser == null)
             return 1;
         return 0;

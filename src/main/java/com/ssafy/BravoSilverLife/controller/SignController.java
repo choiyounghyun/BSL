@@ -5,6 +5,7 @@ import com.ssafy.BravoSilverLife.dto.SignUpResultDto;
 import com.ssafy.BravoSilverLife.dto.UserDto;
 import com.ssafy.BravoSilverLife.service.SignService;
 import com.ssafy.BravoSilverLife.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -63,6 +64,7 @@ public class SignController {
     }
 
     @PostMapping("/sign-in")
+    @Operation(summary = "로그인", description = "아이디, 비밀번호로 로그인 / 로그인 성공 시 access-token, refresh-token 발급")
     public SignInResultDto signIn(@RequestBody @Valid loginRequest request) {
         SignInResultDto signInResultDto = signService.signIn(request.id, request.password);
 
@@ -87,6 +89,7 @@ public class SignController {
 
     //반환하는 객체 boolean success, int code, String msg
     @PostMapping("/sign-up")
+    @Operation(summary = "회원가입", description = "회원가입에 필요한 항목 + MMS 인증번호로 회원가입")
     public SignUpResultDto signUp(@RequestBody @Valid CreateUserRequest request) {
         logger.info("[signUp] 회원가입을 수행합니다. id : {}, password : ****, name : {}", request.getId(), request.getNickname());
         SignUpResultDto signUpResultDto = signService.signUp(request.id, request.password, request.nickname, request.phoneNumber, request.authNumber);
@@ -123,9 +126,9 @@ public class SignController {
     }
 
     //이메일 중복검사
-    @GetMapping("/sign-up/email/{email}")
-    public int ValidateEmail(@PathVariable String email) {
-        return signService.validateDuplicateEmail(email);
+    @GetMapping("/sign-up/id/{id}")
+    public int ValidateEmail(@PathVariable String id) {
+        return signService.validateDuplicateId(id);
     }
 
     //닉네임 중복검사
