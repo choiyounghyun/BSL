@@ -14,8 +14,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name = "bd_code")
 public class BDCode {
+
     @Id
-    int code;
+    long code;
     String sido;
     String gugun;
     String name;
