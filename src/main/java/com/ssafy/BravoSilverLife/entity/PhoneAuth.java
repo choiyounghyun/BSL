@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PhoneAuth {
+public class PhoneAuth extends BaseTimeEntity{
     @Id
     String phoneNumber;
     String phoneAuth;
