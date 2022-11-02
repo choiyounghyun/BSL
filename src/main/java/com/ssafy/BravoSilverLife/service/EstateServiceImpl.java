@@ -32,7 +32,7 @@ public class EstateServiceImpl implements EstateService {
 
         String apiurl = "https://new.land.naver.com/api/articles/clusters?";
         apiurl += "cortarNo=" + bdCodes.get(0).getCode()
-                + "&zoom=16&markerId&markerType&selectedComplexNo&selectedComplexBuildingNo&fakeComplexMarker&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
+                + "&zoom=17&markerId&markerType&selectedComplexNo&selectedComplexBuildingNo&fakeComplexMarker&realEstateType=SG&tradeType=&tag=%3A%3A%3A%3A%3A%3A%3A%3A";
         apiurl += "&rentPriceMin=" + condition.getRentPriceMin();
         apiurl += "&rentPriceMax=" + condition.getRentPriceMax();
         apiurl += "&priceMin=" + condition.getPriceMin();
