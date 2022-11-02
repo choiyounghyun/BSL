@@ -1,6 +1,7 @@
 package com.ssafy.BravoSilverLife.service;
 
 import com.ssafy.BravoSilverLife.entity.HDCode;
+import com.ssafy.BravoSilverLife.repository.BDCodeRepository;
 import com.ssafy.BravoSilverLife.repository.HDCodeRepository;
 import io.micrometer.core.instrument.util.IOUtils;
 import org.json.simple.JSONObject;
@@ -22,6 +23,8 @@ public class InfraServiceImpl implements InfraService {
 
     @Autowired
     HDCodeRepository HDCodeRepository;
+    @Autowired
+    BDCodeRepository BDCodeRepository;
 
     @Override
     public JSONObject getPopular(String name) throws Exception {
@@ -73,6 +76,16 @@ public class InfraServiceImpl implements InfraService {
 
         }
         return null;
+    }
+
+    @Override
+    public List<String> getDistinctGugun() throws Exception {
+        return BDCodeRepository.findDistinctGugun();
+    }
+
+    @Override
+    public List<String> getDong(String gugun) throws Exception {
+        return BDCodeRepository.findDong(gugun);
     }
 
 

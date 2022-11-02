@@ -9,4 +9,7 @@ import java.util.List;
 
 public interface InfraService {
     JSONObject getPopular(String name) throws Exception;
+
+    List<String> getDistinctGugun() throws Exception;
+    List<String> getDong(String gugun) throws Exception;
 }
