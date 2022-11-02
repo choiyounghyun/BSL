@@ -168,7 +168,7 @@ const Analysis = () => { // 상권분석 창
 							setPriceVisible(false);
 							setFloorVisible(false);
 						}}>
-						{scoreVisible ? "지수닫기" : "평가지수"}
+						{scoreVisible ? "리스트닫기" : "리스트"}
 					</button>
 					<button type="button" className="btn btn-primary d-grid gap-2 d-md-flex justify-content-md-end"
 						onClick={() => {
@@ -340,12 +340,12 @@ const Analysis = () => { // 상권분석 창
 			{/* 지도 div */}
 			<KakaoMap className='map_wrap'
 				searchPlace={place} // 검색 장소
-				rentPriceMin={monthlyPrice[0] * 10}
-				rentPriceMax={monthlyPrice[1] * 10}
-				priceMin={depositPrice[0] * 40}
-				priceMax={depositPrice[1] * 40}
-				areaMin={areaSize[0] * 2}
-				areaMax={areaSize[1] * 2}
+				rentPriceMin={monthlyPrice[0] * 10} // 월임대료 최소값
+				rentPriceMax={monthlyPrice[1] * 10} // 월임대료 최대값
+				priceMin={depositPrice[0] * 40} // 보증금 최소값
+				priceMax={depositPrice[1] * 40} // 보증금 최대값
+				areaMin={areaSize[0] * 2} // 방면적 최소값
+				areaMax={areaSize[1] * 2} // 방면적 최대값
 			/>
 		</div >
 	);
