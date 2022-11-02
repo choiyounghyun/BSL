@@ -4,17 +4,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@EnableWebSecurity
 @EnableJpaAuditing
-@PropertySource(value = { "classpath:database/database.properties" })
-@PropertySource(value = { "classpath:oauth2/oauth2.properties" })
-@PropertySource(value = { "classpath:swagger/springdoc.properties" })
 public class BravoSilverLifeApplication {
 
+    @Bean
+    public BCryptPasswordEncoder encoder(){
+        return new BCryptPasswordEncoder();
+    }
     public static void main(String[] args) {
         SpringApplication.run(BravoSilverLifeApplication.class, args);
     }
