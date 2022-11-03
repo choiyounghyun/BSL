@@ -40,7 +40,7 @@ function Community(props) {
       <div className="community__info">
         <div className="community__info__support">
           <div className="community__info__support__title">
-            <p>창업지원</p>
+            <p className="sochan">창업지원</p>
             <Link to={`/community/support`}>
               <img src={plus} alt="plus" className="plus-icon" />
             </Link>
@@ -50,7 +50,7 @@ function Community(props) {
         </div>
         <div className="community__info__share">
           <div className="community__info__share__title">
-            <p>정보공유</p>
+            <p className="sochan">정보공유</p>
             <Link to={`/community/share`}>
               <img src={plus} alt="plus" className="plus-icon" />
             </Link>
@@ -60,7 +60,7 @@ function Community(props) {
         </div>
         <div className="community__info__request">
           <div className="community__info__request__title">
-            <p>매물요청</p>
+            <p className="sochan">매물요청</p>
             <Link to={`/community/request`}>
               <img src={plus} alt="plus" className="plus-icon" />
             </Link>

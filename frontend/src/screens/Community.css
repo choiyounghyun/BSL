@@ -30,12 +30,19 @@
 }
 .community__info__request {
   width: 300px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 .community__info__request__title {
   display: flex;
   justify-content: space-between;
 }
+
+.sochan {
+  display: flex;
+  margin-bottom: 0px;
+  align-items: center;
+}
+
 .plus-icon {
   width: 20px;
   height: 20px;
