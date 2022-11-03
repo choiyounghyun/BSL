@@ -286,6 +286,15 @@ public class EstateServiceImpl implements EstateService {
         JSONArray articlePhotos = (JSONArray) jsonObj.get("articlePhotos");
         String[] floorInfo = ((String) articleAddition.get("floorInfo")).split("/");
 
+        String rentPrice=null;
+
+        try{
+            rentPrice = (String) articlePrice.get("rentPrice");
+        }catch (Exception e){
+
+        }
+
+
         ArticleDetail aD;
         if (articleDetail.get("monthlyManagementCost") == null) {
             aD = ArticleDetail.builder()
@@ -313,7 +322,7 @@ public class EstateServiceImpl implements EstateService {
                     .direction((String) articleAddition.get("direction"))
                     .buildingName((String) articleAddition.get("buildingName"))
                     .cpPcArticleUrl((String) articleAddition.get("cpPcArticleUrl"))
-                    .rentPrice((String) articlePrice.get("rentPrice"))
+                    .rentPrice(rentPrice)
                     .dealPrice((Long) articlePrice.get("dealPrice"))
                     .warrantPrice((Long) articlePrice.get("warrantPrice"))
                     .articlePhotos(articlePhotos)
@@ -345,7 +354,7 @@ public class EstateServiceImpl implements EstateService {
                     .direction((String) articleAddition.get("direction"))
                     .buildingName((String) articleAddition.get("buildingName"))
                     .cpPcArticleUrl((String) articleAddition.get("cpPcArticleUrl"))
-                    .rentPrice((String) articlePrice.get("rentPrice"))
+                    .rentPrice(rentPrice)
                     .dealPrice((Long) articlePrice.get("dealPrice"))
                     .warrantPrice((Long) articlePrice.get("warrantPrice"))
                     .articlePhotos(articlePhotos)
@@ -362,7 +371,7 @@ public class EstateServiceImpl implements EstateService {
         Bookmark bm = Bookmark.builder()
                 .id(id)
                 .articleNo(bookmark.getArticleNo())
-                .name(bookmark.getName())
+                .add(bookmark.getAdd())
                 .build();
 
         bookmarkRepository.save(bm);
@@ -378,7 +387,7 @@ public class EstateServiceImpl implements EstateService {
         List<Bookmark> bookmarks = bookmarkRepository.findById(id);
         List<BookmarkDto> bookmarkDtos = new ArrayList<>();
 
-        for (Bookmark temp: bookmarks) {
+        for (Bookmark temp : bookmarks) {
             bookmarkDtos.add(BookmarkDto.of(temp));
         }
         return bookmarkDtos;

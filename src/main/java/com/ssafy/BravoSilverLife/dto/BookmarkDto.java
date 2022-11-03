@@ -12,13 +12,13 @@ import lombok.*;
 @Schema(description = "북마크")
 public class BookmarkDto {
     long articleNo;
-    String name;
+    String add;
 
     public static BookmarkDto of(Bookmark bookmarkEntity) {
 
         BookmarkDto bookmarkDto = BookmarkDto.builder()
                 .articleNo(bookmarkEntity.getArticleNo())
-                .name(bookmarkEntity.getName())
+                .add(bookmarkEntity.getAdd())
                 .build();
 
         return bookmarkDto;
