@@ -356,17 +356,30 @@ public class EstateServiceImpl implements EstateService {
     }
 
     @Override
-    public void addBookmark(String uid, Bookmark bookmark) {
-        bookmarkRepository.save(bookmark);
+    public void addBookmark(String id, BookmarkDto bookmark) {
+        System.out.println(bookmark);
+        Bookmark bm = Bookmark.builder()
+                .id(id)
+                .articleNo(bookmark.getArticleNo())
+                .name(bookmark.getName())
+                .build();
+
+        bookmarkRepository.save(bm);
     }
 
     @Override
-    public void deleteBookmark(String uid, long articleNo) {
-        bookmarkRepository.deleteByUidAndArticleNo(uid, articleNo);
+    public void deleteBookmark(String id, long articleNo) {
+        bookmarkRepository.deleteByIdAndArticleNo(id, articleNo);
     }
 
     @Override
-    public List<Bookmark> getBookmark(String uid) throws Exception {
-        return bookmarkRepository.findByUid(uid);
+    public List<BookmarkDto> getBookmark(String id) throws Exception {
+        List<Bookmark> bookmarks = bookmarkRepository.findById(id);
+        List<BookmarkDto> bookmarkDtos = new ArrayList<>();
+
+        for (Bookmark temp: bookmarks) {
+            bookmarkDtos.add(BookmarkDto.of(temp));
+        }
+        return bookmarkDtos;
     }
 }

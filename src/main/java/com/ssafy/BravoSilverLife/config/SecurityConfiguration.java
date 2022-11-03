@@ -89,7 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         User targetUser = userRepository.findById(authentication.getName());
                         String refreshToken = targetUser.getRefreshToken();
                         String token = jwtTokenProvider.createToken(targetUser.getId(), targetUser.getRoles());
-                        response.sendRedirect("https://AwA24.site/#/social/refreshtoken=" + refreshToken + "&accesstoken=" + token);
+                        response.sendRedirect("http://k7c208.p.ssafy.io:8080/refreshtoken=" + refreshToken + "&accesstoken=" + token);
 //                        response.sendRedirect("http://localhost:3000/#/social/refreshtoken="+refreshToken+"&accesstoken="+token);
 
                     }
@@ -104,9 +104,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //swagger 예외 처리해야함.
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/", "/preview",
+        webSecurity.ignoring().antMatchers("/",
                 //swagger
-                "/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/swagger/**", "/sign-api/exception", "**swagger**");
+                "/api/**", "/swagger-ui/**");
     }
 
     @Bean
