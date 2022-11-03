@@ -1,9 +1,9 @@
 import React from "react";
 import { Suspense } from "react";
-import { Route, Routes, withRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MainNavBar from "../components/common/MainNavBar.js";
 import Main from "../screens/Main.js";
-import Analysis from "../screens/Analysis.js";
+import Analysis from "../screens/analysis/Analysis";
 import Community from "../screens/Community.js";
 import Ranking from "../screens/Ranking.js";
 import Login from "../screens/Login.js";
