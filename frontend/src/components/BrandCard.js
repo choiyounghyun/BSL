@@ -9,10 +9,6 @@ import RankBanner from "../assets/images/rank-dummy.jpg";
 function BrandCard(props) {
   return (
     <div id="brand-card">
-      <div className="ranking-banner">
-        <img src={RankBanner} alt="" className="ranking-banner__img" />
-        <p align="center">ranking</p>
-      </div>
       <div className="card-list">
         <Row xs={1} md={3} className="g-4">
           {Array.from({ length: 6 }).map((_, idx) => (

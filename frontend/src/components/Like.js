@@ -25,13 +25,13 @@ function Like(props) {
       <div className="">
         <p>내가 좋아요한 게시글</p>
         <div className="">
-          {likeList.map(like => (
-            <div>
-              <p>좋아요1</p>
-              <p>좋아요2</p>
-              <p>좋아요3</p>
-            </div>
-          ))}
+          {/* {likeList.map(like => ( */}
+          <div>
+            <p>좋아요1</p>
+            <p>좋아요2</p>
+            <p>좋아요3</p>
+          </div>
+          {/* ))} */}
           <div></div>
         </div>
       </div>
