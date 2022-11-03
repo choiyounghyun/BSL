@@ -18,5 +18,5 @@ public class Bookmark {
     long idx;
     long articleNo;
     String id;
-    String name;
+    String add;
 }
