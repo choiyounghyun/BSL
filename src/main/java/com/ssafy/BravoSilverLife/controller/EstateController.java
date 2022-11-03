@@ -1,9 +1,7 @@
 package com.ssafy.BravoSilverLife.controller;
 
-import com.ssafy.BravoSilverLife.dto.ArticleDetail;
-import com.ssafy.BravoSilverLife.dto.ArticleList;
-import com.ssafy.BravoSilverLife.dto.Cluster;
-import com.ssafy.BravoSilverLife.dto.Condition;
+import com.ssafy.BravoSilverLife.dto.*;
+import com.ssafy.BravoSilverLife.entity.Bookmark;
 import com.ssafy.BravoSilverLife.service.EstateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -11,10 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -63,5 +58,39 @@ public class EstateController {
         return ResponseEntity.status(200).body(articleDetail);
 
     }
+    
+    @Operation(summary = "매물 북마크", description = "매물 북마크하는 API")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공"),
+    })
+    @PostMapping("/article-bookmark")
+    public ResponseEntity addBookmark(String uid, Bookmark bookmark) throws Exception {
+        estateService.addBookmark(uid, bookmark);
+        return ResponseEntity.status(200).body("북마크 추가");
+    }
+
+    @Operation(summary = "매물 북마크 취소", description = "매물 북마크 취소하는 API")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공"),
+    })
+    @DeleteMapping("/article-bookmark")
+    public ResponseEntity deleteBookmark(String uid, long articleNo) throws Exception {
+        estateService.deleteBookmark(uid,articleNo);
+        return ResponseEntity.status(200).body("북마크 취소");
+
+    }
+
+    @Operation(summary = "북마크 리스트 확인", description = "북마크 리스트 확인하는 API")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공"),
+    })
+    @GetMapping("/bookmarks")
+    public ResponseEntity getBookmarks(String uid) throws Exception {
+//       List<BookmarkDto> bookmarkDtos = estateService.getBookmark(uid);
+        return ResponseEntity.status(200).body("temp");
+
+    }
+
+
 
 }
