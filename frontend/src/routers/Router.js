@@ -9,6 +9,9 @@ import Ranking from "../screens/Ranking.js";
 import Login from "../screens/Login.js";
 import Join from "../screens/Join.js";
 import MyPage from "../screens/MyPage.js";
+import SupportList from "../components/community/SupportList.js";
+import ShareList from "../components/community/ShareList.js";
+import RequestList from "../components/community/RequestList.js";
 
 // const BaseRouter = withRouter(({ location }) => {
 
@@ -24,7 +27,6 @@ import MyPage from "../screens/MyPage.js";
 //   )
 // })
 
-
 function router() {
   return (
     <>
@@ -34,7 +36,12 @@ function router() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/anal" element={<Analysis />} />
-            <Route path="/community" element={<Community />} />
+            <Route path="/community">
+              <Route index element={<Community />} />
+              <Route path="support" element={<SupportList />} />
+              <Route path="share" element={<ShareList />} />
+              <Route path="request" element={<RequestList />} />
+            </Route>
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
