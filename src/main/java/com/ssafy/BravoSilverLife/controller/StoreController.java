@@ -34,8 +34,7 @@ public class StoreController {
     @GetMapping("/stores")
     public ResponseEntity getStores(String dong,String category) throws Exception {
         List<StoreDto> stores = storeService.getStores(dong,category);
-        return ResponseEntity.status(200).body(stores);
-
-
+        if (stores.size()!=0) return ResponseEntity.status(200).body(stores);
+        else return ResponseEntity.status(400).body("입력 확인");
     }
 }
