@@ -22,7 +22,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EstateServiceImpl implements EstateService {
@@ -365,6 +364,7 @@ public class EstateServiceImpl implements EstateService {
     public void addBookmark(String id, BookmarkDto bookmark) {
         System.out.println(bookmark);
         Bookmark bm = Bookmark.builder()
+                .user(bookmark.getUser())
                 .articleNo(bookmark.getArticleNo())
                 .address(bookmark.getAddress())
                 .price(bookmark.getPrice())
@@ -391,11 +391,5 @@ public class EstateServiceImpl implements EstateService {
             bookmarkDtos.add(BookmarkDto.of(temp));
         }
         return bookmarkDtos;
-    }
-
-    @Override
-    public boolean isBookmark(String id, long articleNo) {
-        Optional<Bookmark> temp = bookmarkRepository.findByIdAndArticleNo(id, articleNo);
-        return temp.isPresent();
     }
 }

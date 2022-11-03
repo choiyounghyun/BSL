@@ -18,6 +18,4 @@ public interface EstateService {
 
     List<BookmarkDto> getBookmark(String id) throws Exception;
 
-    boolean isBookmark(String id, long articleNo);
-
 }

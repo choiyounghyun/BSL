@@ -44,8 +44,11 @@ public class InfraController {
     @GetMapping("/gugun")
     public ResponseEntity getGugun() throws Exception {
         List<String> gugun = infraService.getDistinctGugun();
-
+        
+        
         return ResponseEntity.status(200).body(gugun);
+
+
     }
 
     @Operation(summary = "동 확인", description = "동 확인하는 API")
@@ -58,6 +61,7 @@ public class InfraController {
 
         if (dong != null) return ResponseEntity.status(200).body(dong);
         else return ResponseEntity.status(400).body("구 확인");
+
 
     }
 }

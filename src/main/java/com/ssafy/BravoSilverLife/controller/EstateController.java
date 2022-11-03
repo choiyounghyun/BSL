@@ -15,12 +15,16 @@ import java.util.List;
 
 @Tag(name = "Estate", description = "EstateAPI")
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/v1/estate")
 public class EstateController {
 
     @Autowired
     EstateService estateService;
+
+//    Condition test = new Condition("고덕동", 0, 900000000, 0, 900000000, 0, 900000000, 127.15817519531251,
+//            127.1698329, 37.563346675000005, 37.559772);
+    // Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0,
+    // 900000000, 127, 128, 38, 35);
 
     @Operation(summary = "매물 클러스터", description = "좌표로 매물 클러스터를 확인하는 API")
     @ApiResponses(value = {
@@ -30,8 +34,7 @@ public class EstateController {
     public ResponseEntity getClusters(Condition condition) throws Exception {
 
         List<Cluster> clusters = estateService.getClusters(condition);
-        if (clusters.size()!=0) return ResponseEntity.status(200).body(clusters);
-        else return ResponseEntity.status(400).body("입력 확인");
+        return ResponseEntity.status(200).body(clusters);
     }
 
     @Operation(summary = "클러스터 내 매물 확인", description = "클러스터 내 매물 확인하는 API")
@@ -55,16 +58,16 @@ public class EstateController {
 
     }
 
-    @Operation(summary = "북마크 확인", description = "북마크 확인하는 API")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "성공"),
-    })
-    @GetMapping("/check-bookmarks")
-    public ResponseEntity isBookmarks(String id, long articleNo) throws Exception {
-
-        Boolean check = estateService.isBookmark(id,articleNo);
-        return ResponseEntity.status(200).body(check);
-    }
+//    @Operation(summary = "북마크 확인", description = "북마크 확인하는 API")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "성공"),
+//    })
+//    @GetMapping("/check-bookmarks")
+//    public ResponseEntity isBookmarks(String id, String articleNo) throws Exception {
+//       List<Bookmark> bookmarks = estateService.getBookmark(id);
+//        return ResponseEntity.status(200).body("temp");
+//
+//    }
 
     @Operation(summary = "매물 북마크", description = "매물 북마크하는 API")
     @ApiResponses(value = {
