@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 FROM nginx:stable-alpine as production-stage
-EXPOSE 3000
+EXPOSE 80
 CMD ["npm","run","start"]
