@@ -17,6 +17,11 @@ public class Bookmark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idx;
     long articleNo;
-    String id;
-    String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="Id")
+    private User user;
+
+    String address;
+    String price;
 }

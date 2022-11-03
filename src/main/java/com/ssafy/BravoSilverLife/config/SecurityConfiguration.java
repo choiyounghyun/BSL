@@ -89,7 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         User targetUser = userRepository.findById(authentication.getName());
                         String refreshToken = targetUser.getRefreshToken();
                         String token = jwtTokenProvider.createToken(targetUser.getId(), targetUser.getRoles());
-                        response.sendRedirect("http://k7c208.p.ssafy.io:8080/refreshtoken=" + refreshToken + "&accesstoken=" + token);
+                        response.sendRedirect("http://k7c208.p.ssafy.io:3000/refreshtoken=" + refreshToken + "&accesstoken=" + token);
 //                        response.sendRedirect("http://localhost:3000/#/social/refreshtoken="+refreshToken+"&accesstoken="+token);
 
                     }

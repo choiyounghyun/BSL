@@ -1,6 +1,7 @@
 package com.ssafy.BravoSilverLife.dto;
 
 import com.ssafy.BravoSilverLife.entity.Bookmark;
+import com.ssafy.BravoSilverLife.entity.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -12,13 +13,16 @@ import lombok.*;
 @Schema(description = "북마크")
 public class BookmarkDto {
     long articleNo;
-    String name;
+
+    String address;
+    String price;
 
     public static BookmarkDto of(Bookmark bookmarkEntity) {
 
         BookmarkDto bookmarkDto = BookmarkDto.builder()
                 .articleNo(bookmarkEntity.getArticleNo())
-                .name(bookmarkEntity.getName())
+                .address(bookmarkEntity.getAddress())
+                .price(bookmarkEntity.getPrice())
                 .build();
 
         return bookmarkDto;

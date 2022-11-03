@@ -3,8 +3,10 @@ package com.ssafy.BravoSilverLife.service;
 import com.ssafy.BravoSilverLife.dto.*;
 import com.ssafy.BravoSilverLife.entity.BDCode;
 import com.ssafy.BravoSilverLife.entity.Bookmark;
+import com.ssafy.BravoSilverLife.entity.User;
 import com.ssafy.BravoSilverLife.repository.BDCodeRepository;
 import com.ssafy.BravoSilverLife.repository.BookmarkRepository;
+import com.ssafy.BravoSilverLife.repository.UserRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +30,9 @@ public class EstateServiceImpl implements EstateService {
     BDCodeRepository BDCodeRepository;
     @Autowired
     BookmarkRepository bookmarkRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<Cluster> getClusters(Condition condition) throws Exception {
@@ -359,9 +364,10 @@ public class EstateServiceImpl implements EstateService {
     public void addBookmark(String id, BookmarkDto bookmark) {
         System.out.println(bookmark);
         Bookmark bm = Bookmark.builder()
-                .id(id)
+                .user(bookmark.getUser())
                 .articleNo(bookmark.getArticleNo())
-                .name(bookmark.getName())
+                .address(bookmark.getAddress())
+                .price(bookmark.getPrice())
                 .build();
 
         bookmarkRepository.save(bm);
@@ -369,12 +375,16 @@ public class EstateServiceImpl implements EstateService {
 
     @Override
     public void deleteBookmark(String id, long articleNo) {
-        bookmarkRepository.deleteByIdAndArticleNo(id, articleNo);
+        User user = userRepository.findById(id);
+
+        bookmarkRepository.deleteByUserAndArticleNo(user, articleNo);
     }
 
     @Override
     public List<BookmarkDto> getBookmark(String id) throws Exception {
-        List<Bookmark> bookmarks = bookmarkRepository.findById(id);
+        User user = userRepository.findById(id);
+
+        List<Bookmark> bookmarks = bookmarkRepository.findByUser(user);
         List<BookmarkDto> bookmarkDtos = new ArrayList<>();
 
         for (Bookmark temp: bookmarks) {
