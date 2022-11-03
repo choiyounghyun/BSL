@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 #login-div {
   width: 100vw;
   min-width: 500px;
@@ -56,10 +55,6 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
-}
-
-button.kakaologin {
-  background-color: yellowgreen;
 }
 
 button:active {
@@ -133,15 +128,12 @@ input {
 .sign-up-container {
   left: 0;
   width: 50%;
-  opacity: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .container.right-panel-active .sign-up-container {
   transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  animation: show 0.6s;
+
 }
 
 @keyframes show {
