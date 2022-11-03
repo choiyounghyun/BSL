@@ -16,9 +16,9 @@ public class StoreServiceImpl implements StoreService {
     StoreRepository storeRepository;
 
     @Override
-    public List<StoreDto> getStores(String gu, String category) {
+    public List<StoreDto> getStores(String dong, String category) {
 
-        List<Store> temps = storeRepository.findByGuAndCategory(gu, category);
+        List<Store> temps = storeRepository.findByDongAndCategory(dong, category);
         List<StoreDto> stores = new ArrayList<>();
 
         StoreDto store;

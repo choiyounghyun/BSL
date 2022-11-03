@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import javax.persistence.Table;
 
 @Entity
 @Getter
@@ -12,13 +12,12 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Store {
+@Table
+public class Bookmark {
+
     @Id
-    int id;
-    String add1;
-    String add2;
-    String gu;
-    String dong;
+    long code;
+    long articleNo;
+    String uid;
     String name;
-    String category;
 }

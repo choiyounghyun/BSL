@@ -27,7 +27,6 @@ public class StoreDto {
                 .add2(storeEntity.getAdd2())
                 .gu(storeEntity.getGu())
                 .name(storeEntity.getName())
-                .telno(storeEntity.getTelno())
                 .category(storeEntity.getCategory())
                 .build();
         return storeDto;

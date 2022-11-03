@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    List<Store> findByGuAndCategory(String gu, String category);
+    List<Store> findByDongAndCategory(String dong, String category);
 
 }

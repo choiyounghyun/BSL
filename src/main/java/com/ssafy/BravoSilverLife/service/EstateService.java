@@ -1,10 +1,7 @@
 package com.ssafy.BravoSilverLife.service;
 
-import com.ssafy.BravoSilverLife.dto.ArticleDetail;
-import com.ssafy.BravoSilverLife.dto.ArticleList;
-import com.ssafy.BravoSilverLife.dto.Cluster;
-import com.ssafy.BravoSilverLife.dto.Condition;
-import org.json.simple.JSONObject;
+import com.ssafy.BravoSilverLife.dto.*;
+import com.ssafy.BravoSilverLife.entity.Bookmark;
 
 import java.util.List;
 
@@ -15,5 +12,10 @@ public interface EstateService {
     ArticleList getArticles(long markerId, int page, Condition condition) throws Exception;
 
     ArticleDetail getArticleDetail(long articleNo) throws Exception;
+
+    void addBookmark(String id, Bookmark bookmark);
+    void deleteBookmark(String id, long articleNo);
+
+    List<Bookmark> getBookmark(String id) throws Exception;
 
 }

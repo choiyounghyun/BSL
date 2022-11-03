@@ -27,13 +27,13 @@ public class StoreController {
     @Autowired
     StoreService storeService;
 
-    @Operation(summary = "구 상점 확인", description = "구이름으로 상점 확인하는 API")
+    @Operation(summary = "동 상점 확인", description = "동 이름으로 상점 확인하는 API")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "성공"),
     })
-    @GetMapping("/popular")
-    public ResponseEntity getPopular(String gu,String category) throws Exception {
-        List<StoreDto> stores = storeService.getStores(gu,category);
+    @GetMapping("/stores")
+    public ResponseEntity getStores(String dong,String category) throws Exception {
+        List<StoreDto> stores = storeService.getStores(dong,category);
         return ResponseEntity.status(200).body(stores);
 
 

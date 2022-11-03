@@ -2,7 +2,9 @@ package com.ssafy.BravoSilverLife.service;
 
 import com.ssafy.BravoSilverLife.dto.*;
 import com.ssafy.BravoSilverLife.entity.BDCode;
+import com.ssafy.BravoSilverLife.entity.Bookmark;
 import com.ssafy.BravoSilverLife.repository.BDCodeRepository;
+import com.ssafy.BravoSilverLife.repository.BookmarkRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,6 +26,8 @@ public class EstateServiceImpl implements EstateService {
 
     @Autowired
     BDCodeRepository BDCodeRepository;
+    @Autowired
+    BookmarkRepository bookmarkRepository;
 
     @Override
     public List<Cluster> getClusters(Condition condition) throws Exception {
@@ -349,5 +353,20 @@ public class EstateServiceImpl implements EstateService {
 
 
         return aD;
+    }
+
+    @Override
+    public void addBookmark(String uid, Bookmark bookmark) {
+        bookmarkRepository.save(bookmark);
+    }
+
+    @Override
+    public void deleteBookmark(String uid, long articleNo) {
+        bookmarkRepository.deleteByUidAndArticleNo(uid, articleNo);
+    }
+
+    @Override
+    public List<Bookmark> getBookmark(String uid) throws Exception {
+        return bookmarkRepository.findByUid(uid);
     }
 }
