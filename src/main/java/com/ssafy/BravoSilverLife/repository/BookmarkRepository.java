@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface BookmarkRepository  extends JpaRepository<Bookmark, Long> {
 
-    List<Bookmark> findByUid(String uid);
+    List<Bookmark> findById(String id);
 
     @Transactional
-    void deleteByUidAndArticleNo(String uid, long articleNo);
+    void deleteByIdAndArticleNo(String id, long articleNo);
 
 }

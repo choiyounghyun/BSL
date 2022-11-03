@@ -1,10 +1,8 @@
 package com.ssafy.BravoSilverLife.entity;
 
+import com.ssafy.BravoSilverLife.dto.StoreDto;
 import lombok.*;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,8 +14,9 @@ import javax.persistence.Table;
 public class Bookmark {
 
     @Id
-    long code;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long idx;
     long articleNo;
-    String uid;
+    String id;
     String name;
 }

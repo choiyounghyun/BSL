@@ -15,7 +15,6 @@ import java.util.List;
 
 @Tag(name = "Estate", description = "EstateAPI")
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/v1/estate")
 public class EstateController {
 
@@ -58,14 +57,27 @@ public class EstateController {
         return ResponseEntity.status(200).body(articleDetail);
 
     }
-    
+
+//    @Operation(summary = "북마크 확인", description = "북마크 확인하는 API")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "성공"),
+//    })
+//    @GetMapping("/check-bookmarks")
+//    public ResponseEntity isBookmarks(String id, String articleNo) throws Exception {
+//       List<Bookmark> bookmarks = estateService.getBookmark(id);
+//        return ResponseEntity.status(200).body("temp");
+//
+//    }
+
     @Operation(summary = "매물 북마크", description = "매물 북마크하는 API")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "성공"),
     })
     @PostMapping("/article-bookmark")
-    public ResponseEntity addBookmark(String uid, Bookmark bookmark) throws Exception {
-        estateService.addBookmark(uid, bookmark);
+    public ResponseEntity addBookmark(String id, BookmarkDto bookmark) throws Exception {
+        System.out.println("123");
+        estateService.addBookmark(id, bookmark);
+        System.out.println("312");
         return ResponseEntity.status(200).body("북마크 추가");
     }
 
@@ -74,8 +86,8 @@ public class EstateController {
             @ApiResponse(responseCode = "200", description = "성공"),
     })
     @DeleteMapping("/article-bookmark")
-    public ResponseEntity deleteBookmark(String uid, long articleNo) throws Exception {
-        estateService.deleteBookmark(uid,articleNo);
+    public ResponseEntity deleteBookmark(String id, long articleNo) throws Exception {
+        estateService.deleteBookmark(id,articleNo);
         return ResponseEntity.status(200).body("북마크 취소");
 
     }
@@ -85,11 +97,12 @@ public class EstateController {
             @ApiResponse(responseCode = "200", description = "성공"),
     })
     @GetMapping("/bookmarks")
-    public ResponseEntity getBookmarks(String uid) throws Exception {
-//       List<BookmarkDto> bookmarkDtos = estateService.getBookmark(uid);
-        return ResponseEntity.status(200).body("temp");
-
+    public ResponseEntity getBookmarks(String id) throws Exception {
+       List<BookmarkDto> bookmarks = estateService.getBookmark(id);
+        return ResponseEntity.status(200).body(bookmarks);
     }
+
+
 
 
 

@@ -13,9 +13,9 @@ public interface EstateService {
 
     ArticleDetail getArticleDetail(long articleNo) throws Exception;
 
-    void addBookmark(String id, Bookmark bookmark);
+    void addBookmark(String id, BookmarkDto bookmark);
     void deleteBookmark(String id, long articleNo);
 
-    List<Bookmark> getBookmark(String id) throws Exception;
+    List<BookmarkDto> getBookmark(String id) throws Exception;
 
 }
