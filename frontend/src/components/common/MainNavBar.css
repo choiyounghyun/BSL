@@ -8,12 +8,13 @@
 }
 
 .logo {
-  width: 10%;
-  height: 10%;
+  width: 100px;
+  height: 100px;
 }
 
 .title {
   font-size: 40px;
+  margin-right: 40px;
 }
 
 .nav-container {
@@ -24,12 +25,14 @@
 
 .left-nav {
   display: flex;
-  width: 60%;
+  width: 300px;
+  justify-content: space-around;
 }
 
 .right-nav {
   display: flex;
-  width: 30%;
+  width: 200px;
+  justify-content: space-around;
 }
 
 hr {

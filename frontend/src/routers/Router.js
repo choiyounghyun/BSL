@@ -36,7 +36,7 @@ function router() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/anal" element={<Analysis />} />
-            <Route path="/community">
+            <Route path="/article">
               <Route index element={<Community />} />
               <Route path="support" element={<SupportList />} />
               <Route path="share" element={<ShareList />} />

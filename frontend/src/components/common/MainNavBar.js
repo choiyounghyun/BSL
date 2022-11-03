@@ -7,8 +7,8 @@ function MainNavBar() {
   return (
     <div className="nav-wrapper">
       <nav id="main-nav-bar">
-        <img className="logo" alt="logo" src={LogoImg} />
         <Link className="title" to="/">
+          <img className="logo" alt="logo" src={LogoImg} />
           BSL
         </Link>
         <div className="nav-container">
@@ -16,8 +16,8 @@ function MainNavBar() {
             <NavLink className="analysis" to="/anal">
               상권분석
             </NavLink>
-            <NavLink className="community" to="/community">
-              커뮤니티
+            <NavLink className="article" to="/article">
+              창업정보
             </NavLink>
             <NavLink className="ranking" to="/ranking">
               랭킹
