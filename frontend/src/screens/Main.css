@@ -1,6 +1,6 @@
 #main {
-  height: 100vh;
-  overflow: hidden !important;
+  /* height: 100vh;
+  overflow: hidden !important; */
 }
 .trans-left-img {
   position: absolute;
@@ -13,6 +13,7 @@
   opacity: 0;
   z-index: 50;
   overflow: hidden;
+  left: 0;
 }
 
 .trans-left-img__img {
@@ -37,6 +38,7 @@
   opacity: 0;
   z-index: 50;
   overflow: hidden;
+  right: 0;
 }
 
 .trans-right-img__img {
@@ -118,7 +120,7 @@
 
 .main-ground {
   display: flex;
-  height: 100vw;
+  height: 100vh;
   background-color: aliceblue;
 }
 .ground-left {
@@ -132,6 +134,42 @@
   transition: all 1s ease;
   flex: 0 1 50vw;
 }
+
+.ground-left__img-wrapper {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  width: 75vw;
+  object-position: 50% 50%;
+  height: 150vh;
+  object-fit: cover;
+  overflow: hidden;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ground-left__img-wrapper:hover {
+  transform: translateX(-50%);
+}
+
+.ground-left__img {
+  width: 100vw;
+  object-fit: cover;
+  height: 100%;
+  object-position: 50% 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .ground-left__img:hover {
+  transform: translate(-50%, -50%);
+} */
+
+.middle-menu {
+}
+
 .ground-right {
   width: 50vw;
   position: relative;
@@ -141,4 +179,28 @@
   justify-content: center;
   transition: all 1s ease;
   flex: 0 1 50vw;
+}
+
+.ground-right__img-wrapper {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  width: 75vw;
+  object-position: 50% 50%;
+  height: 150vh;
+  object-fit: cover;
+  overflow: hidden;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ground-right__img {
+  width: 100vw;
+  object-fit: cover;
+  height: 100%;
+  object-position: 50% 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

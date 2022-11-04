@@ -5,7 +5,7 @@ import mainPizza from "../assets/images/main-pizza.jpg";
 
 function Main(props) {
   return (
-    <div id="main">
+    <div id="main" data-barba="wrapper">
       <div className="trans-left-img">
         <img
           src={mainChicken}
@@ -31,10 +31,23 @@ function Main(props) {
         </header>
         <div className="main-ground">
           <div className="ground-left">
-            <div className="ground-left__img-wrapper"></div>
+            <div className="ground-left__img-wrapper">
+              <img
+                src={mainChicken}
+                alt="ground-left-img"
+                className="ground-left__img"
+              />
+            </div>
           </div>
+          <div className="middle-menu"></div>
           <div className="ground-right">
-            <div className="ground-right__img-wrapper"></div>
+            <div className="ground-right__img-wrapper">
+              <img
+                src={mainPizza}
+                alt="ground-right-img"
+                className="ground-right__img"
+              />
+            </div>
           </div>
         </div>
       </div>
