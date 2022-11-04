@@ -3,8 +3,10 @@ package com.ssafy.BravoSilverLife.service;
 import com.ssafy.BravoSilverLife.dto.*;
 import com.ssafy.BravoSilverLife.entity.BDCode;
 import com.ssafy.BravoSilverLife.entity.Bookmark;
+import com.ssafy.BravoSilverLife.entity.User;
 import com.ssafy.BravoSilverLife.repository.BDCodeRepository;
 import com.ssafy.BravoSilverLife.repository.BookmarkRepository;
+import com.ssafy.BravoSilverLife.repository.UserRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +30,9 @@ public class EstateServiceImpl implements EstateService {
     BDCodeRepository BDCodeRepository;
     @Autowired
     BookmarkRepository bookmarkRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<Cluster> getClusters(Condition condition) throws Exception {
@@ -285,11 +290,11 @@ public class EstateServiceImpl implements EstateService {
         JSONArray articlePhotos = (JSONArray) jsonObj.get("articlePhotos");
         String[] floorInfo = ((String) articleAddition.get("floorInfo")).split("/");
 
-        String rentPrice=null;
+        String rentPrice = null;
 
-        try{
+        try {
             rentPrice = (String) articlePrice.get("rentPrice");
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -366,11 +371,12 @@ public class EstateServiceImpl implements EstateService {
 
     @Override
     public void addBookmark(String id, BookmarkDto bookmark) {
+        User user = userRepository.findById(id);
         System.out.println(bookmark);
         Bookmark bm = Bookmark.builder()
-                .id(id)
-                .articleNo(bookmark.getArticleNo())
-                .add(bookmark.getAdd())
+                .user(bookmark.getUser())
+                .address(bookmark.getAddress())
+                .price(bookmark.getPrice())
                 .build();
 
         bookmarkRepository.save(bm);
@@ -378,12 +384,14 @@ public class EstateServiceImpl implements EstateService {
 
     @Override
     public void deleteBookmark(String id, long articleNo) {
-        bookmarkRepository.deleteByIdAndArticleNo(id, articleNo);
+        User user = userRepository.findById(id);
+        bookmarkRepository.deleteByUserAndArticleNo(user, articleNo);
     }
 
     @Override
     public List<BookmarkDto> getBookmark(String id) throws Exception {
-        List<Bookmark> bookmarks = bookmarkRepository.findById(id);
+        User user = userRepository.findById(id);
+        List<Bookmark> bookmarks = bookmarkRepository.findByUser(user);
         List<BookmarkDto> bookmarkDtos = new ArrayList<>();
 
         for (Bookmark temp : bookmarks) {

@@ -33,6 +33,9 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(length = 50, nullable = false, unique = true)
     private String id;
 
+    @OneToMany(mappedBy = "user")
+    List<Bookmark> bookmark;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //JSON 결과로 출력하지 않을데이터에 대해 설정 비밀번호는 유출되면 안되니까
     @NotEmpty
     @Column(nullable = false)

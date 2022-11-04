@@ -1,17 +1,22 @@
 package com.ssafy.BravoSilverLife.repository;
 
 import com.ssafy.BravoSilverLife.entity.Bookmark;
+import com.ssafy.BravoSilverLife.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-@Repository
-public interface BookmarkRepository  extends JpaRepository<Bookmark, Long> {
+import java.util.Optional;
 
-    List<Bookmark> findById(String id);
+@Repository
+public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
+
+    List<Bookmark> findByUser(User user);
+
+    Optional<Bookmark> findByUserAndArticleNo(User user, Long articleNo);
 
     @Transactional
-    void deleteByIdAndArticleNo(String id, long articleNo);
+    void deleteByUserAndArticleNo(User user, long articleNo);
 
 }
