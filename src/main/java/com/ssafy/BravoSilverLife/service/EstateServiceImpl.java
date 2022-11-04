@@ -374,7 +374,7 @@ public class EstateServiceImpl implements EstateService {
         User user = userRepository.findById(id);
         System.out.println(bookmark);
         Bookmark bm = Bookmark.builder()
-                .user(bookmark.getUser())
+//                .user(bookmark.())
                 .address(bookmark.getAddress())
                 .price(bookmark.getPrice())
                 .build();
