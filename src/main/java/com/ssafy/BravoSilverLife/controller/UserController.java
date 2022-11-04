@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -38,7 +39,7 @@ public class UserController {
 
 
     //닉네임 변경
-    @PutMapping("/api/profile/{nickname}/{newnickname}")
+    @PutMapping("/profile/{nickname}/{newnickname}")
     public int chageNickname(@PathVariable("nickname") String nickname,
                              @PathVariable("newnickname") String newNickname) {
         try {

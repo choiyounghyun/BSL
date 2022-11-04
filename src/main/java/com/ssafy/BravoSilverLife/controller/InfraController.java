@@ -18,7 +18,7 @@ import java.util.List;
 @Tag(name = "Infra", description = "InfraAPI")
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/infra")
+@RequestMapping("/v1/infra")
 public class InfraController {
 
     @Autowired

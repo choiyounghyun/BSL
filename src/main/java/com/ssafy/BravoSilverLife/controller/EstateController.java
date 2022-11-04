@@ -15,7 +15,7 @@ import java.util.List;
 
 @Tag(name = "Estate", description = "EstateAPI")
 @RestController
-@RequestMapping("/api/v1/estate")
+@RequestMapping("/v1/estate")
 public class EstateController {
 
     @Autowired
