@@ -1,5 +1,5 @@
 import React from "react";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainNavBar from "../components/common/MainNavBar.js";
 import Main from "../screens/Main.js";
@@ -10,8 +10,13 @@ import Login from "../screens/Login"
 import Join from "../screens/Join.js";
 import MyPage from "../screens/MyPage.js";
 
+function Router() {
+  const [authenticate, setAuthenticate] = useState(false) // true 이면 로그인
 
-function router() {
+  useEffect(() => {
+    console.log("aaaa", authenticate)
+  }, [authenticate])
+
   return (
     <>
       <MainNavBar />
@@ -22,7 +27,7 @@ function router() {
             <Route path="/anal" element={<Analysis />} />
             <Route path="/community" element={<Community />} />
             <Route path="/ranking" element={<Ranking />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setAuthenticate={setAuthenticate} />} />
             <Route path="/join" element={<Join />} />
             <Route path="/mypage" element={<MyPage />} />
           </Routes>
@@ -32,7 +37,7 @@ function router() {
   );
 }
 
-export default router;
+export default Router;
 
 
 

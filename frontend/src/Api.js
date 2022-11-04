@@ -1,8 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://k7c208.p.ssafy.io:3000",
-  headers: { "Content-type": "application/json" }
+  baseURL: "https://k7c208.p.ssafy.io",
+  headers: {
+    "Content-type": "application/json",
+    'Access-Control-Allow-Origin': '*',
+  }
 })
 
 // 요청 인터셉터 추가하기
