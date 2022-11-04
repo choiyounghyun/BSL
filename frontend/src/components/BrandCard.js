@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import DummyImg from "../assets/images/dummy-img.png";
-import RankBanner from "../assets/images/rank-dummy.jpg";
 
 function BrandCard(props) {
   return (

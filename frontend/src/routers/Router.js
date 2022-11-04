@@ -30,7 +30,7 @@ import RequestList from "../components/community/RequestList.js";
 function router() {
   return (
     <>
-      <MainNavBar />
+      {/* <MainNavBar /> */}
       <div id="router">
         <Suspense>
           <Routes>

@@ -1,66 +1,144 @@
 #main {
+  height: 100vh;
+  overflow: hidden !important;
+}
+.trans-left-img {
+  position: absolute;
+  top: 0;
+  width: 60vw;
+  object-position: 50% 50%;
+  height: 150vh;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  overflow: hidden;
 }
 
-.main-carousel {
-  margin-top: 80px;
+.trans-left-img__img {
+  width: 100vw;
+  object-fit: cover;
+  height: 100%;
+  object-position: 50% 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.first-banner {
-  display: flex;
+.trans-right-img {
+  position: absolute;
+  top: 0;
+  width: 60vw;
+  object-position: 50% 50%;
+  height: 150vh;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.trans-right-img__img {
+  width: 100vw;
+  object-fit: cover;
+  height: 100%;
+  object-position: 50% 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.trans-clip {
+  background-size: 12000% 12000%;
+  background-position: 50% 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 400px;
-  background-color: black;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 1%, #103a3a 0);
+  background-image: radial-gradient(
+    circle at center center,
+    transparent 1%,
+    rgb(16, 58, 58) 0px
+  );
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-size: 12000% 12000%;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
 }
 
-.second-banner {
-  display: flex;
+.trans-clip-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 400px;
-  background-color: black;
+  height: 100%;
+  opacity: 0;
+  background: #103a3a;
+  transition: all 0.2s ease;
 }
-.third-banner {
+
+.main-container {
   display: flex;
-  width: 100%;
-  height: 400px;
-  background-color: black;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.main-intro__first {
-  width: 70%;
+.main-header {
+  opacity: 1;
+  will-change: auto;
+  transform: translate(0px, 0px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+}
+
+.header__container {
   margin: auto;
-  background-color: antiquewhite;
-  margin-top: 120px;
+  width: 100vw;
+  max-width: 100%;
 }
 
-.main-intro__second {
-  width: 70%;
-  margin: auto;
-  background-color: antiquewhite;
-  margin-top: 120px;
-}
-
-.main-intro__third {
-  width: 70%;
-  margin: auto;
-  /* background-color: antiquewhite; */
-  margin-top: 120px;
-  margin-bottom: 40px;
-}
-
-.rank-banner {
+.header__head {
   display: flex;
-  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
-.rank-banner-left {
-  width: 600px;
-  height: 200px;
-  margin-right: 20px;
-  background-color: antiquewhite;
+.main-ground {
+  display: flex;
+  height: 100vw;
+  background-color: aliceblue;
 }
-
-.rank-banner-right {
-  width: 600px;
-  height: 200px;
-  background-color: antiquewhite;
+.ground-left {
+  width: 50vw;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+  flex: 0 1 50vw;
+}
+.ground-right {
+  width: 50vw;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  transition: all 1s ease;
+  flex: 0 1 50vw;
 }
