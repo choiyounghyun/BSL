@@ -15,6 +15,7 @@ import java.util.List;
 
 @Tag(name = "Estate", description = "EstateAPI")
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/estate")
 public class EstateController {
 
