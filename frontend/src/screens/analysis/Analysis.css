@@ -28,12 +28,28 @@
   height: 100%;
 }
 
+.Main_Logo {
+  width: 40px;
+  height: \40px;
+  cursor: pointer;
+}
+
+.textput_wrap {
+  width: 200px;
+  height: 40px;
+}
+
+.form-control {
+  width: 100px;
+}
+
 .search_textinput_wrap {
   width: 90%;
-  height: 50px;
-  margin: 20px 0px;
+  height: 60px;
+  margin: 0px 0px;
   background-color: tomato;
   border-radius: 15px;
+  padding: 0px 0px;
 
   display: flex;
   flex-direction: row;
