@@ -1,0 +1,39 @@
+.sidebar_wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: 0.5s ease;
+
+  width: 100%;
+  height: 100%;
+}
+
+.search_wrap {
+  width: 330px;
+  height: 100%;
+  background: rgb(255, 255, 255, 1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.sidebar_button {
+  width: 30px;
+  height: 60px;
+  background: rgb(255, 255, 255, 1);
+  border-radius: 0px 10px 10px 0px;
+
+  cursor: pointer;
+}
+
+.sidebar_button:hover {
+  background: rgb(222, 222, 222, 1);
+}
+
+.sidebar_button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

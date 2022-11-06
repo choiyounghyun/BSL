@@ -1,6 +1,6 @@
-import React from "react";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+
 import MainNavBar from "../components/common/MainNavBar.js";
 import Main from "../screens/Main.js";
 import Analysis from "../screens/analysis/Analysis";
@@ -29,13 +29,11 @@ import RequestList from "../components/community/RequestList.js";
 
 function router() {
   return (
-    <>
-      <MainNavBar />
-      <div id="router">
-        <Suspense>
-          <Routes>
+    <div className="router">
+      <Suspense>
+        <Routes>
+          <Route element={<MainNavBar />} >
             <Route path="/" element={<Main />} />
-            <Route path="/anal" element={<Analysis />} />
             <Route path="/article">
               <Route index element={<Community />} />
               <Route path="support" element={<SupportList />} />
@@ -46,11 +44,13 @@ function router() {
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
             <Route path="/mypage" element={<MyPage />} />
-          </Routes>
-        </Suspense>
-      </div>
-    </>
-  );
+          </Route>
+          <Route path="/anal" element={<Analysis />} />
+        </Routes>
+      </Suspense>
+    </div>
+
+  )
 }
 
 export default router;

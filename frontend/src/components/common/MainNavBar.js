@@ -1,6 +1,7 @@
 import React from "react";
 import "./MainNavBar.css";
 import { Link, NavLink } from "react-router-dom";
+import { Outlet } from "react-router" // 특정 페이지에서 보이지 않게 하기 위한 라이브러리
 import LogoImg from "../../assets/images/mainlogo.svg";
 
 function MainNavBar() {
@@ -37,6 +38,8 @@ function MainNavBar() {
         </div>
       </nav>
       <hr />
+      {/* Route로 설정한 범위 밖에선 NavBar를 출력하지 않도록 해줌 */}
+      <Outlet />
     </div>
   );
 }
