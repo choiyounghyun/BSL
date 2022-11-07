@@ -1,6 +1,10 @@
 #main {
 }
 
+.main-carousel {
+  margin-top: 80px;
+}
+
 .first-banner {
   display: flex;
   width: 100%;
@@ -25,24 +29,38 @@
   width: 70%;
   margin: auto;
   background-color: antiquewhite;
+  margin-top: 120px;
 }
 
 .main-intro__second {
   width: 70%;
   margin: auto;
   background-color: antiquewhite;
+  margin-top: 120px;
 }
 
 .main-intro__third {
   width: 70%;
   margin: auto;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
+  margin-top: 120px;
+  margin-bottom: 40px;
 }
 
 .rank-banner {
-  width: 800px;
-  height: 400px;
-  margin: auto;
-  border-left: 3px solid black;
-  border-right: 3px solid black;
+  display: flex;
+  margin-top: 40px;
+}
+
+.rank-banner-left {
+  width: 600px;
+  height: 200px;
+  margin-right: 20px;
+  background-color: antiquewhite;
+}
+
+.rank-banner-right {
+  width: 600px;
+  height: 200px;
+  background-color: antiquewhite;
 }
