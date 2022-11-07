@@ -149,6 +149,10 @@
   flex: 0 0 25vw
 }
 
+.main-ground.--active .middle-menu {
+  width: 50vw;
+}
+
 .ground-left {
   width: 50vw;
   position: relative;
@@ -200,6 +204,12 @@
 } */
 
 .middle-menu {
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  transition: all 1s ease;
 }
 
 .ground-right {
@@ -211,6 +221,10 @@
   justify-content: center;
   transition: all 1s ease;
   flex: 0 1 50vw;
+}
+
+.main-container .middle-menu {
+  flex: auto;
 }
 
 .ground-right__img-wrapper {
