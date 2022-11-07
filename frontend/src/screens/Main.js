@@ -2,6 +2,7 @@ import React from "react";
 import "./Main.css";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
+import logo from "../assets/images/mainlogo.svg"
 
 function Main(props) {
   return (
@@ -26,7 +27,13 @@ function Main(props) {
       <div className="main-container">
         <header className="main-header">
           <div className="header__container">
-            <div className="header__head"></div>
+            <div className="header__head">
+              <div className="header__head-circle">
+                <div className="header__head-circle-in">
+                  <img src={logo} alt="logo" className="head-circle-logo"/>
+                </div>
+              </div>
+            </div>
           </div>
         </header>
         <div className="main-ground">
@@ -39,7 +46,9 @@ function Main(props) {
               />
             </div>
           </div>
-          <div className="middle-menu"></div>
+          <div className="middle-menu">
+            <div className=""></div>
+          </div>
           <div className="ground-right">
             <div className="ground-right__img-wrapper">
               <img
