@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import KakaoMap from './KakaoMap';
 import './Analysis.css'
+import Logo from '../../assets/images/BSL_Logo.png';
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,6 +16,7 @@ import RadioGroup from '@mui/material/RadioGroup'; // 가격 거래유형 사용
 import Slider from '@mui/material/Slider'; // 가격 설정 사용
 
 import Button from '@mui/material/Button'; // 검색 버튼 사용
+import { useNavigate } from 'react-router-dom';
 
 const minDistance = 5; // 가격의 최소, 최대 사이의 최소 거리
 const monthly_marks = [ // 월 임대료 슬라이더
@@ -68,6 +70,12 @@ const Analysis = () => { // 상권분석 창
 
 	const getInfoList = (infoList) => {
 		setInfoList(infoList);
+	}
+
+	const mainnavigate = useNavigate()
+
+	const gotoMain = () => {
+		mainnavigate("/");
 	}
 
 	const handleDataSubmit = (e) => {
@@ -151,7 +159,8 @@ const Analysis = () => { // 상권분석 창
 
 				{/* 지역 검색을 위한 검색창 */}
 				<div className="search_textinput_wrap">
-					<input type="text" className="form-control" getariaLabel="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+					<img src={Logo} className='Main_Logo' onClick={() => { gotoMain() }} />
+					<input type="text" className="textput_wrap" getariaLabel="Sizing example input" aria-describedby="inputGroup-sizing-sm"
 						placeholder='지역 및 역이름'
 						onChange={onInputChange}
 						value={inputText}>

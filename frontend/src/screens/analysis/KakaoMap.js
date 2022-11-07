@@ -64,7 +64,7 @@ const KakaoMap = ({ searchPlace, rentPriceMin, rentPriceMax, priceMin, priceMax,
       kakao.maps.event.addListener(marker, 'click', function () {
         // 해당 클러스트 내에 있는 매물 정보를 axios.get 하고
         // 그 데이터를 변수에 저장시켜 부모 js 인 Analysis에 전달해야한다.
-        const clustersData_url = `http://k7c208.p.ssafy.io:8080/api/v1/estate/articles?markerId=${mId}&page=1&dongName=${dName}&rentPriceMin=${rpMin}&rentPriceMax=${rpMax}&priceMin=${pMin}&priceMax=${pMax}&areaMin=${aMin}&areaMax=${aMax}&leftLon=${lLon}&rightLon=${rLon}&topLat=${tLat}&bottomLat=${bLat}`
+        const clustersData_url = `https://k7c208.p.ssafy.io/api/v1/estate/articles?markerId=${mId}&page=1&dongName=${dName}&rentPriceMin=${rpMin}&rentPriceMax=${rpMax}&priceMin=${pMin}&priceMax=${pMax}&areaMin=${aMin}&areaMax=${aMax}&leftLon=${lLon}&rightLon=${rLon}&topLat=${tLat}&bottomLat=${bLat}`
         axios
           .get(clustersData_url)
           .then((res) => {
@@ -98,7 +98,7 @@ const KakaoMap = ({ searchPlace, rentPriceMin, rentPriceMax, priceMin, priceMax,
             headers: { Authorization: `KakaoAK ${myAppKey}` }
           });
           region_dong = response.data.documents[0].region_3depth_name
-          let clusters_url = `http://k7c208.p.ssafy.io:8080/api/v1/estate/clusters?dongName=${region_dong}&rentPriceMin=${monthlyMin}&rentPriceMax=${monthlyMax}&priceMin=${saleAndDepositMin}&priceMax=${saleAndDepositMax}&areaMin=${roomSizeMin}&areaMax=${roomSizeMax}&leftLon=${leftLon}&rightLon=${rightLon}&topLat=${topLat}&bottomLat=${bottomLat}`;
+          let clusters_url = `https://k7c208.p.ssafy.io/api/v1/estate/clusters?dongName=${region_dong}&rentPriceMin=${monthlyMin}&rentPriceMax=${monthlyMax}&priceMin=${saleAndDepositMin}&priceMax=${saleAndDepositMax}&areaMin=${roomSizeMin}&areaMax=${roomSizeMax}&leftLon=${leftLon}&rightLon=${rightLon}&topLat=${topLat}&bottomLat=${bottomLat}`;
 
           await axios
             .get(clusters_url)
