@@ -9,9 +9,13 @@ import Ranking from "../screens/Ranking.js";
 import Login from "../screens/Login"
 import Join from "../screens/Join.js";
 import MyPage from "../screens/MyPage.js";
+import SupportList from "../components/community/SupportList.js";
+import ShareList from "../components/community/ShareList.js";
+import RequestList from "../components/community/RequestList.js";
+
 
 function Router() {
-  const [authenticate, setAuthenticate] = useState(false) // true 이면 로그인
+  const [authenticate, setAuthenticate] = useState(false) // treu이면 로그인
 
   useEffect(() => {
     console.log("aaaa", authenticate)
@@ -25,7 +29,12 @@ function Router() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/anal" element={<Analysis />} />
-            <Route path="/community" element={<Community />} />
+            <Route path="/article">
+              <Route index element={<Community />} />
+              <Route path="support" element={<SupportList />} />
+              <Route path="share" element={<ShareList />} />
+              <Route path="request" element={<RequestList />} />
+            </Route>
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/login" element={<Login setAuthenticate={setAuthenticate} />} />
             <Route path="/join" element={<Join />} />
@@ -37,43 +46,5 @@ function Router() {
   );
 }
 
+
 export default Router;
-
-
-
-// const BaseRouter = withRouter(({ location }) => {
-
-//   return (
-//     <div>
-//       {/* // '/' 주소일시, 즉 Login Route를 보여줄 때에만, Navigation 메뉴가 나타나지 않도록 만든다. */}
-//       {location.pathname != '/' && <MainNavBar />}
-//       <Route path="/login" exact={true} component={Login} />
-//       <Route path="/home" component={Home} />
-//       <Route path="/about" component={About} />
-//     </div>
-
-//   )
-// })
-
-// import React from "react";
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Login from "../screens/Login.js";
-// import User from "./User"
-
-
-
-// function Router = () => {
-
-//   return (
-//     <>
-//       <BrowserRouter>
-//         <Routes>
-//           <Route path="/*" element={<User />} />
-//           <Route path="/login" element={<Login />} />
-//         </Routes>
-//       </BrowserRouter>
-//     </>
-//   );
-// }
-
-// export default router;

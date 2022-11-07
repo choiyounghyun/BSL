@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://k7c208.p.ssafy.io",
+  baseURL: "https://k7c208.p.ssafy.io:8080",
+  // https://k7c208.p.ssafy.io
   headers: {
     "Content-type": "application/json",
     'Access-Control-Allow-Origin': '*',
@@ -9,6 +10,9 @@ const api = axios.create({
 })
 
 
+
+export const ACCESS_TOKEN = 'accessToken';
+export const REFRESH_TOKEN = 'refreshToken';
 
 // 요청 인터셉터 추가하기
 api.interceptors.request.use(function (config) {

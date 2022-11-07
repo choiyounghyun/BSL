@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import KakaoMap from './KakaoMap';
 import './Analysis.css'
+import Logo from '../../assets/images/BSL_Logo.png';
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,6 +16,7 @@ import RadioGroup from '@mui/material/RadioGroup'; // 가격 거래유형 사용
 import Slider from '@mui/material/Slider'; // 가격 설정 사용
 
 import Button from '@mui/material/Button'; // 검색 버튼 사용
+import { useNavigate } from 'react-router-dom';
 
 const minDistance = 5; // 가격의 최소, 최대 사이의 최소 거리
 const monthly_marks = [ // 월 임대료 슬라이더
@@ -61,6 +63,20 @@ const Analysis = () => { // 상권분석 창
 
 	const [floor, setFloor] = useState('all'); // 건물 층수 변수
 	const [areaSize, setAreaSize] = useState([0, 100]); // 건물 면적 변수
+
+	const [infoList, setInfoList] = useState('');
+
+	const kakaoMapRef = useRef();
+
+	const getInfoList = (infoList) => {
+		setInfoList(infoList);
+	}
+
+	const mainnavigate = useNavigate()
+
+	const gotoMain = () => {
+		mainnavigate("/");
+	}
 
 	const handleDataSubmit = (e) => {
 		e.preventDefault();
@@ -143,7 +159,8 @@ const Analysis = () => { // 상권분석 창
 
 				{/* 지역 검색을 위한 검색창 */}
 				<div className="search_textinput_wrap">
-					<input type="text" className="form-control" getariaLabel="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+					<img src={Logo} className='Main_Logo' onClick={() => { gotoMain() }} />
+					<input type="text" className="textput_wrap" getariaLabel="Sizing example input" aria-describedby="inputGroup-sizing-sm"
 						placeholder='지역 및 역이름'
 						onChange={onInputChange}
 						value={inputText}>
@@ -168,7 +185,7 @@ const Analysis = () => { // 상권분석 창
 							setPriceVisible(false);
 							setFloorVisible(false);
 						}}>
-						{scoreVisible ? "지수닫기" : "평가지수"}
+						{scoreVisible ? "리스트닫기" : "리스트"}
 					</button>
 					<button type="button" className="btn btn-primary d-grid gap-2 d-md-flex justify-content-md-end"
 						onClick={() => {
@@ -214,6 +231,27 @@ const Analysis = () => { // 상권분석 창
 				</div>}
 
 				{scoreVisible && <div className="score_wrap">
+					{
+						infoList.map((item) => {
+							return (
+								<div className='item_wrap' key={item}>
+									<div id='mainTitle'>
+										{item.articleName} ({item.floor !== null ? item.floor : 1}층)
+									</div>
+									<div>
+										월세/보증금 (만원): {item.rentPrc !== null ? `${item.rentPrc}/${item.dealOrWarrantPrc}` : `${item.dealOrWarrantPrc} (매매)`}
+									</div>
+									<div>
+										해당층/총층: {item.floor}/{item.maxFloor}층
+									</div>
+									<div>
+										계약/전용 면적 : {item.area1}㎡/{item.area2}㎡
+									</div>
+									{/* <div onClick={() => window.open(`${item.cpPcArticleUrl}`)}>링크이동</div> */}
+								</div>
+							)
+						})
+					}
 				</div>}
 
 				{priceVisible && <div className="price_wrap">
@@ -340,12 +378,13 @@ const Analysis = () => { // 상권분석 창
 			{/* 지도 div */}
 			<KakaoMap className='map_wrap'
 				searchPlace={place} // 검색 장소
-				rentPriceMin={monthlyPrice[0] * 10}
-				rentPriceMax={monthlyPrice[1] * 10}
-				priceMin={depositPrice[0] * 40}
-				priceMax={depositPrice[1] * 40}
-				areaMin={areaSize[0] * 2}
-				areaMax={areaSize[1] * 2}
+				rentPriceMin={monthlyPrice[0]} // 월임대료 최소값
+				rentPriceMax={monthlyPrice[1]} // 월임대료 최대값
+				priceMin={depositPrice[0]} // 보증금 최소값
+				priceMax={depositPrice[1]} // 보증금 최대값
+				areaMin={areaSize[0]} // 방면적 최소값
+				areaMax={areaSize[1]} // 방면적 최대값
+				getInfoList={getInfoList}
 			/>
 		</div >
 	);

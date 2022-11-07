@@ -1,79 +1,82 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import "./Login.css"
-import { useState } from 'react'
 import api from "../Api"
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import AuthContext from "./sign/AuthPrivider"
 import axios from 'axios'
+import authService from "./sign/AuthService"
 
+const LOGIN_URL = "/auth/sign-in";
 
 const Login = ({ setAuthenticate }) => {
+
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
+
   const navigate = useNavigate()
 
-  const handleId = (e) => {
-    setId(e.target.value)
-  }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await authService.signin(id, password).then(
+        () => {
+          navigate('/'); // login 완료시 main page로 이동
+          window.location.reload()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
-
-  // const loginUser = (event) => {
-  //   if (id === "" || password === "") {
-
-  //   }
-  const loginUser = async (event) => {
-    if (id === "" || password === "") {
-
-      event.preventDefault();
-      console.log("login");
-      setAuthenticate(true);
-      setId(""); // id 저장
-      setPassword(""); // password 저장
-      navigate("/"); // 로그인 완료 후 메인 페이지로 이동
+    } catch (err) {
+      console.log(err)
     }
+
   }
-
-  // const handleClick = async (event) => {
-  //   event.preventDefault();
-  //   console.log('2')
-  //   setId("");
-  //   setPassword("");
-  // }
-
-  useEffect(() => {
-    axios.get(api)
-  })
 
   return (
-    <div id='login-div'>
+    <section>
       <div className='container'>
-        <form onSubmit={(event) => loginUser(event)}>
+        <form onSubmit={(event) => handleLogin(event)}>
           <h1>로그인</h1>
           <span>아이디와 비밀번호를 입력해주세요</span>
           <input
-            type="id"
-            name="id"
+            type="text"
+            id="id"
+            // ref={userRef}
+            autoComplete="off"
             value={id}
             placeholder="아이디를 입력해주세요"
-            onChange={handleId}
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
             required
           />
           <input
             type="password"
-            name="password"
+            id="password"
+            // ref={userRef}
             value={password}
             placeholder="비밀번호를 입력해주세요"
-            onChange={handlePassword}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             required
           />
           <button type="submit" >로그인</button>
           <button className='kakaologin'>카카오톡 로그인</button>
         </form>
+        <p>
+          회원가입을 하겠습니까?<br />
+          <span className="line">
+            <Link to="/Join">회원가입하기</Link>
+          </span>
+        </p>
       </div>
-    </div>
+    </section>
   )
 }
 
+
 export default Login
+

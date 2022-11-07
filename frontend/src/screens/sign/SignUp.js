@@ -22,9 +22,9 @@ function Login(props) {
           <form action="#">
             <h1>회원가입</h1>
             <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              {/* <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> */}
             </div>
             <span>아이디와 이메일을 적어주세요</span>
             <input type="text" placeholder="이름을 입력해주세요" />
@@ -37,14 +37,14 @@ function Login(props) {
           <form action="#">
             <h1>로그인</h1>
             <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              {/* <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> */}
             </div>
             <span>이메일과 비밀번호를 입력해주세요</span>
             <input type="email" placeholder="이메일을 입력해주세요" />
             <input type="password" placeholder="비밀번호를 입력해주세요" />
-            <a href="#">비밀번호 찾기</a>
+            {/* <a href="#">비밀번호 찾기</a> */}
             <button>로그인</button>
           </form>
         </div>
