@@ -34,7 +34,10 @@ public class BatchConfig {
 
     private final EstateService estateService;
 
+    private final BookmarkRepository bookmarkRepository;
+
     private final UserRepository userRepository;
+
     @Bean
     public Job job() {
 
@@ -50,23 +53,23 @@ public class BatchConfig {
         return stepBuilderFactory.get("step")
                 .tasklet((contribution, chunkContext) -> {
                     log.info("Start!");
-                    User user;
-                    List<User> list=userRepository.findAll();
+//                    User user;
+//                    Bookmark bookmark;
+                    List<User> list = userRepository.findAll();
+                    for (User user : list) {
+                        StringBuilder sb = new StringBuilder();
+                        List<Bookmark> bmlist = bookmarkRepository.findByUser(user);
+                        for (Bookmark bookmark : bmlist) {
+                            sb.append(bookmark.getAddress()).append(" ").append(bookmark.getPrice()).append(" ");
+                        }
+                        if(sb.length() > 2){
+                            System.out.println(sb);
+                            mmsService.sendBookMarkMMS(user.getPhoneNumber(), mmsService.userAuth(), String.valueOf(sb));
 
-                    for(int i=0; i<list.size();i++){
-                        System.out.println(list.get(i).getId());
+                        }
+
                     }
-//                    for(int i=0; i<list.size(); i++){
-//
-//                        user = list.get(i);
 
-//                        if(bookmarkRepository.findById(user.getId()).isPresent()){
-//                            String access_token = mmsService.userAuth();
-//                            Optional<Bookmark> bookmark = bookmarkRepository.findById(user.getId());
-//                            String str = "주소는 "+bookmark.get().getAddress() + "가격은 "+bookmark.get().getPrice();
-//                            mmsService.sendBookMarkMMS(user.getPhoneNumber() ,access_token,str);
-//                        }
-//                    }
 
 
                     log.info("Finish!");
