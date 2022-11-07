@@ -1,29 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./BrandCard.css";
-import Card from "react-bootstrap/Card";
+import axios from "axios";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import DummyImg from "../assets/images/dummy-img.png";
-import RankBanner from "../assets/images/rank-dummy.jpg";
+import dummy from "../assets/images/dummy-img.png";
 
-function BrandCard(props) {
+function BrandCard({ type, category }) {
+  const [card, setCard] = useState([]);
+  useEffect(() => {
+    axios({
+      url: `http://k7c208.p.ssafy.io:8080/v1/franchise/franchise-${type}`,
+      method: "get",
+      params: { category: category }
+    })
+      .then(res => {
+        setCard(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div id="brand-card">
       <div className="card-list">
-        <Row xs={1} md={3} className="g-4">
-          {Array.from({ length: 6 }).map((_, idx) => (
+        <Row xs={1} md={2} className="g-4">
+          {card.map((data, idx) => (
             <Col>
-              <Card>
-                <Card.Img variant="top" src={DummyImg} />
-                <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <div className="card">
+                <div className="card-left">
+                  <div className="card__num">{idx + 1}위</div>
+                  <div className="card__img-wrapper">
+                    {data.url ? (
+                      <img
+                        src={data.url}
+                        alt="brand-img"
+                        className="card__img"
+                      />
+                    ) : (
+                      <img src={dummy} alt="brand-img" className="card__img" />
+                    )}
+                  </div>
+                </div>
+                <div className="card-right">
+                  <div className="card__name">{data.name}</div>
+                  <div className="card__cnt">매장 {data.count}개</div>
+                </div>
+              </div>
             </Col>
           ))}
         </Row>
