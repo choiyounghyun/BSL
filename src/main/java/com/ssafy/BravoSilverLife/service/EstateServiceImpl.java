@@ -157,6 +157,7 @@ public class EstateServiceImpl implements EstateService {
         con.setRequestMethod("GET");
         con.setDoOutput(true);
 
+
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));

@@ -15,16 +15,12 @@ import java.util.List;
 
 @Tag(name = "Estate", description = "EstateAPI")
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/v1/estate")
 public class EstateController {
 
     @Autowired
     EstateService estateService;
-
-//    Condition test = new Condition("고덕동", 0, 900000000, 0, 900000000, 0, 900000000, 127.15817519531251,
-//            127.1698329, 37.563346675000005, 37.559772);
-    // Condition test = new Condition(1174010200, 0, 900000000, 0, 900000000, 0,
-    // 900000000, 127, 128, 38, 35);
 
     @Operation(summary = "매물 클러스터", description = "좌표로 매물 클러스터를 확인하는 API")
     @ApiResponses(value = {
