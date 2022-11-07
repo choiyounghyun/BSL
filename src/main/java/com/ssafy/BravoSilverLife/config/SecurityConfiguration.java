@@ -46,13 +46,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.httpBasic().disable() //UI를 사용하는 것을 기본값으로 가진 시큐리티 설정을 비활성화
+        httpSecurity.csrf().disable() //UI를 사용하는 것을 기본값으로 가진 시큐리티 설정을 비활성화
                 .sessionManagement()
                 .sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS) //REST API 기반 애플리케이션의 동작 방식 설정, 지금 JWT토큰으로 인증처리, 세션 사용안해서 STATELESS로 설정
                 .and()
                 .authorizeRequests()//애플리케이션에 들어오는 요청에 대한 사용권한 체크
-                .antMatchers("/**").permitAll()
+                .antMatchers("/v1/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
+
 //                .antMatchers(HttpMethod.POST, "/artwork").authenticated()
 //                .antMatchers(HttpMethod.PUT,"/artwork").authenticated()
 //                .antMatchers(HttpMethod.DELETE,"/artwork").authenticated()
