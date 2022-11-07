@@ -6,8 +6,8 @@ import Main from "../screens/Main.js";
 import Analysis from "../screens/analysis/Analysis";
 import Community from "../screens/Community.js";
 import Ranking from "../screens/Ranking.js";
-import Login from "../screens/Login"
-import Join from "../screens/Join.js";
+import SignIn from "../screens/SignIn"
+import SignUp from "../screens/SignUp.js";
 import MyPage from "../screens/MyPage.js";
 import SupportList from "../components/community/SupportList.js";
 import ShareList from "../components/community/ShareList.js";
@@ -36,8 +36,8 @@ function Router() {
               <Route path="request" element={<RequestList />} />
             </Route>
             <Route path="/ranking" element={<Ranking />} />
-            <Route path="/login" element={<Login setAuthenticate={setAuthenticate} />} />
-            <Route path="/join" element={<Join />} />
+            <Route path="/login" element={<SignIn setAuthenticate={setAuthenticate} />} />
+            <Route path="/join" element={<SignUp />} />
             <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </Suspense>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
-import "./Login.css"
+import "./SignIn.css"
 import api from "../Api"
 import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from "./sign/AuthPrivider"
@@ -8,7 +8,7 @@ import authService from "./sign/AuthService"
 
 const LOGIN_URL = "/auth/sign-in";
 
-const Login = ({ setAuthenticate }) => {
+const SignIn = ({ setAuthenticate }) => {
 
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
@@ -78,5 +78,5 @@ const Login = ({ setAuthenticate }) => {
 }
 
 
-export default Login
+export default SignIn
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import "./Join.css"
+import "./SingUp.css"
 import authService from './sign/AuthService'
 import { useNavigate } from 'react-router-dom'
 
-const Join = () => {
+const SignUp = () => {
 
   const SINGUP_URL = "/auth/sign-up";
 
@@ -87,4 +87,4 @@ const Join = () => {
   )
 }
 
-export default Join
+export default SignUp
