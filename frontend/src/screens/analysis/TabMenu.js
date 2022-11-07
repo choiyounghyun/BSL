@@ -5,7 +5,7 @@ import FindPlace from './FindPlace'
 import BookMarkPlace from './BookMarkPlace'
 import './TabMenu.css'
 
-const TabMenu = () => {
+const TabMenu = ({ dataList, setDataList }) => {
   return (
     <Tabs
       defaultActiveKey="search_page"
@@ -14,7 +14,7 @@ const TabMenu = () => {
       fill
     >
       <Tab eventKey="search_page" title="매물 검색">
-        <FindPlace />
+        <FindPlace dataList={dataList} setDataList={setDataList} />
       </Tab>
       <Tab eventKey="bookmark_page" title="북마크">
         <BookMarkPlace />

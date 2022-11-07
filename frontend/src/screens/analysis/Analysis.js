@@ -13,22 +13,21 @@ const Analysis = () => { // 상권분석
 	// 	depositOrSaleMin: 0, depositOrSaleMax: 100000000, // 보증금 및 매매금 최소(0원), 최대(1조원)
 	// 	roomSizeMin: 0, roomSizeMax: 1000000, // 방 크기 최소(0㎡), 최대(1000000㎡)
 	// })
+	const [optionDataList, setOptionDataList] = useState({
+		place: '', sector: '', tradeType: 'all', floor: 'all',
+		monthly: [0, 100], deposit: [0, 100], sale: [0, 100], room: [0, 100]
+	})
+
 	const [isLoading, setIsLoading] = useState(false)
 	useEffect(() => {
 		setTimeout(function () {
 			setIsLoading(true)
-		}, 4000)
+		}, 2000)
 	})
 
 	const mainnavigate = useNavigate()
 	const gotoMain = () => {
 		mainnavigate("/")
-	}
-
-
-	const [place, setPlace] = useState('') // 지역(동) 및 역이름
-	const getPlaceName = (placeName) => { // 지역(동) 및 역이름을 정하는 함수
-		setPlace(placeName)
 	}
 
 	return (
@@ -46,10 +45,10 @@ const Analysis = () => { // 상권분석
 					</div>
 					{/* 지도 div */}
 					<KakaoMap className='map_wrap'
-						place={place} />
+						optionDataList={optionDataList} />
 					{/* 사이드바 div */}
 					<SideBar className='sidebar_wrap'
-						getPlaceName={getPlaceName} />
+						setOptionDataList={setOptionDataList} />
 				</div>
 			}
 		</>

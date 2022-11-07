@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import './KakaoMap.css' // 지도 CSS
 
-const KakaoMap = ({ place }) => { // searchPlace = 검색할 장소를 나타냄
+const KakaoMap = ({ optionDataList }) => { // searchPlace = 검색할 장소를 나타냄
   const kakao = window['kakao']
 
   // console.log(place)
+  console.log(optionDataList)
 
   useEffect(() => {
     const container = document.getElementById('map')

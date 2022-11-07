@@ -8,7 +8,7 @@
 }
 
 .loading_wrap.flip {
-  animation: flip 2s infinite;
+  animation: flip 2s 1;
 }
 
 .analysis_wrap {
