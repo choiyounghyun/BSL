@@ -1,7 +1,8 @@
-import React from "react";
-import { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
-import MainNavBar from "../components/common/MainNavBar.js";
+import React, { Suspense } from "react";
+import "./Router.css";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import MainNavBar from "../components/common/MainNavBar.js";
 import Main from "../screens/Main.js";
 import Analysis from "../screens/analysis/Analysis";
 import Community from "../screens/Community.js";
@@ -13,44 +14,36 @@ import SupportList from "../components/community/SupportList.js";
 import ShareList from "../components/community/ShareList.js";
 import RequestList from "../components/community/RequestList.js";
 
-// const BaseRouter = withRouter(({ location }) => {
-
-//   return (
-//     <div>
-//       {/* // '/' 주소일시, 즉 Login Route를 보여줄 때에만, Navigation 메뉴가 나타나지 않도록 만든다. */}
-//       {location.pathname != '/' && <MainNavBar />}
-//       <Route path="/login" exact={true} component={Login} />
-//       <Route path="/home" component={Home} />
-//       <Route path="/about" component={About} />
-//     </div>
-
-//   )
-// })
-
-function router() {
+function Router() {
+  const location = useLocation();
   return (
-    <>
-      {/* <MainNavBar /> */}
-      <div id="router">
-        <Suspense>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/anal" element={<Analysis />} />
-            <Route path="/article">
-              <Route index element={<Community />} />
-              <Route path="support" element={<SupportList />} />
-              <Route path="share" element={<ShareList />} />
-              <Route path="request" element={<RequestList />} />
-            </Route>
-            <Route path="/ranking" element={<Ranking />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/mypage" element={<MyPage />} />
-          </Routes>
-        </Suspense>
-      </div>
-    </>
+    <div className="router">
+      <Suspense>
+        <TransitionGroup className="transition-group">
+          <CSSTransition
+            key={location.pathname}
+            classNames="fade"
+            timeout={1000}
+          >
+            <Routes location={location}>
+              <Route path="/" element={<Main />} />
+              <Route path="/article">
+                <Route index element={<Community />} />
+                <Route path="support" element={<SupportList />} />
+                <Route path="share" element={<ShareList />} />
+                <Route path="request" element={<RequestList />} />
+              </Route>
+              <Route path="/ranking" element={<Ranking />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/join" element={<Join />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/anal" element={<Analysis />} />
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
+      </Suspense>
+    </div>
   );
 }
 
-export default router;
+export default Router;

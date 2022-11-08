@@ -106,13 +106,14 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 10vw;
+  height: 5vw;
+  z-index: 0;
 }
 
 /* transform: rotate(720deg); */
 
 .header__head-circle.--active {
-  transform: translate(-50%, -200%);
+  transform: translate(-50%, -160%);
   transition: all 1s ease;
 }
 
@@ -271,7 +272,7 @@
 
 .middle-menu__analysis-title,
 .middle-menu__ranking-title {
-  display: flex;
+  /* display: flex; */
   font-size: 32px;
   color: azure;
   font-weight: bold;
