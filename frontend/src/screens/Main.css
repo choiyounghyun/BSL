@@ -53,28 +53,16 @@
 }
 
 .trans-clip {
-  background-size: 12000% 12000%;
-  background-position: 50% 50%;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  pointer-events: none;
-  background: radial-gradient(circle at center, transparent 1%, #103a3a 0);
-  background-image: radial-gradient(
-    circle at center center,
-    transparent 1%,
-    rgb(16, 58, 58) 0px
-  );
-  background-position-x: 50%;
-  background-position-y: 50%;
-  background-size: 12000% 12000%;
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: initial;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	pointer-events: none;
+	background: radial-gradient(circle at center, transparent 1%, #103a3a 0);
+	background-size: 12000% 12000%;
+	background-position: 50% 50%
 }
 
 .trans-clip-mask {
@@ -94,6 +82,7 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 .main-header {
@@ -101,8 +90,8 @@
   will-change: auto;
   transform: translate(0px, 0px);
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 40%;
+  left: -1%;
   z-index: 11;
 }
 
@@ -116,6 +105,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  height: 10vw;
+}
+
+.header__head-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.header__head-circle-in {
+  border-radius: 50%;
+  background-color: white;
+  width: 14vw;
+  height: 14vw;
+  position: relative;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.head-circle-logo {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: 12vw;
+  height: 12vw;
 }
 
 .main-ground {
@@ -123,6 +140,19 @@
   height: 100vh;
   background-color: aliceblue;
 }
+
+.main-ground.--active .ground-left,
+.main-ground.--active .ground-left:hover,
+.main-ground.--active .ground-right,
+.main-ground.--active .ground-right:hover {
+  width: 25vw;
+  flex: 0 0 25vw
+}
+
+.main-ground.--active .middle-menu {
+  width: 50vw;
+}
+
 .ground-left {
   width: 50vw;
   position: relative;
@@ -133,6 +163,12 @@
   justify-content: center;
   transition: all 1s ease;
   flex: 0 1 50vw;
+}
+
+.ground-left:hover,
+.ground-right:hover {
+  width: 60vw;
+  flex: 0 0 60vw
 }
 
 .ground-left__img-wrapper {
@@ -168,6 +204,12 @@
 } */
 
 .middle-menu {
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  transition: all 1s ease;
 }
 
 .ground-right {
@@ -179,6 +221,10 @@
   justify-content: center;
   transition: all 1s ease;
   flex: 0 1 50vw;
+}
+
+.main-container .middle-menu {
+  flex: auto;
 }
 
 .ground-right__img-wrapper {
