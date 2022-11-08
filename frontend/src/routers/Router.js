@@ -15,7 +15,7 @@ import RequestList from "../components/community/RequestList.js";
 
 
 function Router() {
-  const [authenticate, setAuthenticate] = useState(false) // treu이면 로그인
+  const [authenticate, setAuthenticate] = useState(false) // true이면 로그인
 
   useEffect(() => {
     console.log("aaaa", authenticate)

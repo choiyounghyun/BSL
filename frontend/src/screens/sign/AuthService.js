@@ -24,11 +24,23 @@ const signup = (id, nickname, password, phoneNumber, authNumber) => {
     .then((response) => {
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data))
+        console.log(response.data.token)
       }
       return response.data
     })
 }
 
+const getAuthNumber = (phoneNumber) => {
+
+  return axios
+    .get(`https://k7c208.p.ssafy.io/api/auth/check/${phoneNumber}}`)
+    .then((response) => {
+      if (response.data.token) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+      }
+      return response.data
+    })
+}
 
 const logout = () => {
   localStorage.removeItem('user')
@@ -43,8 +55,8 @@ const authService = {
   signin,
   signup,
   logout,
-  getCurrentUser
-
+  getCurrentUser,
+  getAuthNumber,
 }
 
 export default authService

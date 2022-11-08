@@ -1,12 +1,7 @@
-import React, { useEffect, useRef, useState, useContext } from 'react'
+import React, { useState } from 'react'
 import "./SignIn.css"
-import api from "../Api"
 import { Link, useNavigate } from 'react-router-dom'
-import AuthContext from "./sign/AuthPrivider"
-import axios from 'axios'
 import authService from "./sign/AuthService"
-
-const LOGIN_URL = "/auth/sign-in";
 
 const SignIn = ({ setAuthenticate }) => {
 
@@ -20,10 +15,11 @@ const SignIn = ({ setAuthenticate }) => {
     try {
       await authService.signin(id, password).then(
         () => {
-          navigate('/'); // login 완료시 main page로 이동
           window.location.reload()
+          navigate('/'); // login 완료시 main page로 이동
         },
         (error) => {
+          alert("아이디 혹은 비밀번호를 확인해주세요")
           console.log(error)
         }
       )
@@ -43,7 +39,6 @@ const SignIn = ({ setAuthenticate }) => {
           <input
             type="text"
             id="id"
-            // ref={userRef}
             autoComplete="off"
             value={id}
             placeholder="아이디를 입력해주세요"
@@ -55,7 +50,6 @@ const SignIn = ({ setAuthenticate }) => {
           <input
             type="password"
             id="password"
-            // ref={userRef}
             value={password}
             placeholder="비밀번호를 입력해주세요"
             onChange={(e) => {
