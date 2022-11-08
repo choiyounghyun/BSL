@@ -83,7 +83,7 @@ public class MMSService {
 
     public boolean checkAuthByMMS(String accessToken, String phoneNumber) {
 
-        if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) return false;
+//        if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) return false;
 
         Random random = new Random();
         String randomNumber = "";

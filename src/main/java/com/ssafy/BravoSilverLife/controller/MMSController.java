@@ -25,7 +25,7 @@ public class MMSController {
         String access_token = mmsService.userAuth();
         boolean result = mmsService.checkAuthByMMS(access_token, phone_number);
         if (result) return ResponseEntity.status(200).body("발송 완료");
-        else return ResponseEntity.status(200).body("중복 번호");
+        else return ResponseEntity.status(409).body("중복 번호");
     }
 
 }
