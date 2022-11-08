@@ -38,26 +38,6 @@
   object-fit: contain;
 }
 
-.sidebar_wrap.search_wrap.input_place_wrap.input_wrap {
-  animation: vibration 0.1s infinite;
-}
-
-.sidebar_wrap.search_wrap.input_place_wrap.input_wrap.vibration {
-  animation: vibration 0.1s infinite;
-}
-
-.sidebar_wrap.search_wrap.input_place_wrap.input_wrap.vibration::placeholder {
-  color: red;
-}
-
-/* .input_wrap.vibration {
-  animation: vibration 0.1s infinite;
-}
-
-.input_wrap.vibration::placeholder {
-  color: red;
-} */
-
 @keyframes vibration {
   from {
     transform: rotate(1deg);

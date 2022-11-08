@@ -38,17 +38,7 @@ const SideBar = ({ setOptionDataList }) => {
         monthly: dataList.monthly, deposit: dataList.deposit, sale: dataList.sale, room: dataList.room
       }
       setOptionDataList(list)
-    } else if (place === '' && dataList.sector !== '') {
-      // vibration()
-    }
-  }
-
-  const vibration = (target) => { // 입력한 값이 없는 경우 경고하는 애니메이션 함수
-    target.classList.add('vibration') // 클래스 추가
-
-    setTimeout(function () { // 500ms 후 클래스 제거
-      target.classList.remove('vibration')
-    }, 500)
+    } else;
   }
 
   return (

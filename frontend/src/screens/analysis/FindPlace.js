@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 
@@ -23,16 +23,21 @@ const FindPlace = ({ setDataList }) => {
   const [floor, setFloor] = useState('all')
   const [roomSize, setRoomSize] = useState([0, 100])
 
-  useEffect(() => {
-    if (sector !== '') {
+  const setCompleteDataList = (getSector) => {
+    if (getSector !== null) {
       const setOption = {
-        sector: sector.label, tradeType: tradeType, floor: floor,
+        sector: getSector.label, tradeType: tradeType, floor: floor,
+        monthly: monthly, deposit: deposit, sale: sale, room: roomSize
+      }
+      setDataList(setOption)
+    } else {
+      const setOption = {
+        sector: null, tradeType: tradeType, floor: floor,
         monthly: monthly, deposit: deposit, sale: sale, room: roomSize
       }
       setDataList(setOption)
     }
-    else;
-  }, [sector, tradeType, monthly, deposit, sale, floor, roomSize, setDataList])
+  }
 
   const handleTradType = (e) => {
     setTradeType(e.target.value)
@@ -112,6 +117,7 @@ const FindPlace = ({ setDataList }) => {
           {...sector} value={sector || null}
           onChange={(event, newSector) => {
             // setDataList(dataList.sector)
+            setCompleteDataList(newSector)
             setSector(newSector)
           }}
           id="controllable-states-demo"
