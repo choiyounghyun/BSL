@@ -1,18 +1,20 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./Main.css";
+import { Link } from "react-router-dom";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
-import logo from "../assets/images/mainlogo.svg"
+import logo from "../assets/images/mainlogo.svg";
+// import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
-  const [menu, setMenu] = useState("")
+  const [menu, setMenu] = useState("");
   const menuToggle = () => {
     if (menu === "") {
-      setMenu("active")
+      setMenu("active");
     } else {
-      setMenu("")
+      setMenu("");
     }
-  }
+  };
   return (
     <div id="main" data-barba="wrapper">
       <div className="trans-left-img">
@@ -36,9 +38,14 @@ function Main(props) {
         <header className="main-header">
           <div className="header__container">
             <div className="header__head">
-              <div className="header__head-circle" onClick={menuToggle}>
+              <div
+                className={`header__head-circle ${
+                  menu === "active" ? "--active" : ""
+                }`}
+                onClick={menuToggle}
+              >
                 <div className="header__head-circle-in">
-                  <img src={logo} alt="logo" className="head-circle-logo"/>
+                  <img src={logo} alt="logo" className="head-circle-logo" />
                 </div>
               </div>
             </div>
@@ -53,9 +60,38 @@ function Main(props) {
                 className="ground-left__img"
               />
             </div>
+            <div className="ground-left__title">
+              <h1>BRAVO!!</h1>
+            </div>
           </div>
-          <div className="middle-menu">
-            <div className=""></div>
+          <div className={`middle-menu ${menu === "active" ? "--active" : ""}`}>
+            {/* <div className="middle-menu__bg">
+              <img src={mainCook} alt="main-cook" />
+            </div> */}
+            <div className="middle-menu__analysis">
+              <Link to="/anal" style={{ textDecoration: "none" }}>
+                <div className="middle-menu__analysis-title">상권분석</div>
+              </Link>
+            </div>
+            <div className="middle-menu__analysis-description"></div>
+            <div className="middle-menu__ranking">
+              <Link to="/ranking" style={{ textDecoration: "none" }}>
+                <div className="middle-menu__ranking-title">인기매장</div>
+              </Link>
+            </div>
+            <div className="middle-menu__ranking-description"></div>
+            <div className="middle-menu__user">
+              <div className="middle-menu__user-login">
+                <Link to="/login" className="middle-menu__user-login__link">
+                  LOGIN
+                </Link>
+              </div>
+              <div className="middle-menu__user-join">
+                <Link to="/join" className="middle-menu__user-join__link">
+                  JOIN
+                </Link>
+              </div>
+            </div>
           </div>
           <div className="ground-right">
             <div className="ground-right__img-wrapper">
@@ -64,6 +100,16 @@ function Main(props) {
                 alt="ground-right-img"
                 className="ground-right__img"
               />
+            </div>
+            <div className="ground-right__title">
+              <h1>
+                SILVER
+                <br />
+                LIFE!!
+              </h1>
+            </div>
+            <div className="ground-right__admin">
+              <h4>by miseoni</h4>
             </div>
           </div>
         </div>
