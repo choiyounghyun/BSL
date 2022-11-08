@@ -17,7 +17,7 @@ const Analysis = () => { // 상권분석
 	const [clusterId, setClusterId] = useState(0)
 	const [clusterMaxPage, setClusterMaxPage] = useState(1)
 
-	const getClusterDataList = async (markerId) => {
+	const getClusterDataList = () => {
 		console.log(clusterMaxPage)
 		// if (dongName !== '' && markerId !== 0) {
 		// 	for (let i = 1; i <= clusterMaxPage; i++) {
@@ -60,7 +60,7 @@ const Analysis = () => { // 상권분석
 						dongName={dongName} setDongName={setDongName}
 						clusterId={clusterId} setClusterId={setClusterId}
 						getClusterDataList={getClusterDataList}
-						clusterMaxPage={clusterMaxPage} setClusterMaxPage={setClusterMaxPage} />
+						setClusterMaxPage={setClusterMaxPage} />
 					{/* 사이드바 div */}
 					<SideBar className='sidebar_wrap'
 						setOptionDataList={setOptionDataList} />

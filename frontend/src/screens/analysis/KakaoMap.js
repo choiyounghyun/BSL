@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './KakaoMap.css' // 지도 CSS
 
-const KakaoMap = ({ optionDataList, dongName, setDongName, latLngYX, setLatLngYX, clusterId, setClusterId, getClusterDataList, clusterMaxPage, setClusterMaxPage }) => { // searchPlace = 검색할 장소를 나타냄
+const KakaoMap = ({ optionDataList, dongName, setDongName, latLngYX, setLatLngYX, clusterId, setClusterId, getClusterDataList, setClusterMaxPage }) => { // searchPlace = 검색할 장소를 나타냄
   const kakao = window['kakao']
   const [centerYX, setCenterYX] = useState([0, 0])
   const [emptyBuildList, setEmptyBuildList] = useState([])
@@ -95,9 +95,9 @@ const KakaoMap = ({ optionDataList, dongName, setDongName, latLngYX, setLatLngYX
       })
 
       kakao.maps.event.addListener(circle, 'click', function () {
-        getClusterDataList(posData.markerId)
         setClusterMaxPage((posData.count / 20) + 1)
-      });
+        getClusterDataList(posData.markerId)
+      })
 
       circle.setMap(map)
       customOverlay.setMap(map)
