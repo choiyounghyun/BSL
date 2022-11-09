@@ -12,9 +12,11 @@ const SignIn = ({ setAuthenticate }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log(e)
     try {
       await authService.signin(id, password).then(
         () => {
+          console.log(e);
           window.location.reload()
           navigate('/'); // login 완료시 main page로 이동
         },
@@ -32,9 +34,9 @@ const SignIn = ({ setAuthenticate }) => {
 
   return (
     <section>
-      <div className='container'>
-        <form onSubmit={(event) => handleLogin(event)}>
-          <h1>로그인</h1>
+      <div id="logindiv">
+        <form onSubmit={(event) => handleLogin(event)} className="loginform">
+          <h1 className="logintitle">로그인</h1>
           <span>아이디와 비밀번호를 입력해주세요</span>
           <input
             type="text"
