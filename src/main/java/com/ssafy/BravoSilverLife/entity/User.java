@@ -71,6 +71,9 @@ public class User extends BaseTimeEntity implements UserDetails {
     public void changeNickname(String nickname) {
         this.nickname = nickname;
     }
+    public void changePhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

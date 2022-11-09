@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://k7c208.p.ssafy.io:3306/BSL
+    url: jdbc:mariadb://k7c208.p.ssafy.io:3306/BSL2
     username: root
     password: tpwlslrnldudnj
     driver-class-name: org.mariadb.jdbc.Driver
@@ -61,7 +61,6 @@ spring:
       matching-strategy: ant_path_matcher
 
 
-
   jpa:
     hibernate:
       ddl-auto: none
@@ -70,6 +69,10 @@ spring:
           #show_sql: true
           format_sql: true
     #generate-ddl: true
+
+  batch:
+    jdbc:
+      initialize-schema: always
 
 
 #  security:

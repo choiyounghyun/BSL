@@ -2,6 +2,7 @@ package com.ssafy.BravoSilverLife.controller;
 
 import com.ssafy.BravoSilverLife.entity.User;
 import com.ssafy.BravoSilverLife.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -37,9 +38,20 @@ public class UserController {
     }
 
 
+    @Data
+    static class changePhoneNumberRequest {
+        @NotEmpty
+        private String phoneNumber;
+        @NotEmpty
+        private String newPhoneNumber;
+        @NotEmpty
+        private String authNumber;
+    }
+
 
     //닉네임 변경
     @PutMapping("/profile/{nickname}/{newnickname}")
+    @Operation(summary = "닉네임 변경", description = "닉네임 변경성공시 1 실패시 0 반환")
     public int chageNickname(@PathVariable("nickname") String nickname,
                              @PathVariable("newnickname") String newNickname) {
         try {
@@ -50,6 +62,21 @@ public class UserController {
         }
     }
 
+    @PutMapping("/profile/phonenumber")
+    @Operation(summary = "핸드폰번호 변경", description = "핸드폰번호 변경 성공시 1 실패시 0 반환")
+    public int changePhoneNumber(@RequestBody @Valid UserController.changePhoneNumberRequest request) {
+
+        try {
+            return userService.changePhoneNumber(request.phoneNumber, request.authNumber, request.newPhoneNumber);
+        } catch (Exception e)
+        {
+            System.out.println("예외발생");
+            return 0;
+        }
+
+
+
+    }
 
 
 

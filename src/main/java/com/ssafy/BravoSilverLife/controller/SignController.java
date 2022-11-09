@@ -104,46 +104,20 @@ public class SignController {
     public String updateAccessToken(@PathVariable(name = "user_id") Long user_id, @PathVariable(name = "refreshToken") String refreshToken) {
         return userService.updateAccessToken(user_id, refreshToken);
     }
-    @GetMapping(value = "/exception")
-    public void exceptionTest() throws RuntimeException {
-        throw new RuntimeException("접근이 금지되었습니다.");
-    }
 
-    @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<Map<String, String>> ExceptionHandler(RuntimeException e) {
-        HttpHeaders responseHeaders = new HttpHeaders();
-        //responseHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
-        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
-        logger.error("ExceptionHandler 호출, {}, {}", e.getCause(), e.getMessage());
-
-        Map<String, String> map = new HashMap<>();
-        map.put("error type", httpStatus.getReasonPhrase());
-        map.put("code", "400");
-        map.put("message", "에러 발생");
-
-        return new ResponseEntity<>(map, responseHeaders, httpStatus);
-    }
-
-    //이메일 중복검사
+    //아이디 중복검사
     @GetMapping("/sign-up/id/{id}")
-    public int ValidateEmail(@PathVariable String id) {
+    @Operation(summary = "id 중복검사", description = "id 중복검사")
+    public int ValidateId(@PathVariable String id) {
         return signService.validateDuplicateId(id);
     }
 
     //닉네임 중복검사
     @GetMapping("/sign-up/nickname/{nickname}")
+    @Operation(summary = "닉네임 중복검사", description = "닉네임 중복검사")
     public int ValidateNickname(@PathVariable String nickname) {
         return signService.validateDuplcateNickname(nickname);
     }
 
-    @PostMapping("/check/password/{userEmail}")
-    public int checkPassword(@PathVariable(name = "userEmail") String userEmail, @RequestHeader(value="password") String password) {
-        return signService.checkPassword(userEmail, password);
-    }
-
-    @PostMapping("/reset/password/{userEmail}")
-    public int resetPassword(@PathVariable(name = "userEmail") String userEmail, @RequestHeader(value = "password") String password) {
-        return signService.resetPassword(userEmail, password);
-    }
 }
