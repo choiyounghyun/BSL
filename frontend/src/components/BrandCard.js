@@ -26,21 +26,20 @@ function BrandCard({ type, category }) {
         <Row xs={1} md={2} className="g-4">
           {card.map((data, idx) => (
             <Col>
-              <div className="card">
-                <div className="card-left">
-                  <div className="card__num">{idx + 1}위</div>
-                  <div className="card__img-wrapper">
-                    {data.url ? (
-                      <img
-                        src={data.url}
-                        alt="brand-img"
-                        className="card__img"
-                      />
-                    ) : (
-                      <img src={dummy} alt="brand-img" className="card__img" />
-                    )}
-                  </div>
+              <div
+                className="card"
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                {/* <div className="card-left"> */}
+                <div className="card__num">{idx + 1}</div>
+                <div className="card__img-wrapper">
+                  {data.url ? (
+                    <img src={data.url} alt="brand-img" className="card__img" />
+                  ) : (
+                    <img src={dummy} alt="brand-img" className="card__img" />
+                  )}
                 </div>
+                {/* </div> */}
                 <div className="card-right">
                   <div className="card__name">{data.name}</div>
                   <div className="card__cnt">매장 {data.count}개</div>

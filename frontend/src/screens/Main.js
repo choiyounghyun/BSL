@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./Main.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
+  const location = useLocation();
+
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
     if (menu === "") {
@@ -39,9 +42,8 @@ function Main(props) {
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${
-                  menu === "active" ? "--active" : ""
-                }`}
+                className={`header__head-circle ${menu === "active" ? "--active" : ""
+                  }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">
@@ -82,13 +84,13 @@ function Main(props) {
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
               <div className="middle-menu__user-login">
-                <Link to="/login" className="middle-menu__user-login__link">
-                  LOGIN
+                <Link to="/signin" className="middle-menu__user-login__link">
+                  SIGN IN
                 </Link>
               </div>
               <div className="middle-menu__user-join">
-                <Link to="/join" className="middle-menu__user-join__link">
-                  JOIN
+                <Link to="/signup" className="middle-menu__user-join__link">
+                  SIGN UP
                 </Link>
               </div>
             </div>

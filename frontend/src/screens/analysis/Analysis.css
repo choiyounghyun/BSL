@@ -1,149 +1,88 @@
-.analysis_wrap {
+.loading_wrap {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.menu_wrap {
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
+.loading_wrap.flip {
+  animation: flip 2s 1;
+}
 
-  width: 30%;
-  min-width: 350px;
-  height: 100%;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 15px;
-  margin: 15px 10px;
+.analysis_wrap {
+  width: 100%;
+  height: 100vh;
+}
+
+.analysis_wrap.fade-in {
+  animation: fade-in 1s 1;
+}
+
+.go-to-main {
+  width: 100px;
+  height: 100px;
+  background: rgb(255, 255, 255, 1);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  justify-content: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+  z-index: 2;
+
+  cursor: pointer;
+}
+
+.go-to-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.go-to-main:hover {
+  background: rgb(233, 233, 233, 0.8);
 }
 
 .map_wrap {
-  width: 70%;
+  width: 100%;
   height: 100%;
 }
 
-.Main_Logo {
-  width: 40px;
-  height: \40px;
-  cursor: pointer;
+.sidebar_wrap {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+
+  width: 360px;
+  height: 100%;
 }
 
-.textput_wrap {
-  width: 200px;
-  height: 40px;
+@keyframes flip {
+  from {
+    transform: rotateY(360deg);
+  }
+
+  to {
+    transform: rotateY(0deg);
+  }
 }
 
-.form-control {
-  width: 100px;
-}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 
-.search_textinput_wrap {
-  width: 90%;
-  height: 60px;
-  margin: 0px 0px;
-  background-color: tomato;
-  border-radius: 15px;
-  padding: 0px 0px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.option_select_wrap {
-  width: 90%;
-  height: 50px;
-  margin: 20px 0px;
-  background-color: orange;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.sector_select_wrap {
-  width: 90%;
-  height: 400px;
-  margin: 20px 0px;
-  background-color: greenyellow;
-  border-radius: 15px;
-
-  display: flex;
-  justify-content: center;
-}
-
-.checkbox_wrap {
-  background-color: white;
-  border-radius: 15px;
-  /* border: 1px solid black; */
-
-  display: flex;
-  flex-direction: row;
-}
-
-.score_wrap {
-  width: 90%;
-  height: 400px;
-  margin: 20px 0px;
-  background-color: skyblue;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-}
-
-.price_wrap {
-  width: 90%;
-  height: 400px;
-  margin: 20px 0px;
-  background-color: plum;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-#montly_rent_price {
-  width: 250px;
-  align-items: center;
-  justify-content: center;
-}
-
-.floor_wrap {
-  width: 90%;
-  height: 400px;
-  margin: 20px 0px;
-  background-color: lightpink;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-#search_button {
-  margin-top: 10px;
-  width: 90%;
-}
-
-.item_wrap {
-  width: 100%;
-  height: 140px;
-  margin: 10px 0px;
-
-  border: 3px solid rgba(0, 0, 0, 1);
-}
-
-.item_wrap:hover {
-  background: white;
-  cursor: pointer;
+  to {
+    opacity: 1;
+  }
 }

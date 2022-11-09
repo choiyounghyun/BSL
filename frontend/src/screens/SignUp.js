@@ -92,7 +92,7 @@ const SignUp = () => {
           />
           <button className="test" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
           <button type="submit">회원가입</button>
-          <Link to="/login" style={{ textDecoration: 'none' }}>로그인하러가기</Link>
+          <Link to="/signin" style={{ textDecoration: 'none' }}>로그인하러가기</Link>
         </form>
 
       </div>
