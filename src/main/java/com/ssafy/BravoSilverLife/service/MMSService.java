@@ -28,6 +28,8 @@ public class MMSService {
 
     private final PhoneAuthRepository phoneAuthRepository;
 
+    private final UserRepository userRepository;
+
     private static final String SMS_OAUTH_TOKEN_URL = "https://sms.gabia.com/oauth/token"; // ACCESSTOKEN 발급 API URL 입니다.
     private static final String smsId = "chlasnmzx2"; // SMS ID 를 입력해 주세요.
     private static final String apiKey = "3be1a53cadc7d54d78210396ff2a14ec"; // SMS 관리툴에서 발급받은 API KEY 를 입력해 주세요.
@@ -76,7 +78,9 @@ public class MMSService {
     }
 
 
-    public void checkAuthByMMS(String accessToken, String phoneNumber) {
+    public boolean checkAuthByMMS(String accessToken, String phoneNumber) {
+
+        if (userRepository.findByPhoneNumber(phoneNumber).isPresent()) return false;
 
         Random random = new Random();
         String randomNumber = "";
@@ -132,7 +136,7 @@ public class MMSService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        return true;
     }
 
 

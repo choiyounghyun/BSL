@@ -14,6 +14,7 @@ import lombok.*;
 public class BookmarkDto {
     long articleNo;
     String address;
+    String url;
     String price;
 
     public static BookmarkDto of(Bookmark bookmarkEntity) {
@@ -21,6 +22,7 @@ public class BookmarkDto {
         BookmarkDto bookmarkDto = BookmarkDto.builder()
                 .address(bookmarkEntity.getAddress())
                 .price(bookmarkEntity.getPrice())
+                .url(bookmarkEntity.getUrl())
                 .build();
 
         return bookmarkDto;

@@ -23,5 +23,6 @@ public class Bookmark {
 
     long articleNo;
     String address;
+    String url;
     String price;
 }
