@@ -48,10 +48,9 @@ public class UserService {
     }
 
     public int changePhoneNumber(String phoneNumber, String authNumber, String newPhoneNumber) {
-        User user = userRepository.findByPhoneNumber(phoneNumber);
+        Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
 //        PhoneAuth phoneAuth = phoneAuthRepository.findByPhoneNumber(phoneNumber);
-
-        user.changePhoneNumber(newPhoneNumber);
+        user.get().changePhoneNumber(newPhoneNumber);
         phoneAuthRepository.deleteByPhoneNumber(phoneNumber);
 
         return 1;

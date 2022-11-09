@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://k7c208.p.ssafy.io:3306/BSL2
+    url: jdbc:mariadb://k7c208.p.ssafy.io:3306/BSL
     username: root
     password: tpwlslrnldudnj
     driver-class-name: org.mariadb.jdbc.Driver
