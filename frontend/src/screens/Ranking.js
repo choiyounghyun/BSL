@@ -14,11 +14,13 @@ function Ranking(props) {
     <div id="ranking">
       <div className="ranking-container">
         <div className="container-left">
-          <img
-            src={ranking}
-            alt="ranking-side"
-            className="container-left__img"
-          />
+          <Link to="/login">
+            <img
+              src={ranking}
+              alt="ranking-side"
+              className="container-left__img"
+            />
+          </Link>
         </div>
         <div className="container-right">
           <hr style={{ marginTop: "60px" }} />

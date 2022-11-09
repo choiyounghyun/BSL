@@ -9,7 +9,7 @@ import logo from "../assets/images/mainlogo.svg";
 
 function Main(props) {
   const location = useLocation();
-
+  const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
     if (menu === "") {
@@ -79,7 +79,12 @@ function Main(props) {
             <div className="middle-menu__analysis-description"></div>
             <div className="middle-menu__ranking">
               <Link to="/ranking" style={{ textDecoration: "none" }}>
-                <div className="middle-menu__ranking-title">인기매장</div>
+                <div
+                  className="middle-menu__ranking-title"
+                  onClick={() => setFade("fade")}
+                >
+                  인기매장
+                </div>
               </Link>
             </div>
             <div className="middle-menu__ranking-description"></div>

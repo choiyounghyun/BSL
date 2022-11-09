@@ -1,10 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #ranking {
+  position: absolute;
   height: 100vh;
   overflow: hidden !important;
 }
 
 .ranking-container {
-  position: absolute;
+  position: relative;
   z-index: 1;
   overflow: hidden;
   left: 0;

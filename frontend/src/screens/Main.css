@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #main {
   height: 100vh;
   overflow: hidden !important;
@@ -318,7 +323,7 @@
 
 .middle-menu__user-login__link:hover,
 .middle-menu__user-join__link:hover {
-  color: #8b0000;
+  color: grey;
 }
 
 .ground-right {
@@ -365,12 +370,12 @@
 .ground-left__title {
   z-index: 5;
   position: absolute;
-  top: 15%;
+  top: 40%;
 }
 .ground-right__title {
   z-index: 5;
   position: absolute;
-  bottom: 15%;
+  top: 35%;
 }
 
 .ground-left__title > h1,
