@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./SignUp.css"
 import authService from './sign/AuthService'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const SignUp = () => {
@@ -16,7 +16,7 @@ const SignUp = () => {
   const sendAuthNumber = () => {
 
 
-    if (phoneNumber !== null) {
+    if (phoneNumber !== "") {
       console.log(phoneNumber);
       axios.get(`https://k7c208.p.ssafy.io/api/auth/check/${phoneNumber}`, {
         phoneNumber, authNumber
@@ -26,7 +26,7 @@ const SignUp = () => {
           console.log((res));
         })
 
-    } else;
+    } else { alert("번호를 입력해주세요!!") };
   }
 
   const handleSignUp = async (e) => {
@@ -46,7 +46,9 @@ const SignUp = () => {
   return (
     <div id='login-div'>
       <div>
-        <h1>Bravo Silver Life</h1>
+        <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+          <h1>Bravo Silver Life</h1>
+        </Link>
         <form onSubmit={handleSignUp}>
           <input
             type="text"
@@ -90,6 +92,7 @@ const SignUp = () => {
           />
           <button className="test" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
           <button type="submit">회원가입</button>
+          <Link to="/login" style={{ textDecoration: 'none' }}>로그인하러가기</Link>
         </form>
 
       </div>

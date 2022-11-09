@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.login-div {
+#login-div {
   width: 100vw;
   min-width: 500px;
   height: 100vh;
@@ -17,19 +17,19 @@
   flex-direction: column;
 }
 
-#loginform {
+.loginform {
   justify-content: center;
   align-items: center;
 }
 
-#logintitle {
+.logintitle {
   font-weight: bold;
   font-size: large;
   margin: 0;
 
 }
 
-/* 
+
 #login-div {
   width: 100vw;
   min-width: 500px;
@@ -40,9 +40,9 @@
   align-items: center;
   margin: 0 0 0 0;
   font-family: 'Montserrat', sans-serif;
-} */
+}
 
-/* h1 {
+h1 {
   font-weight: bold;
   margin: 0;
 }
@@ -70,7 +70,7 @@ a {
   margin: 15px 0;
 }
 
-button {
+/* button {
   border-radius: 20px;
   border: 1px solid #FF4B2B;
   background-color: #FF4B2B;
@@ -81,7 +81,7 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
-}
+} */
 
 button.kakaologin {
   background-color: yellowgreen;
@@ -289,4 +289,4 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
-} */
+}

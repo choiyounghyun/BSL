@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./SignIn.css"
 import { Link, useNavigate } from 'react-router-dom'
 import authService from "./sign/AuthService"
+import { color } from '@mui/system'
 
 const SignIn = ({ setAuthenticate }) => {
 
@@ -16,9 +17,8 @@ const SignIn = ({ setAuthenticate }) => {
     try {
       await authService.signin(id, password).then(
         () => {
-          console.log(e);
-          window.location.reload()
           navigate('/'); // login 완료시 main page로 이동
+          window.location.reload()
         },
         (error) => {
           alert("아이디 혹은 비밀번호를 확인해주세요")
@@ -33,10 +33,14 @@ const SignIn = ({ setAuthenticate }) => {
   }
 
   return (
+
     <section>
-      <div id="logindiv">
+      <div id="login-div">
         <form onSubmit={(event) => handleLogin(event)} className="loginform">
-          <h1 className="logintitle">로그인</h1>
+          <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+            <h1>Bravo Silver Life</h1>
+          </Link>
+
           <span>아이디와 비밀번호를 입력해주세요</span>
           <input
             type="text"
@@ -60,12 +64,13 @@ const SignIn = ({ setAuthenticate }) => {
             required
           />
           <button type="submit" >로그인</button>
-          <button className='kakaologin'>카카오톡 로그인</button>
+          <button className='kakaologin' >카카오톡 로그인</button>
+          <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" style={{ textDecoration: 'none' }}>카카오톡로그인하기</a>
         </form>
         <p>
           회원가입을 하겠습니까?<br />
           <span className="line">
-            <Link to="/Join">회원가입하기</Link>
+            <Link to="/Join" style={{ textDecoration: 'none' }}>회원가입하기</Link>
           </span>
         </p>
       </div>
