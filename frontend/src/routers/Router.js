@@ -1,6 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
+import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-
 import MainNavBar from "../components/common/MainNavBar.js";
 import Main from "../screens/Main.js";
 import Analysis from "../screens/analysis/Analysis";
@@ -27,27 +27,30 @@ import RequestList from "../components/community/RequestList.js";
 //   )
 // })
 
-function Router() {
+function router() {
   return (
-    < div id="router" >
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/article">
-            <Route index element={<Community />} />
-            <Route path="support" element={<SupportList />} />
-            <Route path="share" element={<ShareList />} />
-            <Route path="request" element={<RequestList />} />
-          </Route>
-          <Route path="/ranking" element={<Ranking />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/join" element={<Join />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/anal" element={<Analysis />} />
-        </Routes>
-      </Suspense>
-    </div >
-  )
+    <>
+      {/* <MainNavBar /> */}
+      <div id="router">
+        <Suspense>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/anal" element={<Analysis />} />
+            <Route path="/article">
+              <Route index element={<Community />} />
+              <Route path="support" element={<SupportList />} />
+              <Route path="share" element={<ShareList />} />
+              <Route path="request" element={<RequestList />} />
+            </Route>
+            <Route path="/ranking" element={<Ranking />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/mypage" element={<MyPage />} />
+          </Routes>
+        </Suspense>
+      </div>
+    </>
+  );
 }
 
-export default Router;
+export default router;
