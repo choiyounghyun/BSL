@@ -26,6 +26,10 @@ const Analysis = () => { // 상권분석
 		}
 	}, [clusterId, clusterMaxPage])
 
+	useEffect(() => {
+		setEmptyStore([])
+	}, [optionDataList])
+
 	async function getEmptyStoreList() {
 		// for (let i = 1; i <= clusterMaxPage; i++) {
 		// 	const emptyStoreListURL = `https://k7c208.p.ssafy.io/api/v1/estate/articles?markerId=${clusterId}&page=${i}&dongName=${dongName}&rentPriceMin=${optionDataList.monthly[0] * 10}&rentPriceMax=${optionDataList.monthly[1] * 10}&priceMin=${optionDataList.sale[0] * 100}&priceMax=${optionDataList.sale[1] * 100}&areaMin=${optionDataList.room[0] * 4}&areaMax=${optionDataList.room[1] * 4}&leftLon=${mapAreaYX[0]}&rightLon=${mapAreaYX[1]}&topLat=${mapAreaYX[2]}&bottomLat=${mapAreaYX[3]}`

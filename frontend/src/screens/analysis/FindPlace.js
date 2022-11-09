@@ -26,7 +26,9 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
   useEffect(() => {
     if (emptyStore.length !== 0) {
       setIsClickButton(4)
-    } else;
+    } else if (emptyStore.length === 0) {
+      setIsClickButton(0)
+    }
   }, [emptyStore])
 
   const setCompleteDataList = (getSector) => {
