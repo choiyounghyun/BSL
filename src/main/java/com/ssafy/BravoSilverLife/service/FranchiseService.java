@@ -1,13 +1,19 @@
 package com.ssafy.BravoSilverLife.service;
 
 
-import com.ssafy.BravoSilverLife.dto.Franchise;
+import com.ssafy.BravoSilverLife.dto.FranchiseDto;
+import com.ssafy.BravoSilverLife.entity.Franchise;
 
 import java.util.List;
 
 public interface FranchiseService {
 
-    List<Franchise> getFranchisesByCount(String category) throws Exception;
+    List<FranchiseDto> getFranchisesByCount(String category) throws Exception;
+    List<FranchiseDto> getFranchisesByPopular(String category) throws Exception;
 
-    List<Franchise> getFranchisesByPopular(String category) throws Exception;
+    void test() throws Exception;
+
+    List<Franchise> searchFranchise(String category, String name) throws Exception;
+
+//    FranchiseDetail getFranchiseDetail(String name) throws Exception;
 }

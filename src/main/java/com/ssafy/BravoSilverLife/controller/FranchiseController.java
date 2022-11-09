@@ -1,6 +1,7 @@
 package com.ssafy.BravoSilverLife.controller;
 
-import com.ssafy.BravoSilverLife.dto.Franchise;
+import com.ssafy.BravoSilverLife.dto.FranchiseDto;
+import com.ssafy.BravoSilverLife.entity.Franchise;
 import com.ssafy.BravoSilverLife.service.FranchiseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -30,9 +31,9 @@ public class FranchiseController {
     })
     @GetMapping("/franchise-count")
     public ResponseEntity getFranchiseByCount(String category) throws Exception {
-        List<Franchise> franchises = franchiseService.getFranchisesByCount(category);
+        List<FranchiseDto> franchiseDtos = franchiseService.getFranchisesByCount(category);
 
-        if (franchises != null) return ResponseEntity.status(200).body(franchises);
+        if (franchiseDtos != null) return ResponseEntity.status(200).body(franchiseDtos);
         else return ResponseEntity.status(400).body("카테고리 확인");
 
     }
@@ -43,9 +44,9 @@ public class FranchiseController {
     })
     @GetMapping("/franchise-popular")
     public ResponseEntity getFranchiseByPopular(String category) throws Exception {
-        List<Franchise> franchises = franchiseService.getFranchisesByPopular(category);
+        List<FranchiseDto> franchiseDtos = franchiseService.getFranchisesByPopular(category);
 
-        if (franchises != null) return ResponseEntity.status(200).body(franchises);
+        if (franchiseDtos != null) return ResponseEntity.status(200).body(franchiseDtos);
         else return ResponseEntity.status(400).body("카테고리 확인");
 
     }
@@ -55,13 +56,22 @@ public class FranchiseController {
 //            @ApiResponse(responseCode = "200", description = "성공"),
 //    })
 //    @GetMapping("/franchise-detail")
-//    public ResponseEntity getFranchiseDetail(String category) throws Exception {
-//        List<Franchise> franchises = franchiseService.getFranchisesByCount(category);
+//    public ResponseEntity getFranchiseDetail(String name) throws Exception {
+//        FranchiseDetail franchiseDetail = franchiseService.getFranchiseDetail(name);
 //
-//        if (franchises != null) return ResponseEntity.status(200).body(franchises);
-//        else return ResponseEntity.status(400).body("카테고리 확인");
+//        if (franchiseDetail != null) return ResponseEntity.status(200).body(franchiseDetail);
+//        else return ResponseEntity.status(400).body("프랜차이즈 확인");
 //
 //    }
 
 
+    @Operation(summary = "프랜차이즈 검색", description = "프랜차이즈 검색하는 API")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공"),
+    })
+    @GetMapping("/search")
+    public ResponseEntity searchFranchise(String category, String name) throws Exception {
+        List<Franchise> franchises = franchiseService.searchFranchise(category, name);
+        return ResponseEntity.status(200).body(franchises);
+    }
 }
