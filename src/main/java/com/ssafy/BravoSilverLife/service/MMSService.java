@@ -12,12 +12,14 @@ import java.util.Random;
 import com.ssafy.BravoSilverLife.dto.BookmarkDto;
 import com.ssafy.BravoSilverLife.entity.PhoneAuth;
 import com.ssafy.BravoSilverLife.repository.PhoneAuthRepository;
+import com.ssafy.BravoSilverLife.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
