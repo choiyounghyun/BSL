@@ -7,7 +7,9 @@ const signin = (id, password) => {
       id, password
     })
     .then((response) => {
-      if (response.data.token) {
+      console.log(response.data.accessToken);
+      console.log(response.data.refreshToken);
+      if (response.data.accessToken !== "") {
         localStorage.setItem('user', JSON.stringify(response.data))
       }
       return response.data
