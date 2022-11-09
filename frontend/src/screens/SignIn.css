@@ -1,42 +1,34 @@
-/* #container {
-  display: inline-flex;
-}
-
-.project-name {
-  display: inline-flex;
-  font-weight: bold;
-  color: coral;
-}
-
-.left-frame {
-  flex-direction: column;
-  margin-left: auto;
-  justify-content: center;
-  align-items: center;
-}
-
-.right-frame {
-  display: flex;
-  background-color: lightgray;
-} */
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
   box-sizing: border-box;
 }
 
-/* body {
-  background: #f6f5f7;
+#login-div {
+  width: 100vw;
+  min-width: 500px;
+  height: 100vh;
+  min-height: 500px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  font-family: 'Montserrat', sans-serif;
   align-items: center;
-  width: 100vh;
-  height: 100vh;
-  margin: -20px 0 50px;
-} */
+  margin: 0 0 0 0;
+  font-family: 'Montserrat', sans-serif;
+  flex-direction: column;
+}
+
+.loginform {
+  justify-content: center;
+  align-items: center;
+}
+
+.logintitle {
+  font-weight: bold;
+  font-size: large;
+  margin: 0;
+
+}
+
 
 #login-div {
   width: 100vw;
@@ -78,6 +70,10 @@ a {
   margin: 15px 0;
 }
 
+button.kakaologin {
+  background-color: yellowgreen;
+}
+
 button:active {
   transform: scale(0.95);
 }
@@ -89,6 +85,13 @@ button:focus {
 button.ghost {
   background-color: transparent;
   border-color: #FFFFFF;
+}
+
+button.test {
+  background-color: lightgray;
+  border-color: #FFFFFF;
+  padding: 8px 25px;
+  margin: 10px auto 10px auto;
 }
 
 form {

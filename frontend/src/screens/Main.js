@@ -42,9 +42,8 @@ function Main(props) {
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${
-                  menu === "active" ? "--active" : ""
-                }`}
+                className={`header__head-circle ${menu === "active" ? "--active" : ""
+                  }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">
@@ -85,13 +84,13 @@ function Main(props) {
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
               <div className="middle-menu__user-login">
-                <Link to="/login" className="middle-menu__user-login__link">
-                  LOGIN
+                <Link to="/signin" className="middle-menu__user-login__link">
+                  SIGN IN
                 </Link>
               </div>
               <div className="middle-menu__user-join">
-                <Link to="/join" className="middle-menu__user-join__link">
-                  JOIN
+                <Link to="/signup" className="middle-menu__user-join__link">
+                  SIGN UP
                 </Link>
               </div>
             </div>
