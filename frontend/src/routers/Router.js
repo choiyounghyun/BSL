@@ -27,30 +27,27 @@ import RequestList from "../components/community/RequestList.js";
 //   )
 // })
 
-function router() {
+function Router() {
   return (
-    <div className="router">
+    < div id="router" >
       <Suspense>
         <Routes>
-          <Route element={<MainNavBar />} >
-            <Route path="/" element={<Main />} />
-            <Route path="/article">
-              <Route index element={<Community />} />
-              <Route path="support" element={<SupportList />} />
-              <Route path="share" element={<ShareList />} />
-              <Route path="request" element={<RequestList />} />
-            </Route>
-            <Route path="/ranking" element={<Ranking />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/mypage" element={<MyPage />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/article">
+            <Route index element={<Community />} />
+            <Route path="support" element={<SupportList />} />
+            <Route path="share" element={<ShareList />} />
+            <Route path="request" element={<RequestList />} />
           </Route>
+          <Route path="/ranking" element={<Ranking />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/anal" element={<Analysis />} />
         </Routes>
       </Suspense>
-    </div>
-
+    </div >
   )
 }
 
-export default router;
+export default Router;
