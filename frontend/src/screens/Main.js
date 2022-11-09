@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./Main.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
+  const location = useLocation();
+
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
     if (menu === "") {

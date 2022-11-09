@@ -21,7 +21,7 @@ function Ranking(props) {
           />
         </div>
         <div className="container-right">
-          <hr />
+          <hr style={{ marginTop: "60px" }} />
           <div className="container-right__menu">
             <div className="menu-btn">
               <Link

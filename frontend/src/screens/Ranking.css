@@ -12,10 +12,12 @@
 }
 
 .container-left {
+  width: 40vw;
 }
 
 .container-left__img {
   width: 40vw;
+  height: 100%;
 }
 
 .container-right {
@@ -76,6 +78,8 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 
 .category {
