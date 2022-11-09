@@ -10,10 +10,11 @@ import lombok.*;
 @ToString
 @Data
 @Schema(description = "프랜차이즈 정보")
-public class Franchise {
+public class FranchiseDto {
     String name;
     String id;
     String url;
     String category;
+    String registrationNumber;
     long count;
 }
