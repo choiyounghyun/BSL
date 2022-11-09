@@ -273,7 +273,7 @@
 .middle-menu__analysis-title,
 .middle-menu__ranking-title {
   /* display: flex; */
-  font-size: 32px;
+  font-size: 2vw;
   color: azure;
   font-weight: bold;
 }
