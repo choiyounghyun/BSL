@@ -15,9 +15,9 @@ import SupportList from "../components/community/SupportList.js";
 import ShareList from "../components/community/ShareList.js";
 import RequestList from "../components/community/RequestList.js";
 import { useState, useEffect } from "react";
+import OnSocialLogin from "../screens/sign/SocialLogin";
 
-
-function Router() {
+function Router({ getUserData }) {
   const location = useLocation();
   const [authenticate, setAuthenticate] = useState(false) // true이면 로그인
 
@@ -34,6 +34,10 @@ function Router() {
             timeout={1000}
           >
             <Routes location={location}>
+              <Route
+                path="/social/:params"
+                element={<OnSocialLogin getUserData={getUserData} />}
+              />
               <Route path="/" element={<Main />} />
               <Route path="/article">
                 <Route index element={<Community />} />
