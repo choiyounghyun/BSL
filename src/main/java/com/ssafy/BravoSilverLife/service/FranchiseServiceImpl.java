@@ -229,10 +229,7 @@ public class FranchiseServiceImpl implements FranchiseService {
 
     @Override
     public List<Franchise> searchFranchise(String category, String name) throws Exception {
-        List<Franchise> franchises = franchiseRepository.findByCategoryAndNameContains(category, name);
-        for (Franchise franchise : franchises) {
-            System.out.println(franchise.getName());
-        }
+        List<Franchise> franchises = franchiseRepository.findTop3ByCategoryAndNameContainsOrderByCountDesc(category, name);
         return franchises;
     }
 

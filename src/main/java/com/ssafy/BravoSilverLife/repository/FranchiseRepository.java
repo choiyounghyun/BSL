@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface FranchiseRepository extends JpaRepository<Franchise, Long> {
 
-    List<Franchise> findByCategoryAndNameContains(String category, String name);
+    List<Franchise> findTop3ByCategoryAndNameContainsOrderByCountDesc(String category, String name);
 }
