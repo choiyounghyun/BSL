@@ -19,7 +19,7 @@ function BrandCard({ type, category }) {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [card]);
   return (
     <div id="brand-card">
       <div className="card-list">

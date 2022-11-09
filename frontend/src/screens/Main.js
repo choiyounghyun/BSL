@@ -84,16 +84,7 @@ function Main(props) {
             </div>
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
-              <div className="middle-menu__user-login">
-                <Link to="/login" className="middle-menu__user-login__link">
-                  LOGIN
-                </Link>
-              </div>
-              <div className="middle-menu__user-join">
-                <Link to="/join" className="middle-menu__user-join__link">
-                  JOIN
-                </Link>
-              </div>
+              {/* <h4>by 도움반친구들</h4> */}
             </div>
           </div>
           <div className="ground-right">
@@ -112,7 +103,16 @@ function Main(props) {
               </h1>
             </div>
             <div className="ground-right__admin">
-              <h4>by miseoni</h4>
+              <div className="middle-menu__user-login">
+                <Link to="/login" className="middle-menu__user-login__link">
+                  LOGIN
+                </Link>
+              </div>
+              <div className="middle-menu__user-join">
+                <Link to="/join" className="middle-menu__user-join__link">
+                  JOIN
+                </Link>
+              </div>
             </div>
           </div>
         </div>
