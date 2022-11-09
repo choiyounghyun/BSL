@@ -21,9 +21,7 @@ function Router({ getUserData }) {
   const location = useLocation();
   const [authenticate, setAuthenticate] = useState(false) // true이면 로그인
 
-  useEffect(() => {
-    console.log("aaaa", authenticate)
-  }, [authenticate])
+
   return (
     <div className="router">
       <Suspense>
@@ -35,7 +33,7 @@ function Router({ getUserData }) {
           >
             <Routes location={location}>
               <Route
-                path="/social/:params"
+                path="/:params"
                 element={<OnSocialLogin getUserData={getUserData} />}
               />
               <Route path="/" element={<Main />} />
