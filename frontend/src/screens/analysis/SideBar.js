@@ -8,8 +8,8 @@ import leftArrow from '../../assets/AnalysisImages/left_arrow.png'
 
 const SideBar = ({ setOptionDataList, emptyStore, setEmptyStore }) => {
   const sideBarWidth = 330 // 사이드바 창 너비
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false) // 버튼을 눌러 창이 열렸는지 판단하는 변수
-  const [xPosition, setXPosition] = useState(sideBarWidth) // 사이드바의 움직임을 구현하기 위한 사이드바의 x축 위치 변수
+  const [isSideBarOpen, setIsSideBarOpen] = useState(true) // 버튼을 눌러 창이 열렸는지 판단하는 변수
+  const [xPosition, setXPosition] = useState(0) // 사이드바의 움직임을 구현하기 위한 사이드바의 x축 위치 변수
   const [place, setPlace] = useState('')
   const [dataList, setDataList] = useState({
     sector: '', tradeType: 'all', floor: 'all',

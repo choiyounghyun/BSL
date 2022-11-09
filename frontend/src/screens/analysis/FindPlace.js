@@ -14,7 +14,7 @@ import Slider from '@mui/material/Slider' // 가격 설정 사용
 import './FindPlace.css'
 
 const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
-  const [isClickButton, setIsClickButton] = useState(0)
+  const [isClickButton, setIsClickButton] = useState(1)
   const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
   const [monthly, setMonthly] = useState([0, 100])
@@ -27,7 +27,7 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
     if (emptyStore.length !== 0) {
       setIsClickButton(4)
     } else if (emptyStore.length === 0) {
-      setIsClickButton(0)
+      setIsClickButton(1)
     }
   }, [emptyStore])
 
@@ -106,22 +106,26 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
   return (
     <div className="option_wrap">
       <div className="button_group_wrap">
-        <button type="button" className={`${isClickButton === 1 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 1 ? setIsClickButton(1) : setIsClickButton(0))}>
-          업종
-        </button>
-        <button type="button" className={`${isClickButton === 2 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 2 ? setIsClickButton(2) : setIsClickButton(0))}>
-          가격
-        </button>
-        <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
-          크기 및 층수
-        </button>
-        <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
-          검색된 매물
-        </button>
+        <div className="button_layer_wrap">
+          <button type="button" className={`${isClickButton === 1 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 1 ? setIsClickButton(1) : setIsClickButton(0))}>
+            업종
+          </button>
+          <button type="button" className={`${isClickButton === 2 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 2 ? setIsClickButton(2) : setIsClickButton(0))}>
+            가격
+          </button>
+        </div>
+        <div className="button_layer_wrap">
+          <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
+            크기 및 층수
+          </button>
+          <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
+            검색된 매물
+          </button>
+        </div>
       </div>
 
       {isClickButton === 1 && <div className="sector_options_wrap">
