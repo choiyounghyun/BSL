@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 
@@ -13,7 +13,7 @@ import Slider from '@mui/material/Slider' // 가격 설정 사용
 
 import './FindPlace.css'
 
-const FindPlace = ({ setDataList }) => {
+const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
   const [isClickButton, setIsClickButton] = useState(0)
   const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
@@ -22,6 +22,12 @@ const FindPlace = ({ setDataList }) => {
   const [sale, setSale] = useState([0, 100])
   const [floor, setFloor] = useState('all')
   const [roomSize, setRoomSize] = useState([0, 100])
+
+  useEffect(() => {
+    if (emptyStore.length !== 0) {
+      setIsClickButton(4)
+    } else;
+  }, [emptyStore])
 
   const setCompleteDataList = (getSector) => {
     if (getSector !== null) {
@@ -109,6 +115,10 @@ const FindPlace = ({ setDataList }) => {
         <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
           onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
           크기 및 층수
+        </button>
+        <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
+          onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
+          검색된 매물
         </button>
       </div>
 
@@ -256,10 +266,35 @@ const FindPlace = ({ setDataList }) => {
         </div>
       </div>}
 
-      {/* <button type="button" className="start_search_button"
-        onClick={submitData}>
-        검색하기
-      </button> */}
+      {isClickButton === 4 && <div className="items_list_wrap">
+        {emptyStore.length === 0 && <div>
+          <p>검색된 매물이 없습니다.</p>
+        </div>}
+        {emptyStore.length !== 0 && <div className="items_wrap">
+          {
+            emptyStore.map((emptyItem) => {
+              return (
+                <div className='item_wrap' key={emptyItem.articleNo}>
+                  <div id='mainTitle'>
+                    {emptyItem.articleName} ({emptyItem.floor !== null ? emptyItem.floor : 1}층)
+                  </div>
+                  <div>
+                    월세/보증금 (만원): {emptyItem.rentPrc !== null ? `${emptyItem.rentPrc}/${emptyItem.dealOrWarrantPrc}` : `${emptyItem.dealOrWarrantPrc} (매매)`}
+                  </div>
+                  <div>
+                    해당층/총층: {emptyItem.floor}/{emptyItem.maxFloor}층
+                  </div>
+                  <div>
+                    계약/전용 면적 : {emptyItem.area1}㎡/{emptyItem.area2}㎡
+                  </div>
+                  {/* <div onClick={() => window.open(`${item.cpPcArticleUrl}`)}>링크이동</div> */}
+                </div>
+              )
+            })
+          }
+
+        </div>}
+      </div>}
     </div >
   )
 }
