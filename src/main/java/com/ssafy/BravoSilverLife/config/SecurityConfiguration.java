@@ -118,6 +118,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         configuration.addAllowedOrigin("http://localhost:8080");
         configuration.addAllowedOrigin("http://k7c208.p.ssafy.io:8080/");
         configuration.addAllowedOrigin("http://k7c208.p.ssafy.io/");
+        configuration.addAllowedOrigin("https://k7c208.p.ssafy.io/");
+        configuration.addAllowedOrigin("https://k7c208.p.ssafy.io:8080/");
+
+
 
 
         configuration.addAllowedHeader("*");
