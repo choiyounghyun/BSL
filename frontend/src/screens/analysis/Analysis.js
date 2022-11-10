@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import KakaoMap from './KakaoMap'
 import SideBar from './SideBar'
 import axios from 'axios'

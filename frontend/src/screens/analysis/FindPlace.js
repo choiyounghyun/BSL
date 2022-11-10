@@ -298,7 +298,6 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
               )
             })
           }
-
         </div>}
       </div>}
     </div >

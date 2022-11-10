@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"
+import { useNavigate } from 'react-router-dom'
 import SearchPlaceInput from "./SearchPlaceInput"
 import TabMenu from "./TabMenu"
 import './SideBar.css'
 
 import rightArrow from '../../assets/AnalysisImages/right_arrow.png'
 import leftArrow from '../../assets/AnalysisImages/left_arrow.png'
+import Logo from '../../assets/AnalysisImages/BSL_Logo.png'
 
 const SideBar = ({ setOptionDataList, emptyStore, setEmptyStore }) => {
   const sideBarWidth = 330 // 사이드바 창 너비
@@ -41,9 +43,16 @@ const SideBar = ({ setOptionDataList, emptyStore, setEmptyStore }) => {
     } else;
   }
 
+  const mainnavigate = useNavigate()
+  const gotoMain = () => {
+    mainnavigate("/")
+  }
+
   return (
     <aside className="sidebar_wrap" style={{ transform: `translatex(${-xPosition}px)` }}>
       <div className="search_wrap">
+        <img src={Logo} className="logo_img" onClick={gotoMain} />
+
         {/* 검색어 입력창 */}
         <SearchPlaceInput isSideBarOpen={isSideBarOpen}
           place={place} setPlace={setPlace} submitData={submitData} />
