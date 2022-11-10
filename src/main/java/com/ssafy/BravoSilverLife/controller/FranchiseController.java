@@ -1,5 +1,6 @@
 package com.ssafy.BravoSilverLife.controller;
 
+import com.ssafy.BravoSilverLife.dto.FranchiseDetail;
 import com.ssafy.BravoSilverLife.dto.FranchiseDto;
 import com.ssafy.BravoSilverLife.entity.Franchise;
 import com.ssafy.BravoSilverLife.service.FranchiseService;
@@ -51,18 +52,18 @@ public class FranchiseController {
 
     }
 
-//    @Operation(summary = "프랜차이즈 상세 정보 확인", description = "프랜차이즈 상세 정보 확인 API")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "성공"),
-//    })
-//    @GetMapping("/franchise-detail")
-//    public ResponseEntity getFranchiseDetail(String name) throws Exception {
-//        FranchiseDetail franchiseDetail = franchiseService.getFranchiseDetail(name);
-//
-//        if (franchiseDetail != null) return ResponseEntity.status(200).body(franchiseDetail);
-//        else return ResponseEntity.status(400).body("프랜차이즈 확인");
-//
-//    }
+    @Operation(summary = "프랜차이즈 상세 정보 확인", description = "프랜차이즈 상세 정보 확인 API")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공"),
+    })
+    @GetMapping("/franchise-detail")
+    public ResponseEntity getFranchiseDetail(String id) throws Exception {
+        FranchiseDetail franchiseDetail = franchiseService.getFranchiseDetail(id);
+
+        if (franchiseDetail != null) return ResponseEntity.status(200).body(franchiseDetail);
+        else return ResponseEntity.status(400).body("프랜차이즈 확인");
+
+    }
 
 
     @Operation(summary = "프랜차이즈 검색", description = "프랜차이즈 검색하는 API")
