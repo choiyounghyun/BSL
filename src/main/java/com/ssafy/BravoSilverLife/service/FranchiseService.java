@@ -1,6 +1,7 @@
 package com.ssafy.BravoSilverLife.service;
 
 
+import com.ssafy.BravoSilverLife.dto.FranchiseDetail;
 import com.ssafy.BravoSilverLife.dto.FranchiseDto;
 import com.ssafy.BravoSilverLife.entity.Franchise;
 
@@ -15,5 +16,5 @@ public interface FranchiseService {
 
     List<Franchise> searchFranchise(String category, String name) throws Exception;
 
-//    FranchiseDetail getFranchiseDetail(String name) throws Exception;
+    FranchiseDetail getFranchiseDetail(String id) throws Exception;
 }
