@@ -34,7 +34,7 @@ const SignUp = () => {
     try {
       await authService.signup(id, nickname, password, phoneNumber, authNumber)
         .then((response) => {
-          navigate('/login')
+          navigate('/signin')
           window.location.reload()
         }
         )
