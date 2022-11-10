@@ -76,11 +76,12 @@ const SignIn = ({ setAuthenticate }) => {
             required
           />
           <button type="submit" >로그인</button>
-          <button >
-            <Link to="/signup" style={{ textDecoration: 'none' }}>회원가입</Link>
-          </button>
 
         </form>
+        <button >
+          <Link to="/signup" style={{ textDecoration: 'none' }}>회원가입</Link>
+        </button>
+
         <p>
           회원가입을 하겠습니까?<br />
           <span className="line">
