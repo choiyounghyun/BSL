@@ -19,11 +19,71 @@
 
 .container-left {
   width: 40vw;
+  height: 100vh;
+  background-color: #ff6347;
+  /* display: flex;
+  justify-content: center; */
+  filter: brightness(80%);
 }
 
-.container-left__img {
-  width: 40vw;
-  height: 100%;
+.home-btn {
+  position: relative;
+  display: flex;
+  top: 1vw;
+  left: 2vw;
+  align-items: center;
+}
+
+.home-btn > img {
+  width: 5vw;
+  height: 5vw;
+}
+
+.home-btn > p {
+  color: aliceblue;
+  font-size: 2.5vw;
+}
+
+.home-btn__link {
+  text-decoration: none;
+}
+
+.select-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vw;
+  margin-bottom: 2vw;
+  color: azure;
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+
+.imgs-wrapper {
+  margin: auto;
+}
+
+.titless {
+  margin-top: 10px;
+  color: grey;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgs-wrapper img {
+  filter: brightness(50%);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+.imgs-wrapper div.active {
+  filter: brightness(200%);
 }
 
 .container-right {
@@ -56,11 +116,13 @@
 }
 
 .menu-btn1:hover {
+  font-size: 30px;
   color: #8b4513;
 }
 
 .menu-btn1.active {
   color: #8b4513;
+  font-size: 30px;
 }
 
 .menu-btn2 {
@@ -72,20 +134,13 @@
 }
 
 .menu-btn2:hover {
+  font-size: 30px;
   color: #8b4513;
 }
 
 .menu-btn2.active {
+  font-size: 30px;
   color: #8b4513;
-}
-
-.category-wrap {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 60px;
 }
 
 .category {

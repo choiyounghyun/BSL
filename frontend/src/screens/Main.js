@@ -89,10 +89,10 @@ function Main(props) {
             </div>
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
-              {/* <h4>by 도움반친구들</h4> */}
+              <div>by 도움반친구들</div>
             </div>
           </div>
-          <div className="ground-right">
+          <div className={`ground-right ${fade ? { menuToggle } : ""}`}>
             <div className="ground-right__img-wrapper">
               <img
                 src={mainPizza}
