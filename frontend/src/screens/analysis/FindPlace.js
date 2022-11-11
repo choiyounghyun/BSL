@@ -12,8 +12,10 @@ import RadioGroup from '@mui/material/RadioGroup' // 가격 거래유형 사용
 import Slider from '@mui/material/Slider' // 가격 설정 사용
 
 import './FindPlace.css'
+import empty_logo from '../../assets/AnalysisImages/logo-crying.svg'
+import { BsFillBookmarkStarFill } from "react-icons/bs";
 
-const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
+const FindPlace = ({ setDataList, emptyStore, setEmptyStore, creatMap }) => {
   const [isClickButton, setIsClickButton] = useState(1)
   const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
@@ -29,6 +31,7 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
     } else if (emptyStore.length === 0) {
       setIsClickButton(1)
     }
+    console.log(emptyStore)
   }, [emptyStore])
 
   const setCompleteDataList = (getSector) => {
@@ -123,7 +126,7 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
           </button>
           <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
-            검색된 매물
+            매물
           </button>
         </div>
       </div>
@@ -273,24 +276,27 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
       </div>}
 
       {isClickButton === 4 && <div className="items_list_wrap">
-        {emptyStore.length === 0 && <div>
-          <p>검색된 매물이 없습니다.</p>
+        {emptyStore.length === 0 && <div className="empty_item_list_wrap">
+          <img src={empty_logo} className="empty_img_wrap" />
+          <p className="empty_warning_message">검색된 매물이 없습니다.</p>
         </div>}
         {emptyStore.length !== 0 && <div className="items_wrap">
           {
             emptyStore.map((emptyItem) => {
               return (
-                <div className='item_wrap' key={emptyItem.articleNo}>
+                <div className='item_wrap' key={emptyItem.articleNo}
+                  onClick={creatMap.displayItemMarker(emptyItem.latitude, emptyItem.longitude)}
+                >
                   <div id='mainTitle'>
                     {emptyItem.articleName} ({emptyItem.floor !== null ? emptyItem.floor : 1}층)
                   </div>
-                  <div>
+                  <div id='price'>
                     월세/보증금 (만원): {emptyItem.rentPrc !== null ? `${emptyItem.rentPrc}/${emptyItem.dealOrWarrantPrc}` : `${emptyItem.dealOrWarrantPrc} (매매)`}
                   </div>
-                  <div>
+                  <div id='floor'>
                     해당층/총층: {emptyItem.floor}/{emptyItem.maxFloor}층
                   </div>
-                  <div>
+                  <div id='size'>
                     계약/전용 면적 : {emptyItem.area1}㎡/{emptyItem.area2}㎡
                   </div>
                   {/* <div onClick={() => window.open(`${item.cpPcArticleUrl}`)}>링크이동</div> */}

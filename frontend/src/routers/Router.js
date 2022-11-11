@@ -1,7 +1,6 @@
 import React from "react";
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import MainNavBar from "../components/common/MainNavBar.js";
 import Main from "../screens/Main.js";
 import Analysis from "../screens/analysis/Analysis";
 import Community from "../screens/Community.js";

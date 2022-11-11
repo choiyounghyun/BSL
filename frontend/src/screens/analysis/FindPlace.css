@@ -111,7 +111,7 @@
 
 .items_list_wrap {
   width: 92%;
-  height: 400px;
+  height: 250px;
   max-height: 400px;
   margin-top: 20px;
 
@@ -128,10 +128,69 @@
 }
 
 .item_wrap {
-  border: 1px solid rgb(0, 0, 0, 1);
+  border: 1px solid rgb(255, 246, 236, 1);
   border-radius: 15px;
-  background-color: rgb(233, 233, 233, 1);
+  background-color: rgb(255, 246, 236, 1);
   margin: 10px 0px;
+  padding: 10px;
+
+  cursor: pointer;
+}
+
+.item_wrap:hover {
+  border: 3px solid rgb(212, 167, 116, 1)
+}
+
+.empty_item_list_wrap {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.empty_img_wrap {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+
+  background: rgb(255, 255, 255, 1);
+  border-radius: 100%;
+  border: 3px solid rgb(212, 171, 116);
+
+  padding: 10px 10px 5px 10px;
+}
+
+.empty_warning_message {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+
+
+.item_wrap #mainTitle {
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.item_wrap #price {
+  color: rgb(105, 165, 219, 1);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item_wrap #floor {
+  color: black;
+  font-size: 12px;
+  font-weight: inherit;
+}
+
+.item_wrap #size {
+  color: black;
+  font-size: 12px;
+  font-weight: inherit;
 }
 
 .css-wb57ya-MuiFormControl-root-MuiTextField-root {

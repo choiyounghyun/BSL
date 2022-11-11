@@ -16,7 +16,7 @@ const Analysis = () => { // 상권분석
 	const [dongName, setDongName] = useState('')
 	const [clusterId, setClusterId] = useState(0)
 	const [clusterMaxPage, setClusterMaxPage] = useState(0)
-	const [clusterInfoList, setClusterInfoList] = useState('');
+	const [clusterInfoList, setClusterInfoList] = useState('')
 	const [emptyStore, setEmptyStore] = useState([])
 
 	useEffect(() => {
@@ -42,7 +42,6 @@ const Analysis = () => { // 상권분석
 
 		console.log(response.data)
 		setEmptyStore(response.data.articles)
-
 	}
 
 	const [isLoading, setIsLoading] = useState(false)

@@ -132,7 +132,6 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
 
   useEffect(() => {
     creatMap()
-    console.log(optionDataList)
   }, [optionDataList])
 
   return (
