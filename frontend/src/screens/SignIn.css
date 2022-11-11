@@ -1,30 +1,4 @@
-<<<<<<< HEAD:frontend/src/screens/Login.css
-/* #container {
-  display: inline-flex;
-}
-
-.project-name {
-  display: inline-flex;
-  font-weight: bold;
-  color: coral;
-}
-
-.left-frame {
-  flex-direction: column;
-  margin-left: auto;
-  justify-content: center;
-  align-items: center;
-}
-
-.right-frame {
-  display: flex;
-  background-color: lightgray;
-} */
-
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-=======
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
->>>>>>> e85a120c130943bcdf31df6783b304624287bc9f:frontend/src/screens/SignIn.css
 
 * {
   box-sizing: border-box;
@@ -39,7 +13,7 @@
   justify-content: center;
   align-items: center;
   margin: 0 0 0 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   flex-direction: column;
 }
 
@@ -52,9 +26,7 @@
   font-weight: bold;
   font-size: large;
   margin: 0;
-
 }
-
 
 #login-div {
   width: 100vw;
@@ -115,7 +87,7 @@ button.ghost {
 
 button.test {
   background-color: lightgray;
-  border-color: #FFFFFF;
+  border-color: #ffffff;
   padding: 8px 25px;
   margin: 10px auto 10px auto;
 }

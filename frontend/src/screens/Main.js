@@ -42,8 +42,9 @@ function Main(props) {
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${menu === "active" ? "--active" : ""
-                  }`}
+                className={`header__head-circle ${
+                  menu === "active" ? "--active" : ""
+                }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">
@@ -88,9 +89,6 @@ function Main(props) {
             </div>
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
-<<<<<<< HEAD
-              <div>by 도움반친구들</div>
-=======
               <div className="middle-menu__user-login">
                 <Link to="/signin" className="middle-menu__user-login__link">
                   SIGN IN
@@ -101,7 +99,6 @@ function Main(props) {
                   SIGN UP
                 </Link>
               </div>
->>>>>>> e85a120c130943bcdf31df6783b304624287bc9f
             </div>
           </div>
           <div className={`ground-right ${fade ? { menuToggle } : ""}`}>
