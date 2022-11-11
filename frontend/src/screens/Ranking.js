@@ -67,7 +67,10 @@ function Ranking(props) {
           <div className="imgs-wrapper">
             <Row xs={1} sm={2} md={3}>
               {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(idx => (
-                <div className={`${category === menu[idx] ? "active" : null}`}>
+                <div
+                  key={idx}
+                  className={`${category === menu[idx] ? "active" : null}`}
+                >
                   <img
                     onClick={() => setCategory(menu[idx])}
                     src={menuImg[idx]}
@@ -86,6 +89,7 @@ function Ranking(props) {
           <div className="container-right__menu">
             <div className="menu-btn">
               <Link
+                key="1"
                 onClick={() => {
                   setTagType("popular");
                 }}
@@ -96,6 +100,7 @@ function Ranking(props) {
                 인기 순
               </Link>
               <Link
+                key="2"
                 onClick={() => {
                   setTagType("count");
                 }}
