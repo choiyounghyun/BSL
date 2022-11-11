@@ -9,7 +9,7 @@ import logo from "../assets/images/mainlogo.svg";
 
 function Main(props) {
   const location = useLocation();
-
+  const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
     if (menu === "") {
@@ -78,11 +78,19 @@ function Main(props) {
             <div className="middle-menu__analysis-description"></div>
             <div className="middle-menu__ranking">
               <Link to="/ranking" style={{ textDecoration: "none" }}>
-                <div className="middle-menu__ranking-title">인기매장</div>
+                <div
+                  className="middle-menu__ranking-title"
+                  onClick={() => setFade("fade")}
+                >
+                  인기매장
+                </div>
               </Link>
             </div>
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
+<<<<<<< HEAD
+              <div>by 도움반친구들</div>
+=======
               <div className="middle-menu__user-login">
                 <Link to="/signin" className="middle-menu__user-login__link">
                   SIGN IN
@@ -93,9 +101,10 @@ function Main(props) {
                   SIGN UP
                 </Link>
               </div>
+>>>>>>> e85a120c130943bcdf31df6783b304624287bc9f
             </div>
           </div>
-          <div className="ground-right">
+          <div className={`ground-right ${fade ? { menuToggle } : ""}`}>
             <div className="ground-right__img-wrapper">
               <img
                 src={mainPizza}
@@ -111,7 +120,16 @@ function Main(props) {
               </h1>
             </div>
             <div className="ground-right__admin">
-              <h4>by miseoni</h4>
+              <div className="middle-menu__user-login">
+                <Link to="/login" className="middle-menu__user-login__link">
+                  LOGIN
+                </Link>
+              </div>
+              <div className="middle-menu__user-join">
+                <Link to="/join" className="middle-menu__user-join__link">
+                  JOIN
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -27,8 +27,8 @@ function Router({ getUserData }) {
       <Suspense>
         <TransitionGroup className="transition-group">
           <CSSTransition
-            key={location.pathname}
-            classNames="fade"
+            key={location.pathname === "/ranking" ? location.pathname : null}
+            classNames="sidefade"
             timeout={1000}
           >
             <Routes location={location}>
@@ -57,4 +57,3 @@ function Router({ getUserData }) {
 }
 
 export default Router;
-

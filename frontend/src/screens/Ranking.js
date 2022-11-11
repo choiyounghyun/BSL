@@ -1,8 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./Ranking.css";
-import ranking from "../assets/images/ranking-side.jpg";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+// import ranking from "../assets/images/ranking-side.jpg";
 import { Link } from "react-router-dom";
 import BrandCard from "../components/BrandCard.js";
+import chicken from "../assets/images/chicken.png";
+import pizza from "../assets/images/pizza.png";
+import boonsik from "../assets/images/boonsik.png";
+import fastfood from "../assets/images/fastfood.png";
+import bakery from "../assets/images/bakery.png";
+import dessert from "../assets/images/dessert.png";
+import hansik from "../assets/images/hansik.png";
+import ilsik from "../assets/images/ilsik.png";
+import joongsik from "../assets/images/joongsik.png";
+import yangsik from "../assets/images/yangsik.png";
+import drink from "../assets/images/drink.png";
+import fusion from "../assets/images/coffee.png";
+import logo from "../assets/images/mainlogo.svg";
 
 function Ranking(props) {
   const [tagType, setTagType] = useState("popular");
@@ -10,18 +25,64 @@ function Ranking(props) {
   const eventHandler = () => {
     setCategory({ ...category });
   };
+  const menu = [
+    "치킨",
+    "피자",
+    "분식",
+    "패스트푸드",
+    "제과제빵",
+    "디저트",
+    "한식",
+    "중식",
+    "일식",
+    "양식",
+    "퓨전",
+    "주점"
+  ];
+  const menuImg = [
+    chicken,
+    pizza,
+    boonsik,
+    fastfood,
+    bakery,
+    dessert,
+    hansik,
+    joongsik,
+    ilsik,
+    yangsik,
+    fusion,
+    drink
+  ];
   return (
     <div id="ranking">
       <div className="ranking-container">
         <div className="container-left">
-          <img
-            src={ranking}
-            alt="ranking-side"
-            className="container-left__img"
-          />
+          <Link to="/" className="home-btn__link">
+            <div className="home-btn">
+              <img src={logo} alt="logo" />
+              <p>BSL</p>
+            </div>
+          </Link>
+          <div className="select-category">창업 품목 선택하기</div>
+          <div className="imgs-wrapper">
+            <Row xs={1} sm={2} md={3}>
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(idx => (
+                <div className={`${category === menu[idx] ? "active" : null}`}>
+                  <img
+                    onClick={() => setCategory(menu[idx])}
+                    src={menuImg[idx]}
+                    alt={menu[idx]}
+                  />
+                  <div className="titless">
+                    <p>{menu[idx]}</p>
+                  </div>
+                </div>
+              ))}
+            </Row>
+          </div>
         </div>
         <div className="container-right">
-          <hr style={{ marginTop: "60px" }} />
+          <hr style={{ marginTop: "20px" }} />
           <div className="container-right__menu">
             <div className="menu-btn">
               <Link
@@ -47,87 +108,6 @@ function Ranking(props) {
             </div>
           </div>
           <hr />
-          <div className="category-wrap">
-            <div className="category">
-              <div
-                className={`${category === "치킨" ? "active" : null}`}
-                onClick={() => {
-                  eventHandler("치킨");
-                }}
-              >
-                치킨
-              </div>
-              <div
-                className={`${category === "피자" ? "active" : null}`}
-                onClick={() => {
-                  eventHandler("피자");
-                }}
-              >
-                피자
-              </div>
-              <div
-                className={`${category === "분식" ? "active" : null}`}
-                onClick={() => setCategory("분식")}
-              >
-                분식
-              </div>
-              <div
-                className={`${category === "패스트푸드" ? "active" : null}`}
-                onClick={() => setCategory("패스트푸드")}
-              >
-                패스트푸드
-              </div>
-              <div
-                className={`${category === "제과제빵" ? "active" : null}`}
-                onClick={() => setCategory("제과제빵")}
-              >
-                제과제빵
-              </div>
-              <br />
-              <div
-                className={`${category === "디저트" ? "active" : null}`}
-                onClick={() => setCategory("디저트")}
-              >
-                디저트
-              </div>
-              <div
-                className={`${category === "한식" ? "active" : null}`}
-                onClick={() => setCategory("한식")}
-              >
-                한식
-              </div>
-              <div
-                className={`${category === "중식" ? "active" : null}`}
-                onClick={() => setCategory("중식")}
-              >
-                중식
-              </div>
-              <div
-                className={`${category === "일식" ? "active" : null}`}
-                onClick={() => setCategory("일식")}
-              >
-                일식
-              </div>
-              <div
-                className={`${category === "양식" ? "active" : null}`}
-                onClick={() => setCategory("양식")}
-              >
-                양식
-              </div>
-              <div
-                className={`${category === "퓨전" ? "active" : null}`}
-                onClick={() => setCategory("퓨전")}
-              >
-                퓨전
-              </div>
-              <div
-                className={`${category === "주점" ? "active" : null}`}
-                onClick={() => setCategory("주점")}
-              >
-                주점
-              </div>
-            </div>
-          </div>
           <div className="container-left__list">
             <BrandCard type={tagType} category={category} />
           </div>
