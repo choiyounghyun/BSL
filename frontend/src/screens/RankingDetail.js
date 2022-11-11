@@ -8,7 +8,7 @@ function RankingDetail() {
   const { id } = useParams();
   useEffect(() => {
     axios({
-      url: "http://k7c208.p.ssafy.io:8080/v1/franchise/franchise-detail",
+      url: "https://k7c208.p.ssafy.io/api/v1/franchise/franchise-detail",
       method: "get",
       params: { id: id }
     })

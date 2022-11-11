@@ -10,7 +10,7 @@ function BrandCard({ type, category }) {
   const [card, setCard] = useState([]);
   useEffect(() => {
     axios({
-      url: `http://k7c208.p.ssafy.io:8080/v1/franchise/franchise-${type}`,
+      url: `https://k7c208.p.ssafy.io/api/v1/franchise/franchise-${type}`,
       method: "get",
       params: { category: category }
     })
