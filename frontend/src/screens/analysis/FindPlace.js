@@ -106,6 +106,10 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore, creatMap }) => {
     }
   }
 
+  const showItemDetail = () => {
+    console.log(1)
+  }
+
   return (
     <div className="option_wrap">
       <div className="button_group_wrap">
@@ -285,7 +289,7 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore, creatMap }) => {
             emptyStore.map((emptyItem) => {
               return (
                 <div className='item_wrap' key={emptyItem.articleNo}
-                  onClick={creatMap.displayItemMarker(emptyItem.latitude, emptyItem.longitude)}
+                  onClick={showItemDetail}
                 >
                   <div id='mainTitle'>
                     {emptyItem.articleName} ({emptyItem.floor !== null ? emptyItem.floor : 1}층)

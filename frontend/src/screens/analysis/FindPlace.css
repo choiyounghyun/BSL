@@ -111,8 +111,7 @@
 
 .items_list_wrap {
   width: 92%;
-  height: 250px;
-  max-height: 400px;
+  height: 47vh;
   margin-top: 20px;
 
   display: flex;
@@ -191,6 +190,12 @@
   color: black;
   font-size: 12px;
   font-weight: inherit;
+}
+
+.select_item_wrap {
+  width: 50px;
+  height: 100px;
+  background: rgb(255, 255, 255);
 }
 
 .css-wb57ya-MuiFormControl-root-MuiTextField-root {
