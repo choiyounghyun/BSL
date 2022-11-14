@@ -44,16 +44,17 @@ const SignUp = () => {
   }
 
   return (
-    <div id='login-div'>
+    <div className='signupdiv' >
       <div>
-        <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
-          <h1>Bravo Silver Life</h1>
-        </Link>
-        <form onSubmit={handleSignUp}>
+        <form onSubmit={handleSignUp} className="signupform">
+          <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+            <h1 className="title-h1" title="메인화면으로 돌아가기">Bravo Silver Life</h1>
+          </Link>
+
           <input
             type="text"
             name="nickname"
-            placeholder="닉네임을 입력해주세요"
+            placeholder="닉네임"
             value={nickname}
             required
             onChange={(e) => setNickname(e.target.value)}
@@ -61,7 +62,7 @@ const SignUp = () => {
           <input
             type="text"
             name="id"
-            placeholder="아이디를 입력해주세요"
+            placeholder="아이디"
             value={id}
             required
             onChange={(e) => setId(e.target.value)}
@@ -69,7 +70,7 @@ const SignUp = () => {
           <input
             type="password"
             name="password"
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호"
             value={password}
             required
             onChange={(e) => setPassword(e.target.value)}
@@ -77,26 +78,27 @@ const SignUp = () => {
           <input
             type="number"
             name="phoneNumber"
-            placeholder="휴대전화번호를 입력해주세요"
+            placeholder="휴대전화번호"
             value={phoneNumber}
             required
             onChange={(e) => setPhoneNumber(e.target.value)}
+
           />
           <input
             type="number"
             name="authNumber"
-            placeholder="인증번호를 입력해주세요"
+            placeholder="인증번호"
             value={authNumber}
             required
             onChange={(e) => setAuthNumber(e.target.value)}
           />
-          <button className="test" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
-          <button type="submit">회원가입</button>
-          <Link to="/signin" style={{ textDecoration: 'none' }}>로그인하러가기</Link>
+          <button className="getauthnumber" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
+          <button className="signupbutton" type="submit" >회원가입</button>
+          <Link to="/signin" style={{ textDecoration: 'none', color: "black" }}>로그인하러가기</Link>
         </form>
 
       </div>
-    </div>
+    </div >
   )
 }
 
