@@ -1,0 +1,68 @@
+.signupdiv {
+  width: 40vw;
+  min-width: 500px;
+  height: 50vh;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10% auto auto auto;
+  font-family: 'Montserrat', sans-serif;
+  flex-direction: column;
+  box-shadow: 1px 2px 2px #592941;
+  border: 0.1em solid #592941;
+  border-radius: 0.5em;
+}
+
+.title-h1 {
+  font-weight: bold;
+  margin: 20px;
+  font-size: 42px;
+}
+
+
+.signupform {
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.getauthnumber {
+  margin-top: 10px;
+  width: 100px;
+  width: auto;
+  color: black;
+  background-color: rgb(205, 205, 205);
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px 45px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.signupbutton {
+  margin-top: 10px;
+  width: 100px;
+  width: auto;
+  color: black;
+  background-color: rgb(205, 205, 205);
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px 45px;
+  font-size: 14px;
+  font-weight: bold;
+}
