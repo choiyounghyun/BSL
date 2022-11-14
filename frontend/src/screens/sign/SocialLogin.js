@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function OnSocialLogin({ getUserData }) {
+function OnSocialLogin() {
   const params = useParams();
   const navigate = useNavigate();
 
@@ -17,11 +17,11 @@ function OnSocialLogin({ getUserData }) {
       localStorage.setItem("token", accesstoken || "");
       localStorage.setItem("refresh_token", refreshtoken || "");
 
-      /* eslint-disable */
-      getUserData(params.params || "");
+
+      console.log(params)
       navigate("/");
     } else {
-      navigate("/login");
+      navigate("/signin");
     }
   }, [navigate]);
 

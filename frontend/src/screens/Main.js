@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Main.css";
 import { Link, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -8,8 +8,31 @@ import logo from "../assets/images/mainlogo.svg";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
+  useEffect(() => {
+    if ((localStorage.getItem('user')) === null) {
+      setIsLogin(false)
+    } else {
+      getuserInfo()
+    }
+  })
+  const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
+  const [userinfo, setUserinfo] = useState("");
+  const getuserInfo = () => {
+    if (userinfo === (localStorage.getItem('user'))) {
+    } else {
+      console.log(userinfo);
+      setUserinfo(localStorage?.getItem('user'))
+      setIsLogin(true)
 
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLogin(false);
+    localStorage.removeItem("user");
+    setUserinfo("");
+  }
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
     if (menu === "") {
@@ -18,6 +41,31 @@ function Main(props) {
       setMenu("");
     }
   };
+
+  const loginbutton = (
+    <>
+      <div className="middle-menu__user-login">
+        <Link to="/signin" className="middle-menu__user-login__link">
+          SIGN IN
+        </Link>
+      </div>
+      <div className="middle-menu__user-join">
+        <Link to="/signup" className="middle-menu__user-join__link">
+          SIGN UP
+        </Link>
+      </div>
+    </>
+  );
+
+  const logoutbutton = (
+    <>
+      <div className="middle-menu__user-logout" onClick={() => handleLogout()}>
+        <Link to="/" className="middle-menu__user-logout__link">
+          LOGOUT
+        </Link>
+      </div>
+    </>
+  )
   return (
     <div id="main" data-barba="wrapper">
       <div className="trans-left-img">
@@ -83,7 +131,8 @@ function Main(props) {
             </div>
             <div className="middle-menu__ranking-description"></div>
             <div className="middle-menu__user">
-              <div className="middle-menu__user-login">
+              {isLogin ? logoutbutton : loginbutton}
+              {/* <div className="middle-menu__user-login">
                 <Link to="/signin" className="middle-menu__user-login__link">
                   SIGN IN
                 </Link>
@@ -92,7 +141,7 @@ function Main(props) {
                 <Link to="/signup" className="middle-menu__user-join__link">
                   SIGN UP
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="ground-right">
