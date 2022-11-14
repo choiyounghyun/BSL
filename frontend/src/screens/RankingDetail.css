@@ -1,7 +1,9 @@
 #rankingdetail {
   width: 100vw;
+  height: 280vh;
   background-color: aliceblue;
   position: relative;
+  /* overflow: hidden; */
 }
 
 .rankingdetail-container {
@@ -36,6 +38,34 @@
 
 .rankingdetail-body {
   width: 80%;
-  /* height: 30vw; */
+  height: 100%;
   margin: auto;
+}
+
+.rankingdetail-body p {
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8vh;
+}
+
+.chartclosurerates {
+  width: 800px;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 30vh;
+}
+
+.chartfranchiseecount {
+  width: 800px;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 30vh;
+}
+
+.chartcount {
+  width: 800px;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 30vh;
 }

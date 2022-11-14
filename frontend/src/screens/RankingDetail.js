@@ -9,16 +9,19 @@ import ChartCount from "../components/ChartCount";
 function RankingDetail() {
   const [info, setInfo] = useState();
   const { id } = useParams();
+  // const getBrandDetail = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       "https://k7c208.p.ssafy.io/api/v1/franchise/franchise-detail",
+  //       { params: { id: id } }
+  //     );
+  //     setInfo(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   useEffect(() => {
-    // const getBrandDetail = async () => {
-    //   try {
-    //     const { data } = await getBrandDetail(id);
-    //     console.log(data);
-    //     setInfo(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
+    // getBrandDetail();
     axios({
       url: "https://k7c208.p.ssafy.io/api/v1/franchise/franchise-detail",
       method: "get",
@@ -45,7 +48,7 @@ function RankingDetail() {
               평균 총 매출액 : {info?.monthlySales.toString().substr(0, 4)}만원
             </div>
             <div className="total-cost">
-              평균 창업 총 비용 :{" "}
+              평균 창업 총 비용 :
               {info?.initialCost.total.toString().substr(0, 4)}
               만원
             </div>
@@ -53,9 +56,18 @@ function RankingDetail() {
         </div>
         <hr />
         <div className="rankingdetail-body">
-          <ChartClosureRates info={info} />
-          <ChartFranchiseeCount info={info} />
-          <ChartCount info={info} />
+          <div className="chartclosurerates">
+            <p>브랜드의 폐점률 최근 5개년 추이</p>
+            {<ChartClosureRates info={info} />}
+          </div>
+          <div className="chartfranchiseecount">
+            <p>브랜드의 점포 수 변화</p>
+            {<ChartFranchiseeCount info={info} />}
+          </div>
+          <div className="chartcount">
+            <p>브랜드의 개점 수 및 폐점 수 추이</p>
+            {<ChartCount info={info} />}
+          </div>
         </div>
       </div>
     </div>

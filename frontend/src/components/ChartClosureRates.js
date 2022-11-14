@@ -12,7 +12,6 @@ import {
 } from "recharts";
 
 export default class ChartClosureRates extends PureComponent {
-  static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
   render() {
     const { info } = this.props;
     const closureData = [
@@ -37,8 +36,9 @@ export default class ChartClosureRates extends PureComponent {
         폐업률: info?.closureRates.at(-1)
       }
     ];
-    console.log(info);
+
     return (
+      // <div>{info.closureRates.at(-1)}</div>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}
@@ -56,7 +56,7 @@ export default class ChartClosureRates extends PureComponent {
           <YAxis domain={[0, 0.25]} />
           <Tooltip />
           <Legend />
-          {/* <Bar dataKey="pv" fill="#8884d8" /> */}
+          {/* <Bar dataKey="폐업률" fill="#8884d8" /> */}
           <Bar dataKey="폐업률" fill="#82ca9d" />
         </BarChart>
       </ResponsiveContainer>

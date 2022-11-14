@@ -18,31 +18,31 @@ export default class ChartFranchiseeCount extends PureComponent {
     const franchiseeData = [
       {
         name: "2018",
-        uv: info?.franchiseeCount.at(-5),
+        "점포 수": info?.franchiseeCount.at(-5),
         // pv: 2400,
         amt: 2400
       },
       {
         name: "2019",
-        uv: info?.franchiseeCount.at(-4),
+        "점포 수": info?.franchiseeCount.at(-4),
         // pv: 1398,
         amt: 2210
       },
       {
         name: "2020",
-        uv: info?.franchiseeCount.at(-3),
+        "점포 수": info?.franchiseeCount.at(-3),
         // pv: 9800,
         amt: 2290
       },
       {
         name: "2021",
-        uv: info?.franchiseeCount.at(-2),
+        "점포 수": info?.franchiseeCount.at(-2),
         // pv: 3908,
         amt: 2000
       },
       {
         name: "2022",
-        uv: info?.franchiseeCount.at(-1),
+        "점포 수": info?.franchiseeCount.at(-1),
         // pv: 4800,
         amt: 2181
       }
@@ -67,7 +67,7 @@ export default class ChartFranchiseeCount extends PureComponent {
           <Tooltip />
           <Legend />
           {/* <Bar dataKey="pv" fill="#8884d8" /> */}
-          <Bar dataKey="uv" fill="#82ca9d" />
+          <Bar dataKey="점포 수" fill="#82ca9d" />
         </BarChart>
       </ResponsiveContainer>
     );

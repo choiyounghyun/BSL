@@ -15,6 +15,7 @@ export default class ChartCount extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
   render() {
     const { info } = this.props;
+    // console.log(this.props);
     const countData = [
       {
         name: "2018",
