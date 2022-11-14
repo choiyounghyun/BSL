@@ -434,14 +434,14 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
               <hr />
             </div>
             <div className="chart_wrap">
-              <BarChart width={250} height={300} data={populationData}>
+              <BarChart width={250} height={250} data={populationData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis type="number" domain={[0, 'dataMax']} />
+                <YAxis type="number" domain={[0, dataMax => Math.abs(dataMax + 5)]} hide="true" />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="person" fill="#8884d8"
-                  label={{ fill: 'red', fontSize: 10, position: "top" }}
+                <Bar dataKey="person" name="유동인구수" fill={colors[5]}
+                  label={{ fill: colors[6], fontSize: 10, position: "top" }}
                 />
               </BarChart >
             </div>
@@ -451,6 +451,10 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     </div >
   )
 }
+
+const colors = [
+  '#FEFAEF', '#FEF4DF', '#FDECCF', '#FCE4C3', '#FBD8AF', '#D7AB7F', '#B48158',
+]
 
 const SectorsList = [
   { label: '감성주점' },
