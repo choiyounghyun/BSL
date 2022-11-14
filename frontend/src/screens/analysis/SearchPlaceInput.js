@@ -29,12 +29,8 @@ const SearchPlaceInput = ({ place, setPlace, submitData }) => {
 
   return (
     <div className="input_place_wrap">
-      {/* 검색 아이콘 */}
-      <FaSearchLocation className="input_icon" size="35" />
-      {/* 검색 아이콘과 검색창 사이 경계선 */}
-      <div className="input_border" />
       {/* 검색창 */}
-      <input className='input_wrap' placeholder="장소 및 역이름 검색해주세요"
+      <input className='input_wrap' placeholder="장소 및 역이름 검색해주세요."
         type="text" value={place}
         onChange={textChange} onKeyPress={pressEnter}
       />

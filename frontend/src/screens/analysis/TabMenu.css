@@ -4,15 +4,25 @@
 }
 
 .nav.nav-tabs .nav-link {
-  color: white;
-  background-color: rgb(190, 190, 190, 1);
+  color: black;
+  background-color: #FFF6EC;
+  border: 1px solid #FFF6EC;
+}
+
+.nav.nav-tabs .nav-link:hover {
+  border: 1px solid #FFF6EC;
 }
 
 .nav.nav-tabs .nav-link.active {
   color: black;
-  background-color: rgb(255, 255, 255, 1);
+  font-weight: bold;
+  background-color: #FFEAD2;
+  border: 1px solid #FFEAD2;
 }
 
 .tab-content {
-  width: 100%;
+  width: 92%;
+  height: 70%;
+  background-color: #FFEAD2;
+  border-radius: 0px 0px 15px 15px;
 }
