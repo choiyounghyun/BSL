@@ -1,5 +1,3 @@
-
-
 import React, { Suspense } from "react";
 import "./Router.css";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -8,7 +6,7 @@ import Main from "../screens/Main.js";
 import Analysis from "../screens/analysis/Analysis";
 import Community from "../screens/Community.js";
 import Ranking from "../screens/Ranking.js";
-import SignIn from "../screens/SignIn"
+import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp.js";
 import MyPage from "../screens/MyPage.js";
 import SupportList from "../components/community/SupportList.js";
@@ -16,19 +14,19 @@ import ShareList from "../components/community/ShareList.js";
 import RequestList from "../components/community/RequestList.js";
 import { useState, useEffect } from "react";
 import OnSocialLogin from "../screens/sign/SocialLogin";
+import RankingDetail from "../screens/RankingDetail";
 
 function Router({ getUserData }) {
   const location = useLocation();
-  const [authenticate, setAuthenticate] = useState(false) // true이면 로그인
-
+  const [authenticate, setAuthenticate] = useState(false); // true이면 로그인
 
   return (
     <div className="router">
       <Suspense>
         <TransitionGroup className="transition-group">
           <CSSTransition
-            key={location.pathname}
-            classNames="fade"
+            key={location.pathname === "/ranking" ? location.pathname : null}
+            classNames="sidefade"
             timeout={1000}
           >
             <Routes location={location}>
@@ -43,7 +41,9 @@ function Router({ getUserData }) {
                 <Route path="share" element={<ShareList />} />
                 <Route path="request" element={<RequestList />} />
               </Route>
-              <Route path="/ranking" element={<Ranking />} />
+              <Route path="/ranking" element={<Ranking />}>
+                <Route path="detail/:id" element={<RankingDetail />} />
+              </Route>
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/mypage" element={<MyPage />} />
@@ -57,4 +57,3 @@ function Router({ getUserData }) {
 }
 
 export default Router;
-

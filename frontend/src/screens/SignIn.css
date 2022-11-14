@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10% auto auto auto;
+  margin: 0 0 0 0;
   font-family: 'Montserrat', sans-serif;
   flex-direction: column;
   box-shadow: 1px 2px 2px #592941;
