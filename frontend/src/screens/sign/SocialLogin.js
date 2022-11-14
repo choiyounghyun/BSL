@@ -19,12 +19,16 @@ function OnSocialLogin() {
     if (refresh_start === 0 && access_start) {
       console.log(params);
       console.log(tokens);
+      console.log(user);
 
       const refreshtoken = tokens?.slice(refresh_start + 13, access_start - 1);
       const accesstoken = tokens?.slice(access_start + 12, tokens.length);
       user.accessToken = accesstoken
       user.refreshToken = refreshtoken
-      localStorage.setItem("user", user || "");
+      if (user !== "") {
+        localStorage.setItem("user");
+      }
+      // localStorage.setItem("user", user || "");
       // localStorage.setItem("refresh_token", refreshtoken || "");
 
 
