@@ -1,0 +1,41 @@
+#rankingdetail {
+  width: 100vw;
+  background-color: aliceblue;
+  position: relative;
+}
+
+.rankingdetail-container {
+  width: 100%;
+}
+
+.ranking-header {
+  width: 100%;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-wrapper > img {
+  width: 20vw;
+}
+
+.info-menu {
+  font-size: 28px;
+  margin-left: 80px;
+  margin-top: 20px;
+}
+
+.info-menu > div:nth-child(n) {
+  margin-bottom: 12px;
+}
+
+.rankingdetail-container > hr {
+  margin-bottom: 120px;
+}
+
+.rankingdetail-body {
+  width: 80%;
+  /* height: 30vw; */
+  margin: auto;
+}
