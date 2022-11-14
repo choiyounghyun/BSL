@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './KakaoMap.css' // 지도 CSS
 
-const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, setClusterMaxPage }) => { // searchPlace = 검색할 장소를 나타냄
+const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, setClusterMaxPage, setFloatingPopulationDong }) => { // searchPlace = 검색할 장소를 나타냄
   const kakao = window['kakao']
   const [centerYX, setCenterYX] = useState([0, 0])
 
@@ -87,7 +87,6 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
       })
 
       setDongName(response.data.documents[0].region_3depth_name)
-
       return response.data.documents[0].region_3depth_name
     }
 
@@ -120,15 +119,6 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
       ps.keywordSearch(optionDataList.place, placesSearchCB)
     }
   }
-
-  /// 사용할 함수 정의 시작 ///
-  // async function getClusterList() {
-  //   const clustersURL = `https://k7c208.p.ssafy.io/api/v1/estate/clusters?dongName=${dongName}&rentPriceMin=${optionDataList.monthly[0] * 10}&rentPriceMax=${optionDataList.monthly[1] * 10}&priceMin=${optionDataList.sale[0] * 100}&priceMax=${optionDataList.sale[1] * 100}&areaMin=${optionDataList.room[0] * 4}&areaMax=${optionDataList.room[1] * 4}&leftLon=${mapAreaYX[0]}&rightLon=${mapAreaYX[1]}&topLat=${mapAreaYX[2]}&bottomLat=${mapAreaYX[3]}`
-  //   const response = await axios.get(clustersURL)
-
-  //   console.log(response.data)
-  // }
-  /// 함수 정의 끝 ///
 
   useEffect(() => {
     creatMap()
