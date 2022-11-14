@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './KakaoMap.css' // 지도 CSS
 
-const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, setClusterMaxPage }) => { // searchPlace = 검색할 장소를 나타냄
+const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, setClusterMaxPage, setFloatingPopulationDong }) => { // searchPlace = 검색할 장소를 나타냄
   const kakao = window['kakao']
   const [centerYX, setCenterYX] = useState([0, 0])
 
@@ -87,7 +87,6 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
       })
 
       setDongName(response.data.documents[0].region_3depth_name)
-
       return response.data.documents[0].region_3depth_name
     }
 
@@ -123,6 +122,7 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
 
   useEffect(() => {
     creatMap()
+    console.log(optionDataList)
   }, [optionDataList])
 
   return (

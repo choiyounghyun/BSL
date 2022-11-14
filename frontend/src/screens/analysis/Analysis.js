@@ -19,6 +19,8 @@ const Analysis = () => { // 상권분석
 	const [clusterInfoList, setClusterInfoList] = useState('')
 	const [emptyStore, setEmptyStore] = useState([])
 
+	const [floatingPopulationDong, setFloatingPopulationDong] = useState('')
+
 	useEffect(() => {
 		console.log(clusterMaxPage)
 		if (clusterId !== 0 && clusterMaxPage !== 0) {
@@ -75,11 +77,13 @@ const Analysis = () => { // 상권분석
 						setDongName={setDongName}
 						setMapAreaYX={setMapAreaYX}
 						setClusterId={setClusterId}
-						setClusterMaxPage={setClusterMaxPage} />
+						setClusterMaxPage={setClusterMaxPage}
+						setFloatingPopulationDong={setFloatingPopulationDong} />
 					{/* 사이드바 div */}
 					<SideBar className='sidebar_wrap'
-						setOptionDataList={setOptionDataList}
-						emptyStore={emptyStore} setEmptyStore={setEmptyStore} />
+						optionDataList={optionDataList} setOptionDataList={setOptionDataList}
+						emptyStore={emptyStore} setEmptyStore={setEmptyStore}
+						floatingPopulationDong={floatingPopulationDong} />
 				</div>
 			}
 		</>
