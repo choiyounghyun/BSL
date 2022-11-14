@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function OnSocialLogin() {
+  const [accessToken, SetAccessToken] = useState("");
+  const [refreshToken, SetRefreshToken] = useState("");
   const params = useParams();
   const navigate = useNavigate();
   const user = {
@@ -23,16 +25,17 @@ function OnSocialLogin() {
 
       const refreshtoken = tokens?.slice(refresh_start + 13, access_start - 1);
       const accesstoken = tokens?.slice(access_start + 12, tokens.length);
-      user.accessToken = accesstoken
-      user.refreshToken = refreshtoken
+
       if (user !== "") {
+        user.accessToken = accesstoken
+        user.refreshToken = refreshtoken
         localStorage.setItem("user");
+        SetAccessToken(accesstoken)
+        SetRefreshToken(refreshtoken)
       }
       // localStorage.setItem("user", user || "");
       // localStorage.setItem("refresh_token", refreshtoken || "");
 
-
-      console.log(params)
       navigate("/");
     } else {
       navigate("/signin");
