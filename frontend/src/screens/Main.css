@@ -7,6 +7,7 @@
   height: 100vh;
   overflow: hidden !important;
 }
+
 .trans-left-img {
   position: absolute;
   top: 0;
@@ -238,6 +239,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -247,6 +249,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -309,12 +312,14 @@
   font-weight: bold;
 }
 
-.middle-menu__user-login {
+.middle-menu__user-login,
+.middle-menu__user-logout {
   margin-right: 40px;
 }
 
 .middle-menu__user-login__link,
-.middle-menu__user-join__link {
+.middle-menu__user-join__link,
+.middle-menu__user-logout__link {
   color: aliceblue;
   text-decoration: none;
   font-size: 24px;
@@ -323,12 +328,15 @@
 }
 
 .middle-menu__user-login__link:hover,
-.middle-menu__user-join__link:hover {
+.middle-menu__user-join__link:hover,
+.middle-menu__user-logout__link:hover {
   font-size: 28px;
   color: aliceblue;
   transform: translate(-50%, -50%);
   transition: all 1s ease;
 }
+
+
 
 .ground-right {
   width: 50vw;
@@ -382,14 +390,15 @@
   position: absolute;
   top: 40%;
 }
+
 .ground-right__title {
   z-index: 5;
   position: absolute;
   top: 35%;
 }
 
-.ground-left__title > h1,
-.ground-right__title > h1 {
+.ground-left__title>h1,
+.ground-right__title>h1 {
   font-size: 6vw;
   color: aliceblue;
   font-weight: bold;
@@ -403,7 +412,7 @@
   display: flex;
 }
 
-.middle-menu__user > h4 {
+.middle-menu__user>h4 {
   font-size: 2vw;
   font-weight: bold;
   color: #8b0000;

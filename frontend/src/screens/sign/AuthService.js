@@ -8,7 +8,11 @@ const signin = (id, password) => {
     })
     .then((response) => {
       console.log(response.data.accessToken);
-      console.log(response.data.refreshToken);
+      // axios.defaults.headers.common[
+      //   "Authorization"
+      // ] = `Bearer ${response.data.accesstoken}`;
+      // return response.data
+
       if (response.data.accessToken !== "") {
         localStorage.setItem('user', JSON.stringify(response.data))
       }

@@ -3,6 +3,7 @@ import "./SignIn.css"
 import { Link, useNavigate } from 'react-router-dom'
 import authService from "./sign/AuthService"
 import axios from 'axios'
+import { color } from '@mui/system'
 
 const SignIn = ({ setAuthenticate }) => {
 
@@ -13,22 +14,14 @@ const SignIn = ({ setAuthenticate }) => {
 
   const navigate = useNavigate()
 
-  // const kakaologin = () => {
-  //   axios.post("http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao")
-  //     .then((response) => {
-  //       console.log(response)
-  //     })
-  // }
-
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log(e)
     try {
       await authService.signin(id, password).then(
         () => {
-
-          // setACCESS_TOKEN(e.target.ACCESS_TOKEN)
-          // setLoginInfo("True")
+          setACCESS_TOKEN(e.target.ACCESS_TOKEN)
+          setLoginInfo("True")
           navigate('/'); // login 완료시 main page로 이동
           // window.location.reload()
         },
@@ -47,51 +40,46 @@ const SignIn = ({ setAuthenticate }) => {
   return (
 
     <section>
-      <div id="login-div">
-        <form onSubmit={(event) => handleLogin(event)} className="loginform">
-          <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
-            <h1>Bravo Silver Life</h1>
-          </Link>
-
-          <span>아이디와 비밀번호를 입력해주세요</span>
-          <input
-            type="text"
-            id="id"
-            autoComplete="off"
-            value={id}
-            placeholder="아이디를 입력해주세요"
-            onChange={(e) => {
-              setId(e.target.value);
-            }}
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            value={password}
-            placeholder="비밀번호를 입력해주세요"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            required
-          />
-          <button type="submit" >로그인</button>
-
-        </form>
-        <button >
-          <Link to="/signup" style={{ textDecoration: 'none' }}>회원가입</Link>
-        </button>
-
-        <p>
-          회원가입을 하겠습니까?<br />
-          <span className="line">
-            {/* <button className='kakao-login' type="" onClick={() => kakaologin()}>카카오톡로그인하기
-              
-            </button> */}
-            <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" style={{ textDecoration: 'none' }}>카카오톡로그인하기</a>
-            {/* "http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" */}
-          </span>
-        </p>
+      <div>
+        <div className="signin-div">
+          <form onSubmit={(event) => handleLogin(event)} className="signinform">
+            <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+              <h1 className="title-h1" title="메인화면으로 돌아가기">Bravo Silver Life</h1>
+            </Link>
+            <span>아이디와 비밀번호를 입력해주세요</span>
+            <input
+              type="text"
+              id="id"
+              autoComplete="off"
+              value={id}
+              placeholder="아이디"
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              value={password}
+              placeholder="비밀번호"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              required
+            />
+            <div className="signinbuttondiv">
+              <p className="p">
+                회원가입을 하겠습니까?<br />
+                <Link to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>
+              </p>
+            </div>
+            <button type="submit" className="signinButton">로그인</button>
+          </form>
+          <button className="kakaosignin">
+            <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" style={{ textDecoration: 'none', color: "black" }}>카카오톡 로그인하기</a>
+          </button>
+        </div>
       </div>
     </section>
   )
