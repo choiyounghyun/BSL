@@ -1,28 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const InputText = () => {
+const KakaoLogin = () => {
+  const REST_API_KEY = "본인의 api 키";
+  const REDIRECT_URI = "https://localhost:3000/kakao";
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
   return (
-    <container>
-      <div>
-        <form action="#">
-          <h1>회원가입</h1>
-          {/* <div className="social-container">
-              <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-              <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-              <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-            </div> */}
-          <span>아이디와 아이디를 적어주세요</span>
-          <input type="text" placeholder="닉네임을 입력해주세요" />
-          <input type="id" placeholder="아이디를 입력해주세요" />
-          <input type="password" placeholder="비밀번호를 입력해주세요" />
-          <input type="password" placeholder="전화번호를 입력해주세요" />
-          <button className='test'>전화번호 인증하기</button>
-          <button>회원가입하기</button>
-        </form>
-      </div>
-    </container>
-  )
-}
+    <h1>
+      <a href={KAKAO_AUTH_URL}>Kakao Login</a>
+    </h1>
+  );
+};
 
-export default InputText
+export default KakaoLogin;
