@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import axios from "axios"
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 
@@ -12,9 +13,20 @@ import RadioGroup from '@mui/material/RadioGroup' // 가격 거래유형 사용
 import Slider from '@mui/material/Slider' // 가격 설정 사용
 
 import './FindPlace.css'
+import empty_logo from '../../assets/AnalysisImages/logo-crying.svg'
+import close_img from '../../assets/AnalysisImages/close_button_img.png'
+import rent_img from '../../assets/AnalysisImages/for-rent.png'
+import sale_img from '../../assets/AnalysisImages/sale.png'
+import build_type from '../../assets/AnalysisImages/building.png'
+import room_size_img from '../../assets/AnalysisImages/plans.png'
+import floor_img from '../../assets/AnalysisImages/stairs.png'
+import subway_img from '../../assets/AnalysisImages/subway.png'
+import { BsFillBookmarkStarFill } from "react-icons/bs"
 
-const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
-  const [isClickButton, setIsClickButton] = useState(0)
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts'
+
+const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
+  const [isClickButton, setIsClickButton] = useState(1)
   const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
   const [monthly, setMonthly] = useState([0, 100])
@@ -23,12 +35,19 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
   const [floor, setFloor] = useState('all')
   const [roomSize, setRoomSize] = useState([0, 100])
 
+  const [isDetailOpen, setIsDetailOpen] = useState(-1)
+  const [itemDetailData, setItemDetailData] = useState({})
+  const [nearestStation, setNearestStation] = useState({})
+
+  const [populationData, setPopulationData] = useState([])
+
   useEffect(() => {
     if (emptyStore.length !== 0) {
       setIsClickButton(4)
     } else if (emptyStore.length === 0) {
-      setIsClickButton(0)
+      setIsClickButton(1)
     }
+    console.log(emptyStore)
   }, [emptyStore])
 
   const setCompleteDataList = (getSector) => {
@@ -103,25 +122,109 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
     }
   }
 
+  const getDetailInfo = async (e, index) => {
+    const getDetailURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-detail?articleNo=${emptyStore[index].articleNo}`
+    const detailResponse = await axios.get(getDetailURL)
+    console.log(detailResponse.data)
+
+    setItemDetailData(detailResponse.data)
+    setIsDetailOpen(index)
+    getNearStation(detailResponse.data.longitude, detailResponse.data.latitude)
+    getExactlyDongName(detailResponse.data.longitude, detailResponse.data.latitude)
+  }
+
+  const getNearStation = async (lng, lat) => {
+    const getNearStationURL = 'https://dapi.kakao.com/v2/local/search/category.json'
+    const myAppKey = '6166cc0d53447a16f521f4fbe7c3422c'
+
+    const stationResponse = await axios.get(getNearStationURL, {
+      headers: { Authorization: `KakaoAK ${myAppKey}` },
+      params: {
+        category_group_code: "SW8",
+        x: lng,
+        y: lat,
+        radius: 10000,
+        size: 1,
+        sort: "distance",
+      }
+    })
+
+    setNearestStation(stationResponse.data.documents[0])
+  }
+
+  const getExactlyDongName = async (lng, lat) => {
+    const getDongNameURL = `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${lng}&y=${lat}`
+    const myAppKey = '6166cc0d53447a16f521f4fbe7c3422c'
+
+    const response = await axios.get(getDongNameURL, {
+      headers: { Authorization: `KakaoAK ${myAppKey}` }
+    })
+
+    getFloatPopulationData(response.data.documents[1].region_3depth_name)
+  }
+
+  const getFloatPopulationData = async (place) => {
+    const getFloatPopulationURL = `https://k7c208.p.ssafy.io/api/v1/infra/popular?name=${place}`
+
+    const response = await axios.get(getFloatPopulationURL)
+
+    console.log(response.data)
+
+    setPopulationData([
+      {
+        "name": "월",
+        "person": response.data.mon,
+      },
+      {
+        "name": "화",
+        "person": response.data.tues
+      },
+      {
+        "name": "수",
+        "person": response.data.wed
+      },
+      {
+        "name": "목",
+        "person": response.data.thur
+      },
+      {
+        "name": "금",
+        "person": response.data.fri
+      },
+      {
+        "name": "토",
+        "person": response.data.sat,
+      },
+      {
+        "name": "일",
+        "person": response.data.sun
+      }
+    ])
+  }
+
   return (
     <div className="option_wrap">
       <div className="button_group_wrap">
-        <button type="button" className={`${isClickButton === 1 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 1 ? setIsClickButton(1) : setIsClickButton(0))}>
-          업종
-        </button>
-        <button type="button" className={`${isClickButton === 2 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 2 ? setIsClickButton(2) : setIsClickButton(0))}>
-          가격
-        </button>
-        <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
-          크기 및 층수
-        </button>
-        <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
-          onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
-          검색된 매물
-        </button>
+        <div className="button_layer_wrap">
+          <button type="button" className={`${isClickButton === 1 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 1 ? setIsClickButton(1) : setIsClickButton(0))}>
+            업종
+          </button>
+          <button type="button" className={`${isClickButton === 2 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 2 ? setIsClickButton(2) : setIsClickButton(0))}>
+            가격
+          </button>
+        </div>
+        <div className="button_layer_wrap">
+          <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
+            크기 및 층수
+          </button>
+          <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
+            onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
+            매물
+          </button>
+        </div>
       </div>
 
       {isClickButton === 1 && <div className="sector_options_wrap">
@@ -269,24 +372,27 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
       </div>}
 
       {isClickButton === 4 && <div className="items_list_wrap">
-        {emptyStore.length === 0 && <div>
-          <p>검색된 매물이 없습니다.</p>
+        {emptyStore.length === 0 && <div className="empty_item_list_wrap">
+          <img src={empty_logo} className="empty_img_wrap" />
+          <p className="empty_warning_message">검색된 매물이 없습니다.</p>
         </div>}
         {emptyStore.length !== 0 && <div className="items_wrap">
           {
-            emptyStore.map((emptyItem) => {
+            emptyStore.map((emptyItem, index) => {
               return (
-                <div className='item_wrap' key={emptyItem.articleNo}>
+                <div className='item_wrap' key={emptyItem.articleNo}
+                  onClick={(e) => getDetailInfo(e, index)}
+                >
                   <div id='mainTitle'>
                     {emptyItem.articleName} ({emptyItem.floor !== null ? emptyItem.floor : 1}층)
                   </div>
-                  <div>
+                  <div id='price'>
                     월세/보증금 (만원): {emptyItem.rentPrc !== null ? `${emptyItem.rentPrc}/${emptyItem.dealOrWarrantPrc}` : `${emptyItem.dealOrWarrantPrc} (매매)`}
                   </div>
-                  <div>
+                  <div id='floor'>
                     해당층/총층: {emptyItem.floor}/{emptyItem.maxFloor}층
                   </div>
-                  <div>
+                  <div id='size'>
                     계약/전용 면적 : {emptyItem.area1}㎡/{emptyItem.area2}㎡
                   </div>
                   {/* <div onClick={() => window.open(`${item.cpPcArticleUrl}`)}>링크이동</div> */}
@@ -295,6 +401,51 @@ const FindPlace = ({ setDataList, emptyStore, setEmptyStore }) => {
             })
           }
 
+          {isDetailOpen !== -1 && <div className="item_detail_wrap">
+            <img src={close_img} className="close_button_img" onClick={() => setIsDetailOpen(-1)} />
+            <div className="title_wrap">
+              <div id="price">{emptyStore[isDetailOpen].rentPrc !== null ? `월세 ${emptyStore[isDetailOpen].rentPrc} / 보증금 ${emptyStore[isDetailOpen].dealOrWarrantPrc}` : `매매 ${emptyStore[isDetailOpen].dealOrWarrantPrc}`}</div>
+              <div className="near_station_wrap">
+                <img src={subway_img} />
+                <div id="station">{nearestStation.place_name}, {nearestStation.distance}m</div>
+              </div>
+            </div>
+            <div className="item_intro_wrap">
+              <div className="building_type_wrap">
+                <img src={build_type}
+                  className="building_img_wrap" />
+                <div id="title">건물 형태</div>
+                <div id="data"> {itemDetailData.buildingTypeName}</div>
+              </div>
+              <div className="building_type_wrap">
+                <img src={floor_img}
+                  className="building_img_wrap" />
+                <div id="title">층수</div>
+                <div id="data"> {itemDetailData.floor} / {itemDetailData.maxFloor} 층</div>
+              </div>
+              <div className="building_type_wrap">
+                <img src={room_size_img}
+                  className="building_img_wrap" />
+                <div id="title">면적</div>
+                <div id="data"> {itemDetailData.area1} ㎡</div>
+              </div>
+            </div>
+            <div className="detail_border_wrap">
+              <hr />
+            </div>
+            <div className="chart_wrap">
+              <BarChart width={250} height={300} data={populationData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis type="number" domain={[0, 'dataMax']} />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="person" fill="#8884d8"
+                  label={{ fill: 'red', fontSize: 10, position: "top" }}
+                />
+              </BarChart >
+            </div>
+          </div>}
         </div>}
       </div>}
     </div >

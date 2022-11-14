@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import KakaoMap from './KakaoMap'
 import SideBar from './SideBar'
 import axios from 'axios'
@@ -16,8 +16,10 @@ const Analysis = () => { // 상권분석
 	const [dongName, setDongName] = useState('')
 	const [clusterId, setClusterId] = useState(0)
 	const [clusterMaxPage, setClusterMaxPage] = useState(0)
-	const [clusterInfoList, setClusterInfoList] = useState('');
+	const [clusterInfoList, setClusterInfoList] = useState('')
 	const [emptyStore, setEmptyStore] = useState([])
+
+	const [floatingPopulationDong, setFloatingPopulationDong] = useState('')
 
 	useEffect(() => {
 		console.log(clusterMaxPage)
@@ -42,7 +44,6 @@ const Analysis = () => { // 상권분석
 
 		console.log(response.data)
 		setEmptyStore(response.data.articles)
-
 	}
 
 	const [isLoading, setIsLoading] = useState(false)
@@ -76,11 +77,13 @@ const Analysis = () => { // 상권분석
 						setDongName={setDongName}
 						setMapAreaYX={setMapAreaYX}
 						setClusterId={setClusterId}
-						setClusterMaxPage={setClusterMaxPage} />
+						setClusterMaxPage={setClusterMaxPage}
+						setFloatingPopulationDong={setFloatingPopulationDong} />
 					{/* 사이드바 div */}
 					<SideBar className='sidebar_wrap'
-						setOptionDataList={setOptionDataList}
-						emptyStore={emptyStore} setEmptyStore={setEmptyStore} />
+						optionDataList={optionDataList} setOptionDataList={setOptionDataList}
+						emptyStore={emptyStore} setEmptyStore={setEmptyStore}
+						floatingPopulationDong={floatingPopulationDong} />
 				</div>
 			}
 		</>
