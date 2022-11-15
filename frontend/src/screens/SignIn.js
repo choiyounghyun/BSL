@@ -16,7 +16,6 @@ const SignIn = ({ setAuthenticate }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(e)
     try {
       await authService.signin(id, password).then(
         () => {

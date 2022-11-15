@@ -10,7 +10,7 @@ import { Token } from "@mui/icons-material";
 
 function Main(props) {
   useEffect(() => {
-    if ((localStorage.getItem('user')) === null) {
+    if ((localStorage.getItem("user")) === null) {
       setIsLogin(false)
     } else { getuserInfo() }
   })
@@ -18,16 +18,14 @@ function Main(props) {
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
-  // const [usertoken, setUsertoken] = useState("");
-  // const [isSocialLogin, setIsSocialLogin] = useState("");
 
   const getuserInfo = () => {
-    if (userinfo === (localStorage.getItem('user'))) {
-      setUserinfo(localStorage?.getItem('user'))
+    if (userinfo !== (localStorage.getItem("user"))) {
+      setUserinfo(localStorage?.getItem("user"))
       setIsLogin(true)
     } else {
-      // setUsertoken(localStorage?.getItem('token'))
-      setIsLogin(false)
+      // setUsertoken(localStorage?.getItem("token"))
+      setIsLogin(true)
     }
   };
 
