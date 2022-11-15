@@ -5,24 +5,28 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
+import { Token } from "@mui/icons-material";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
   useEffect(() => {
     if ((localStorage.getItem('user')) === null) {
       setIsLogin(false)
-    } else {
-      getuserInfo()
-    }
+    } else if ((localStorage.getItem('token')) === null) {
+      setIsLogin(false)
+    } else { getuserInfo() }
   })
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
+  const [usertoken, setUsertoken] = useState("");
   const getuserInfo = () => {
     if (userinfo === (localStorage.getItem('user'))) {
-    } else {
+    } else if (usertoken === (localStorage.getItem('token'))) { }
+    else {
       console.log(userinfo);
       setUserinfo(localStorage?.getItem('user'))
+      setUsertoken(localStorage?.getItem('token'))
       setIsLogin(true)
 
     }
@@ -31,6 +35,8 @@ function Main(props) {
   const handleLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("toekn");
+    localStorage.removeItem("refresh_token");
     setUserinfo("");
   }
   const [fade, setFade] = useState("");
