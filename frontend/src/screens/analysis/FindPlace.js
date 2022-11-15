@@ -21,9 +21,10 @@ import build_type from '../../assets/AnalysisImages/building.png'
 import room_size_img from '../../assets/AnalysisImages/plans.png'
 import floor_img from '../../assets/AnalysisImages/stairs.png'
 import subway_img from '../../assets/AnalysisImages/subway.png'
-import { BsFillBookmarkStarFill } from "react-icons/bs"
+import { BsFillBookmarkStarFill, BsLink45Deg } from "react-icons/bs"
 
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts'
+import { Chart } from "react-google-charts"
+import person from '../../assets/AnalysisImages/person.png'
 
 const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
   const [isClickButton, setIsClickButton] = useState(1)
@@ -40,6 +41,9 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
   const [nearestStation, setNearestStation] = useState({})
 
   const [populationData, setPopulationData] = useState([])
+  const [dayData, setDayData] = useState([])
+  const [dayAvgData, setDayAvgData] = useState(0)
+  const [perHourPopulationData, setPerHourPopulationData] = useState([])
 
   useEffect(() => {
     if (emptyStore.length !== 0) {
@@ -171,35 +175,28 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     console.log(response.data)
 
     setPopulationData([
-      {
-        "name": "월",
-        "person": response.data.mon,
-      },
-      {
-        "name": "화",
-        "person": response.data.tues
-      },
-      {
-        "name": "수",
-        "person": response.data.wed
-      },
-      {
-        "name": "목",
-        "person": response.data.thur
-      },
-      {
-        "name": "금",
-        "person": response.data.fri
-      },
-      {
-        "name": "토",
-        "person": response.data.sat,
-      },
-      {
-        "name": "일",
-        "person": response.data.sun
-      }
+      ["Task", "Hours per Day"],
+      ["주중", response.data.day],
+      ["주말", response.data.weekend],
     ])
+    setDayData([
+      response.data.mon, response.data.tues, response.data.wed, response.data.thur, response.data.fri, response.data.sat, response.data.sun
+    ])
+    setDayAvgData(response.data.dayAvg)
+    setPerHourPopulationData([
+      ["Hour", "유동인구수", { role: "style" }],
+      ["0~3", response.data.firstHour, colors[1]],
+      ["4~7", response.data.secondHour, colors[2]],
+      ["8~11", response.data.thirdHour, colors[3]],
+      ["12~15", response.data.fourthHour, colors[4]],
+      ["16~19", response.data.fifthHour, colors[5]],
+      ["20~23", response.data.sixthHour, colors[6]]
+    ])
+  }
+
+  const postBookmarkData = async (userID, itemNo, itemAddress, itemUrl, itemPrice) => {
+    const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
+    const response = await axios.post(postBookMarkURL)
   }
 
   return (
@@ -395,7 +392,6 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
                   <div id='size'>
                     계약/전용 면적 : {emptyItem.area1}㎡/{emptyItem.area2}㎡
                   </div>
-                  {/* <div onClick={() => window.open(`${item.cpPcArticleUrl}`)}>링크이동</div> */}
                 </div>
               )
             })
@@ -430,26 +426,63 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
                 <div id="data"> {itemDetailData.area1} ㎡</div>
               </div>
             </div>
+            <div className="detail_icon_wrap">
+              <BsFillBookmarkStarFill className="bookmark_wrap" size="24" color="gray"
+              // onClick={postBookmarkData(localStorage.getItem('user'), itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
+              />
+              <BsLink45Deg className="link_wrap" size="24" color="black"
+                onClick={() => window.open(`${itemDetailData.cpPcArticleUrl}`)} />
+            </div>
             <div className="detail_border_wrap">
               <hr />
             </div>
+            <div className="chart_title">
+              <img src={person} className='person_img' />
+              일일평균 유동인구는 {dayAvgData} 명 입니다.
+            </div>
             <div className="chart_wrap">
-              <BarChart width={250} height={250} data={populationData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis type="number" domain={[0, dataMax => Math.abs(dataMax + 5)]} hide="true" />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="person" name="유동인구수" fill={colors[5]}
-                  label={{ fill: colors[6], fontSize: 10, position: "top" }}
-                />
-              </BarChart >
+              <Chart
+                chartType="PieChart"
+                data={populationData}
+                options={options}
+                width={"200px"}
+                height={"200px"}
+              />
+              <ul className="daydata_wrap">
+                <li>ㆍ월요일 : {dayData[0]} %</li>
+                <li>ㆍ화요일 : {dayData[1]} %</li>
+                <li>ㆍ수요일 : {dayData[2]} %</li>
+                <li>ㆍ목요일 : {dayData[3]} %</li>
+                <li>ㆍ금요일 : {dayData[4]} %</li>
+                <li>ㆍ토요일 : {dayData[5]} %</li>
+                <li>ㆍ일요일 : {dayData[6]} %</li>
+              </ul>
+            </div>
+            <div className="chart_perhour_wrap">
+              <div className="perhour_title">시간대별 유동인구</div>
+              <Chart chartType="ColumnChart" width="300px" height="300px" data={perHourPopulationData}
+                options={hourOptions} />
             </div>
           </div>}
         </div>}
       </div>}
     </div >
   )
+}
+
+const hourOptions = {
+  legend: "none",
+}
+
+const options = {
+  legend: "none",
+  pieSliceText: "label",
+  pieStartAngle: 0,
+  is3D: true,
+  slices: {
+    0: { color: "#915B37" },
+    1: { color: "#D7AB7F" },
+  },
 }
 
 const colors = [
