@@ -5,31 +5,39 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
+import { Token } from "@mui/icons-material";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
   useEffect(() => {
-    if (localStorage.getItem("user") === null) {
-      setIsLogin(false);
-    } else {
-      getuserInfo();
-    }
-  });
+
+    if ((localStorage.getItem('user')) === null) {
+      setIsLogin(false)
+    } else if ((localStorage.getItem('token')) === null) {
+      setIsLogin(false)
+    } else { getuserInfo() }
+  })
+
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
+  const [usertoken, setUsertoken] = useState("");
   const getuserInfo = () => {
-    if (userinfo === localStorage.getItem("user")) {
-    } else {
-      console.log(userinfo);
-      setUserinfo(localStorage?.getItem("user"));
-      setIsLogin(true);
+
+    if (userinfo === (localStorage.getItem('user'))) {
+    } else if (usertoken === (localStorage.getItem('token'))) { }
+    else {
+      setUserinfo(localStorage?.getItem('user'))
+      setUsertoken(localStorage?.getItem('token'))
+      setIsLogin(true)
     }
   };
 
   const handleLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("toekn");
+    localStorage.removeItem("refresh_token");
     setUserinfo("");
   };
   const [fade, setFade] = useState("");
@@ -90,9 +98,8 @@ function Main(props) {
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${
-                  menu === "active" ? "--active" : ""
-                }`}
+                className={`header__head-circle ${menu === "active" ? "--active" : ""
+                  }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">
