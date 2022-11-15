@@ -23,9 +23,16 @@ function OnSocialLogin() {
 
       const refreshtoken = tokens?.slice(refresh_start + 13, access_start - 1);
       const accesstoken = tokens?.slice(access_start + 12, tokens.length);
-      localStorage.setItem("token", accesstoken || "");
-      localStorage.setItem("refresh_token", refreshtoken || "");
+      // localStorage.setItem("token", accesstoken || "");
+      // localStorage.setItem("refresh_token", refreshtoken || "");
 
+      SetUser({
+        accessToken: accesstoken,
+        code: 0,
+        mas: "Success",
+        refreshToken: refreshtoken,
+        success: true,
+      })
       navigate("/");
     } else {
       navigate("/signin");
