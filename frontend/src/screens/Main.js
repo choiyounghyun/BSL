@@ -5,34 +5,41 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
+import { Token } from "@mui/icons-material";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
   useEffect(() => {
+
     if ((localStorage.getItem('user')) === null) {
       setIsLogin(false)
-    } else {
-      getuserInfo()
-    }
+    } else if ((localStorage.getItem('token')) === null) {
+      setIsLogin(false)
+    } else { getuserInfo() }
   })
+
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
+  const [usertoken, setUsertoken] = useState("");
   const getuserInfo = () => {
-    if (userinfo === (localStorage.getItem('user'))) {
-    } else {
-      console.log(userinfo);
-      setUserinfo(localStorage?.getItem('user'))
-      setIsLogin(true)
 
+    if (userinfo === (localStorage.getItem('user'))) {
+    } else if (usertoken === (localStorage.getItem('token'))) { }
+    else {
+      setUserinfo(localStorage?.getItem('user'))
+      setUsertoken(localStorage?.getItem('token'))
+      setIsLogin(true)
     }
   };
 
   const handleLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("toekn");
+    localStorage.removeItem("refresh_token");
     setUserinfo("");
-  }
+  };
   const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
@@ -66,7 +73,7 @@ function Main(props) {
         </Link>
       </div>
     </>
-  )
+  );
   return (
     <div id="main" data-barba="wrapper">
       <div className="trans-left-img">
@@ -136,8 +143,7 @@ function Main(props) {
               </Link>
             </div>
             <div className="middle-menu__ranking-description"></div>
-            <div className="middle-menu__user">
-            </div>
+            <div className="middle-menu__user"></div>
           </div>
           <div className={`ground-right ${fade ? { menuToggle } : ""}`}>
             <div className="ground-right__img-wrapper">
@@ -175,7 +181,3 @@ function Main(props) {
 }
 
 export default Main;
-
-
-
-
