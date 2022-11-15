@@ -26,7 +26,7 @@ import { BsFillBookmarkStarFill, BsLink45Deg } from "react-icons/bs"
 import { Chart } from "react-google-charts"
 import person from '../../assets/AnalysisImages/person.png'
 
-const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
+const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
   const [isClickButton, setIsClickButton] = useState(1)
   const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
@@ -194,29 +194,29 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     ])
   }
 
-  const postBookmarkData = async (userID, itemNo, itemAddress, itemUrl, itemPrice) => {
-    const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
-    const response = await axios.post(postBookMarkURL)
+  const postBookmarkData = async (e, userID, itemNo, itemAddress, itemUrl, itemPrice) => {
+    if (userID === '') {
+      alert('로그인이 필요한 서비스입니다.')
+    } else {
+      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
+      const response = await axios.post(postBookMarkURL)
+    }
   }
 
   return (
     <div className="option_wrap">
       <div className="button_group_wrap">
         <div className="button_layer_wrap">
-          <button type="button" className={`${isClickButton === 1 ? 'button-active' : 'button'}`}
-            onClick={() => (isClickButton !== 1 ? setIsClickButton(1) : setIsClickButton(0))}>
-            업종
-          </button>
           <button type="button" className={`${isClickButton === 2 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 2 ? setIsClickButton(2) : setIsClickButton(0))}>
             가격
           </button>
-        </div>
-        <div className="button_layer_wrap">
           <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
             크기 및 층수
           </button>
+        </div>
+        <div className="show_item_button_layer_wrap">
           <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
             매물
@@ -224,20 +224,6 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
         </div>
       </div>
 
-      {isClickButton === 1 && <div className="sector_options_wrap">
-        <Autocomplete
-          {...sector} value={sector || null}
-          onChange={(event, newSector) => {
-            // setDataList(dataList.sector)
-            setCompleteDataList(newSector)
-            setSector(newSector)
-          }}
-          id="controllable-states-demo"
-          options={SectorsList}
-          sx={{ width: 280 }}
-          renderInput={(params) => <TextField {...params} label="업종 선택" />}
-        />
-      </div>}
       {isClickButton === 2 && <div className="price_options_wrap">
         <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group">거래유형</FormLabel>
@@ -427,10 +413,10 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
               </div>
             </div>
             <div className="detail_icon_wrap">
-              <BsFillBookmarkStarFill className="bookmark_wrap" size="24" color="gray"
-              // onClick={postBookmarkData(localStorage.getItem('user'), itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
+              <BsFillBookmarkStarFill className="bookmark_icon_wrap" size="24" color="gray"
+                onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
               />
-              <BsLink45Deg className="link_wrap" size="24" color="black"
+              <BsLink45Deg className="link_icon_wrap" size="24" color="black"
                 onClick={() => window.open(`${itemDetailData.cpPcArticleUrl}`)} />
             </div>
             <div className="detail_border_wrap">
