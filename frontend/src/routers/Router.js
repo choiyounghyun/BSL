@@ -41,9 +41,8 @@ function Router({ getUserData }) {
                 <Route path="share" element={<ShareList />} />
                 <Route path="request" element={<RequestList />} />
               </Route>
-              <Route path="/ranking" element={<Ranking />}>
-                <Route path="detail/:id" element={<RankingDetail />} />
-              </Route>
+              <Route path="/ranking" element={<Ranking />}></Route>
+              <Route path="/ranking/detail/:id" element={<RankingDetail />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/mypage" element={<MyPage />} />

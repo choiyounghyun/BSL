@@ -9,22 +9,21 @@ import logo from "../assets/images/mainlogo.svg";
 
 function Main(props) {
   useEffect(() => {
-    if ((localStorage.getItem('user')) === null) {
-      setIsLogin(false)
+    if (localStorage.getItem("user") === null) {
+      setIsLogin(false);
     } else {
-      getuserInfo()
+      getuserInfo();
     }
-  })
+  });
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
   const getuserInfo = () => {
-    if (userinfo === (localStorage.getItem('user'))) {
+    if (userinfo === localStorage.getItem("user")) {
     } else {
       console.log(userinfo);
-      setUserinfo(localStorage?.getItem('user'))
-      setIsLogin(true)
-
+      setUserinfo(localStorage?.getItem("user"));
+      setIsLogin(true);
     }
   };
 
@@ -32,7 +31,7 @@ function Main(props) {
     setIsLogin(false);
     localStorage.removeItem("user");
     setUserinfo("");
-  }
+  };
   const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
@@ -66,7 +65,7 @@ function Main(props) {
         </Link>
       </div>
     </>
-  )
+  );
   return (
     <div id="main" data-barba="wrapper">
       <div className="trans-left-img">
@@ -91,8 +90,9 @@ function Main(props) {
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${menu === "active" ? "--active" : ""
-                  }`}
+                className={`header__head-circle ${
+                  menu === "active" ? "--active" : ""
+                }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">
@@ -136,8 +136,7 @@ function Main(props) {
               </Link>
             </div>
             <div className="middle-menu__ranking-description"></div>
-            <div className="middle-menu__user">
-            </div>
+            <div className="middle-menu__user"></div>
           </div>
           <div className={`ground-right ${fade ? { menuToggle } : ""}`}>
             <div className="ground-right__img-wrapper">
@@ -175,7 +174,3 @@ function Main(props) {
 }
 
 export default Main;
-
-
-
-
