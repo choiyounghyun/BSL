@@ -33,6 +33,7 @@ function OnSocialLogin() {
         refreshToken: refreshtoken,
         success: true,
       })
+      localStorage.setItem(user || "");
       navigate("/");
     } else {
       navigate("/signin");
