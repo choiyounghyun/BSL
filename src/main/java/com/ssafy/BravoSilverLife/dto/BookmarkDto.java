@@ -20,6 +20,7 @@ public class BookmarkDto {
     public static BookmarkDto of(Bookmark bookmarkEntity) {
 
         BookmarkDto bookmarkDto = BookmarkDto.builder()
+                .articleNo(bookmarkEntity.getArticleNo())
                 .address(bookmarkEntity.getAddress())
                 .price(bookmarkEntity.getPrice())
                 .url(bookmarkEntity.getUrl())

@@ -394,11 +394,14 @@ public class EstateServiceImpl implements EstateService {
     @Override
     public List<BookmarkDto> getBookmark(String id) throws Exception {
         User user = userRepository.findById(id);
-        List<Bookmark> bookmarks = bookmarkRepository.findByUser(user);
+        System.out.println("@@@@@: " + user.getIdx());
+        List<Bookmark> bookmarks = bookmarkRepository.findAll();
         List<BookmarkDto> bookmarkDtos = new ArrayList<>();
 
         for (Bookmark temp : bookmarks) {
-            bookmarkDtos.add(BookmarkDto.of(temp));
+            if (temp.getUser().getId().equals(id)) {
+                bookmarkDtos.add(BookmarkDto.of(temp));
+            }
         }
         return bookmarkDtos;
     }
