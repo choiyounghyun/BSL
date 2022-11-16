@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios"
 
 function OnSocialLogin() {
-  const [user, SetUser] = useState(
-    {
-      accessToken: "",
-      code: 0,
-      mas: "Success",
-      refreshToken: "",
-      success: true,
-    });
   const params = useParams();
   const navigate = useNavigate();
-
+  const getuserdata = (refreshtoken) => {
+    return axios
+      .get("https://k7c208.p.ssafy.io/api/auth/userinfo", {
+        headers: {
+          RefreshToken: refreshtoken,
+        },
+      })
+      .then((response) => {
+        localStorage.setItem("userdata", JSON.stringify(response.data) || "");
+      })
+  }
 
   useEffect(() => {
     const tokens = params.params;
@@ -23,17 +26,15 @@ function OnSocialLogin() {
 
       const refreshtoken = tokens?.slice(refresh_start + 13, access_start - 1);
       const accesstoken = tokens?.slice(access_start + 12, tokens.length);
-      // localStorage.setItem("token", accesstoken || "");
-      // localStorage.setItem("refresh_token", refreshtoken || "");
-
-      SetUser({
-        accessToken: accesstoken,
-        code: 0,
-        mas: "Success",
-        refreshToken: refreshtoken,
+      const user = (JSON.stringify({
         success: true,
-      })
-      localStorage.setItem(user || "");
+        code: 0,
+        msg: "Success",
+        accessToken: accesstoken,
+        refreshToken: refreshtoken,
+      }))
+      localStorage.setItem("user", user || "");
+      getuserdata(refreshtoken);
       navigate("/");
     } else {
       navigate("/signin");
