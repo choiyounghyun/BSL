@@ -6,15 +6,14 @@ import banner from "../assets/images/mypage-banner.jpg";
 function MyPage() {
   const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
-    let token = localStorage.getItem("accessToken");
+    let token = localStorage.getItem("refreshToken");
     console.log(token);
-    axios({
-      url: "https://k7c208.p.ssafy.io/api/auth/userinfo",
-      method: "get",
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    })
+    axios
+      .get("https://k7c208.p.ssafy.io/api/auth/userinfo", {
+        headers: {
+          RefreshToken: { token }
+        }
+      })
       .then(res => {
         console.log(res.data);
         setUserInfo(res.data);
@@ -33,7 +32,7 @@ function MyPage() {
       </div>
       <div className="mypage-container">
         <div className="info">
-          <div className="info__name">{userInfo.nickname}</div>
+          <div className="info__name">{userInfo?.nickname}</div>
           <div className="info__number"></div>
           <div className="info__password">
             <button type="button"></button>
