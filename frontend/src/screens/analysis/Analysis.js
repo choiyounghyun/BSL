@@ -7,7 +7,7 @@ import './Analysis.css'
 
 import Logo from '../../assets/AnalysisImages/BSL_Logo.png'
 
-const Analysis = () => { // 상권분석
+const Analysis = ({ userId }) => { // 상권분석
 	const [optionDataList, setOptionDataList] = useState({
 		place: '', sector: '', tradeType: 'all', floor: 'all',
 		monthly: [0, 100], deposit: [0, 100], sale: [0, 100], room: [0, 100]
@@ -83,7 +83,8 @@ const Analysis = () => { // 상권분석
 					<SideBar className='sidebar_wrap'
 						optionDataList={optionDataList} setOptionDataList={setOptionDataList}
 						emptyStore={emptyStore} setEmptyStore={setEmptyStore}
-						floatingPopulationDong={floatingPopulationDong} />
+						floatingPopulationDong={floatingPopulationDong}
+						userId={userId} />
 				</div>
 			}
 		</>

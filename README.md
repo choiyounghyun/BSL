@@ -1,60 +1,220 @@
+<div align="center">
+<img src ="https://user-images.githubusercontent.com/97828427/201554716-a973cd63-6fc1-41c2-9ce1-48a5b9505d8a.png" width=70/>
+  <h1>Bravo Silver Life</h1>
+  <br/>
+</div>
 
-## ✨브랜칭 전략
+- 👉 [서비스 페이지](https://k7c208.p.ssafy.io)
+- 👉 [노션](https://www.notion.so/SSAFY-f54ede87080f401faf3d9c3846ffca93)
+<!-- - 👉 [시연영상]() -->
 
-* Master – develop – 
-  * feature/front-기능(`lower camel`)
-  * feature/back-기능(`lower camel`)
+<br />
 
+## 목차
 
+1. [**서비스 소개**](#🤷‍♂️-서비스-소개)
+1. [**기획 배경**](#💡-기획배경)
+1. [**기술 스택**](#🛠-기술-스택)
+1. [**핵심 기능**](#⭐-핵심-기능)
+1. [**프로젝트 구성도**](#📂-프로젝트-구성도)
+1. [**개발 팀 소개**](#👪-개발-팀-소개)
+1. [**개발 기간**](#📅-개발-기간)
+1. [**ETC**](#🎸-etc)
 
-## ✨Commit 규칙
+<br />
 
-* 지라이슈번호 | [feat] Add 소문자 commit msg
+<div id="1"></div>
 
-* Type
+## 🤷‍♂️ 서비스 소개
 
-  * `[feat]`: a new feature
-  * `[fix]`: a bug fix
-  * `[docs]`: changes to documentation
-  * `[style]`: formatting, missing semi, etc; no code change
-  * `[refactor]`: refactoring production code
-  * `[test]`: adding tests, refactoring test; no production code change
-  * `[chore]`: updating build tasks, package manager configs, etc; no production code change
+**`Bravo Silver Life`** 는 요식업 창업시 창업 위치를 추천해주는 프로젝트입니다.
 
-* Verb
+1. 유저들은 상권분석 페이지를 통해 상가 매물의 정보를 확인할 수 있습니다.
+2. 선택한 상가 매물 위치를 기준으로 역세권, 유동인구, 인구밀도, 주변 점포수에 대한 평점을 계산해 보여줍니다.
+3. 마음에 드는 상가 매물을 북마크 하여 매일 문자메시징 서비스를 이용할 수 있습니다.
+4. 인기매장 페이지를 통해 매장 인기 순, 매장 수 순에 대한 정보를 확인할 수 있습니다.
 
-  | 단어      | 의미                                                         |
-  | :-------- | :----------------------------------------------------------- |
-  | FIX       | 올바르지 않은 동작을 고친 경우                               |
-  | ADD       | 코드나 테스트, 예제, 문서 등의 추가가 있을 때                |
-  | REMOVE    | 코드의 삭제가 있을 때                                        |
-  | USE       | 특별히 무언가를 사용해 구현을 하는 경우                      |
-  | REFACTOR  | 전면 수정이 있을 때 사용                                     |
-  | SIMPLIFY  | 복잡한 코드를 단순화 할 때                                   |
-  | UPDATE    | 개정이나 버전 업데이트가 있을 때.원래도 정상적으로 동작하고 있었지만, 수정, 추가, 보완을 한다는 개념.코드보다는 주로 문서나 리소스, 라이브러리등에 사용 |
-  | IMPROVE   | 호환성, 테스트 커버리지, 성능, 검증 기능, 접근성 등에서 향상이 있을 때 |
-  | MAKE      | 주로 기존 동작의 변경을 명시                                 |
-  | IMPLEMENT | 코드가 추가된 정도보다 더 주목할 만한 구현체를 완성시켰을 때 |
-  | REVISE    | Update와 비슷하나 문서의 개정이 있을 때                      |
-  | CORRECT   | 주로 문법의 오류나 타입의 변경, 이름 변경 등에 사용          |
-  | ENSURE    | 무엇이 확실하게 보장받는다는 것을 명시합니다. if 구문처럼 조건을 확실하게 주는 경우 등에 사용 |
-  | PREVENT   | 특정한 처리를 못하게 막음                                    |
-  | AVOID     | ‘Prevent’는 못하게 막지만, ‘Avoid’는 회피합니다. if 구문으로 특정한 동작을 제외시키는 경우 |
-  | MOVE      | 코드의 이동이 있을 때 사용                                   |
-  | RENAME    | 이름 변경이 있을 때 사용                                     |
-  | ALLOW     | Make와 비슷하지만, 허용을 표현할 때 사용                     |
-  | VERIFY    | 검증 코드를 넣을 때 주로 사용                                |
-  | SET       | 변수 값을 변경하는 등의 작은 수정에 주로 사용                |
-  | PASS      | 파라메터를 넘기는 처리에 주로 사용                           |
+<br />
 
+<div id="2"></div>
 
+## 💡 기획배경
 
-## ✨Jira
+![배경1](https://user-images.githubusercontent.com/97828427/201811672-e71126dc-528d-495d-995c-78936cb9d106.png)
 
-> Epic / Story 사용
->
-> story points 는 피보나치 수열
+- 뭐로할까
 
-* Story 
-  * [Front] 상세
-  * [Back] 상세
+<br />
+
+<div id="3"></div>
+
+## 🛠 기술 스택
+
+### **Front-end**
+
+| <img src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" width="50px" height="50px" /> |
+| :----------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+|                                                             HTML5                                                              |                                                             CSS3                                                             |                                                           JavaScript                                                            |
+
+| <img src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React.js" width="50px" height="50px" /> |
+| :-------------------------------------------------------------------------------------------------------------------------------: |
+|                                                               React                                                               |
+
+### **Back-end**
+
+| <img src="https://profilinator.rishav.dev/skills-assets/java-original-wordmark.svg" alt="Java" width="50px" height="50px" /> | <img src="https://www.seekpng.com/png/full/142-1425436_spring-boot.png" alt="Spring-Boot" width="110px" height="50px" /> | <img src="https://seeklogo.com/images/J/jwt-logo-65D86B4640-seeklogo.com.png" alt="jwt" width="50px" height="50px" /> | <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fzeffk%2Fbtrc3pNddy4%2FbTtid8MLs8HPjAmADYDfa0%2Fimg.png" alt="SpringSecurity" width="50px" height="50px"> |
+| :--------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                             Java                                                             |                                                       Spring-Boot                                                        |                                                          JWT                                                          |                                                                                                     SpringSecurity                                                                                                     |
+
+| <img src="https://minkukjo.github.io/assets//img/spring-data-logo.png" alt="JPA" width="50px" height="50px"> | <img src="https://seeklogo.com/images/M/mariadb-logo-3CC78F4035-seeklogo.com.png" alt="MariaDB" width="110px" height="50px" /> |
+| :----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
+|                                                     JPA                                                      |                                                            MariaDB                                                             |
+
+### **Deploy**
+
+| <img src="https://profilinator.rishav.dev/skills-assets/nginx-original.svg" alt="NGiNX" width="50px" height="50px" /> | <img src="https://seeklogo.com/images/A/aws-rds-relational-database-service-logo-99EA3E8EA4-seeklogo.com.png" alt="RDS" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/docker-original-wordmark.svg" alt="docker" width="50px" height="50px" /> | <img src="https://seeklogo.com/images/A/aws-ec2-elastic-compute-cloud-logo-2F9E73DBA5-seeklogo.com.png" alt="EC2" height="50px" width="50px" /> |
+| :-------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                         NGiNX                                                         |                                                                          RDS                                                                          |                                                              docker                                                              |                                                                       EC2                                                                       |
+
+| <img src="https://profilinator.rishav.dev/skills-assets/gitlab.svg" alt="GitLab" height="50px" width="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/jenkins-icon.svg" alt="Jenkins" height="50px" width="50px"/> |
+| :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
+|                                                     GitLab                                                     |                                                       Jenkins                                                        |
+
+<br />
+
+<div id="4"></div>
+
+## ⭐ 핵심 기능
+
+| 기능               | 내용                                                                   |
+| :----------------- | :--------------------------------------------------------------------- |
+| 상가 매물 검색     | 다양한 필터를 통해 상가 매물을 검색할 수 있습니다.                     |
+| 창업 평가지수 확인 | 선택한 매물을 기준으로 주변 요소를 고려하여 평가지수를 보여줍니다.     |
+| 매물 북마크        | 문자메시징 서비스를 통해 유저가 북마크한 매물을 하루단위로 보내줍니다. |
+| 인기매장 검색      | 많이 있는 매장, 인기 매장을 순서대로 보여줍니다.                       |
+
+|   회원가입    |
+| :-----------: |
+| ![회원가입]() |
+
+|   메인페이지    |
+| :-------------: |
+| ![메인페이지]() |
+
+|   마이페이지    |
+| :-------------: |
+| ![마이페이지]() |
+
+| 상권분석 |
+| :------: |
+
+|![상권분석]()
+|
+
+|   인기매장    |
+| :-----------: |
+| ![인기매장]() |
+
+<br />
+
+<div id="5"></div>
+
+## 📂 프로젝트 구성도
+
+| 아키텍처(Architecture) |
+| :--------------------: |
+|      <img src="">      |
+
+| 개체-관계 모델(ERD) |
+| :-----------------: |
+|    <img src="">     |
+
+<br />
+
+<div id="6"></div>
+
+## 👪 개발 팀 소개
+
+<table>
+  <tr>
+    <td align="center" width="150px">
+      <a href="#" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/43947420?v=4" alt="최영현 프로필" />
+      </a>
+    </td>
+    <td align="center" width="150px">
+      <a href="#" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/97828427?v=4" alt="김경호 프로필" />
+      </a>
+    </td>
+    <td align="center" width="150px">
+      <a href="#" target="_blank">
+        <img src="" alt="정관철 프로필" />
+      </a>
+    </td>
+    <td align="center" width="150px">
+      <a href="#" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/97574675?v=4" alt="고요한 프로필" />
+      </a>
+    </td>
+    <td align="center" width="150px">
+      <a href="#" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/82526468?v=4" alt="유연길 프로필" />
+      </a>
+    </td>
+    <td align="center" width="150px">
+      <a href="#" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/97578399?v=4" alt="장우주 프로필" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/choiyounghyun" target="_blank">
+        최영현<br />(Backend & 팀장)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/rudgh46" target="_blank">
+        김경호<br />(Backend)
+      </a>
+    </td>
+    <td align="center">
+      <a href="" target="_blank">
+        정관철<br />(Backend)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/rdg9074" target="_blank">
+        고요한<br />(Frontend)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/PIMA1233" target="_blank">
+        유연길<br />(Frontend)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/jang-uju" target="_blank">
+        장우주<br />(Frontend)
+      </a>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<div id="7"></div>
+
+## 📅 개발 기간
+
+`22.10.11 ~ 22.11.21 (6주)`
+
+<br />
+
+<div id="8"></div>
+
+## 🎸 ETC
+
+- 포팅메뉴얼 및 기타 정보
+  - [보러가기](exec/README.md)

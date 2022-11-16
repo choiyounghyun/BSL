@@ -75,6 +75,7 @@ function Ranking(props) {
                     onClick={() => setCategory(menu[idx])}
                     src={menuImg[idx]}
                     alt={menu[idx]}
+                    style={{ cursor: "pointer" }}
                   />
                   <div className="titless">
                     <p>{menu[idx]}</p>

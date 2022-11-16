@@ -27,10 +27,20 @@ function BrandCard({ type, category }) {
         <Row xs={1} md={2} className="g-4">
           {card.map((data, idx) => (
             <Col key={idx}>
-              <Link to={`/ranking/detail/${data.registrationNumber}`}>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontWeight: "bold"
+                }}
+                to={`/ranking/detail/${data.registrationNumber}`}
+              >
                 <div
                   className="card"
-                  style={{ display: "flex", flexDirection: "row" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "row"
+                  }}
                 >
                   {/* <div className="card-left"> */}
                   <div className="card__num">{idx + 1}</div>
