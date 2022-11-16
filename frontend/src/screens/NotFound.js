@@ -13,7 +13,7 @@ function NotFound(props) {
       <div className="notfound-logo">
         <img src={cryinglogo} alt="cryinglogo" onClick={goHome} />
         <br />
-        <p>브랜드에 대한 정보가 존재하지 않습니다.</p>
+        <p>데이터가 존재하지 않습니다.</p>
       </div>
     </div>
   );

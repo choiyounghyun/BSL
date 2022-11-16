@@ -10,22 +10,24 @@ import { Token } from "@mui/icons-material";
 
 function Main(props) {
   useEffect(() => {
-    if ((localStorage.getItem("user")) === null) {
-      setIsLogin(false)
-    } else { getuserInfo() }
-  })
+    if (localStorage.getItem("user") === null) {
+      setIsLogin(false);
+    } else {
+      getuserInfo();
+    }
+  });
 
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
 
   const getuserInfo = () => {
-    if (userinfo !== (localStorage.getItem("user"))) {
-      setUserinfo(localStorage?.getItem("user"))
-      setIsLogin(true)
+    if (userinfo !== localStorage.getItem("user")) {
+      setUserinfo(localStorage?.getItem("user"));
+      setIsLogin(true);
     } else {
       // setUsertoken(localStorage?.getItem("token"))
-      setIsLogin(true)
+      setIsLogin(true);
     }
   };
 
@@ -43,7 +45,9 @@ function Main(props) {
       setMenu("");
     }
   };
-
+  const switchRanking = () => {
+    setTimeout(setFade("fade"), 3000);
+  };
   const loginbutton = (
     <>
       <div className="middle-menu__user-login">
@@ -64,6 +68,11 @@ function Main(props) {
       <div className="middle-menu__user-logout" onClick={() => handleLogout()}>
         <Link to="/" className="middle-menu__user-logout__link">
           LOGOUT
+        </Link>
+      </div>
+      <div className="middle-menu__user-mypage">
+        <Link to="/mypage" className="middle-menu__user-mypage__link">
+          MYPAGE
         </Link>
       </div>
     </>
@@ -92,8 +101,9 @@ function Main(props) {
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${menu === "active" ? "--active" : ""
-                  }`}
+                className={`header__head-circle ${
+                  menu === "active" ? "--active" : ""
+                }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">

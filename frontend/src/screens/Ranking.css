@@ -7,7 +7,19 @@
   position: absolute;
   height: 100vh;
   overflow: hidden !important;
+  /* animation: change 2s ease forwards; */
 }
+/* 
+@keyframes change {
+  from {
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+} */
 
 .ranking-container {
   position: relative;
