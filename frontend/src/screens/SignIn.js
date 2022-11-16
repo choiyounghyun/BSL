@@ -14,16 +14,27 @@ const SignIn = ({ setAuthenticate }) => {
 
   const navigate = useNavigate()
 
+  const getuserdata = (refreshtoken) => {
+    return axios
+      .get("https://k7c208.p.ssafy.io/api/auth/userinfo", {
+        headers: {
+          RefreshToken: refreshtoken,
+        },
+      })
+      .then((response) => {
+        localStorage.setItem("userdata", JSON.stringify(response.data) || "");
+      })
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await authService.signin(id, password).then(
-        () => {
-          setACCESS_TOKEN(e.target.ACCESS_TOKEN)
+        (response) => {
+          const refreshtoken = response?.refreshToken
           setLoginInfo("True")
-          setId(id)
+          getuserdata(refreshtoken);
           navigate('/'); // login 완료시 main page로 이동
-          console.log(id)
           // window.location.reload()
         },
         (error) => {
