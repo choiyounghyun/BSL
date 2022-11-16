@@ -21,7 +21,9 @@ const SignIn = ({ setAuthenticate, setUserId }) => {
         () => {
           setACCESS_TOKEN(e.target.ACCESS_TOKEN)
           setLoginInfo("True")
+          setId(id)
           navigate('/'); // login 완료시 main page로 이동
+          console.log(id)
           // window.location.reload()
           setUserId(id)
         },
