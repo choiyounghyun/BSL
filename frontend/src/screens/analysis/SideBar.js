@@ -68,12 +68,8 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
         <img src={Logo} className="logo_img" onClick={gotoMain} />
 
         <div className="search_input_options_wrap">
-          {/* 검색어 입력창 */}
-          <SearchPlaceInput isSideBarOpen={isSideBarOpen}
-            place={place} setPlace={setPlace} submitData={submitData} />
           {/* 조건 검색 및 북마크 창 탭 */}
           <Autocomplete
-            className="sector_option_wrap"
             {...sector} value={sector || null}
             onChange={(event, newSector) => {
               // setDataList(dataList.sector)
@@ -85,6 +81,9 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
             sx={{ width: 280 }}
             renderInput={(params) => <TextField {...params} label="업종 선택" />}
           />
+          {/* 검색어 입력창 */}
+          <SearchPlaceInput isSideBarOpen={isSideBarOpen}
+            place={place} setPlace={setPlace} submitData={submitData} />
         </div>
 
         <TabMenu isSideBarOpen={isSideBarOpen}
