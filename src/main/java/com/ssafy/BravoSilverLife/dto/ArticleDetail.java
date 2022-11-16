@@ -37,7 +37,7 @@ public class ArticleDetail {
     String direction;
     String buildingName;
     String cpPcArticleUrl;
-    String rentPrice;
+    long rentPrice;
     long dealPrice;
     long warrantPrice;
     JSONArray articlePhotos;

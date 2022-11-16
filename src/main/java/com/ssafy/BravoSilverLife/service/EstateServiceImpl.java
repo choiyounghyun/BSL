@@ -283,6 +283,7 @@ public class EstateServiceImpl implements EstateService {
 
         JSONParser parser = new JSONParser();
         JSONObject jsonObj = (JSONObject) parser.parse(response.toString());
+        System.out.println(jsonObj);
 
         JSONObject articleDetail = (JSONObject) jsonObj.get("articleDetail");
         JSONObject articleAddition = (JSONObject) jsonObj.get("articleAddition");
@@ -292,12 +293,6 @@ public class EstateServiceImpl implements EstateService {
         String[] floorInfo = ((String) articleAddition.get("floorInfo")).split("/");
 
         String rentPrice = null;
-
-        try {
-            rentPrice = (String) articlePrice.get("rentPrice");
-        } catch (Exception e) {
-
-        }
 
 
         ArticleDetail aD;
@@ -327,7 +322,7 @@ public class EstateServiceImpl implements EstateService {
                     .direction((String) articleAddition.get("direction"))
                     .buildingName((String) articleAddition.get("buildingName"))
                     .cpPcArticleUrl((String) articleAddition.get("cpPcArticleUrl"))
-                    .rentPrice(rentPrice)
+                    .rentPrice((Long) articlePrice.get("rentPrice"))
                     .dealPrice((Long) articlePrice.get("dealPrice"))
                     .warrantPrice((Long) articlePrice.get("warrantPrice"))
                     .articlePhotos(articlePhotos)
@@ -359,7 +354,7 @@ public class EstateServiceImpl implements EstateService {
                     .direction((String) articleAddition.get("direction"))
                     .buildingName((String) articleAddition.get("buildingName"))
                     .cpPcArticleUrl((String) articleAddition.get("cpPcArticleUrl"))
-                    .rentPrice(rentPrice)
+                    .rentPrice((Long) articlePrice.get("rentPrice"))
                     .dealPrice((Long) articlePrice.get("dealPrice"))
                     .warrantPrice((Long) articlePrice.get("warrantPrice"))
                     .articlePhotos(articlePhotos)
