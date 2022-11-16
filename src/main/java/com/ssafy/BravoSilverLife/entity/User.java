@@ -71,6 +71,9 @@ public class User extends BaseTimeEntity implements UserDetails {
     public void changeNickname(String nickname) {
         this.nickname = nickname;
     }
+    public void changePassword(String newpassword){
+        this.password=newpassword;
+    }
     public void changePhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }

@@ -47,11 +47,25 @@ public class UserService {
         return 0;
     }
 
+    public int changePassword(String nickname, String password, String newpassword) {
+//        System.out.println("?????????????????????");
+        User findUser = userRepository.findByNickname(nickname);
+//        System.out.println("@@@"+findUser.getId());
+        if (passwordEncoder.matches(password, findUser.getPassword())) {
+            findUser.changePassword(passwordEncoder.encode(newpassword));
+            if (passwordEncoder.matches(newpassword, findUser.getPassword())) {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
     public int changePhoneNumber(String phoneNumber, String authNumber, String newPhoneNumber) {
         Optional<User> user = userRepository.findByPhoneNumber(phoneNumber); //기존번호로 user 정보 찾고
         PhoneAuth phoneAuth = phoneAuthRepository.findByPhoneNumber(newPhoneNumber); //새 폰번호 인증번호 확인
 
-        if((phoneAuth.getPhoneAuth()).equals(authNumber)){ // 새 폰번호 인증번호 확인 시
+        if ((phoneAuth.getPhoneAuth()).equals(authNumber)) { // 새 폰번호 인증번호 확인 시
             user.get().changePhoneNumber(newPhoneNumber); // user 정보에서 핸드폰 번호 변경
         }
 //        PhoneAuth phoneAuth = phoneAuthRepository.findByPhoneNumber(phoneNumber);

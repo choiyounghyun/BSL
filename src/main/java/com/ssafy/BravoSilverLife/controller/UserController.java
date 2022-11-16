@@ -26,8 +26,8 @@ public class UserController {
     @Data
     static class CreateUserResponse {
         private Long user_id;
-        public CreateUserResponse(Long user_id)
-        {
+
+        public CreateUserResponse(Long user_id) {
             this.user_id = user_id;
         }
     }
@@ -55,9 +55,8 @@ public class UserController {
     public int chageNickname(@PathVariable("nickname") String nickname,
                              @PathVariable("newnickname") String newNickname) {
         try {
-            return userService.changeNickname(nickname,newNickname);
-        } catch (Exception e)
-        {
+            return userService.changeNickname(nickname, newNickname);
+        } catch (Exception e) {
             return 0;
         }
     }
@@ -68,17 +67,23 @@ public class UserController {
 
         try {
             return userService.changePhoneNumber(request.phoneNumber, request.authNumber, request.newPhoneNumber);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("예외발생");
             return 0;
         }
 
-
-
     }
 
+    @PutMapping("/profile/changepw/{nickname}/{password}/{newpassword}")
+    @Operation(summary = "비밀번호 변경", description = "비밀번호 변경 성공시 1 실패시 0 반환")
+    public int changePassword(@PathVariable("nickname") String nickname, @PathVariable("password") String password, @PathVariable("newpassword") String newpassword) {
+        try {
+            return userService.changePassword(nickname, password, newpassword);
+        } catch (Exception e) {
 
+            return 0;
+        }
+    }
 
     @Data
     static class LoginUserRequest {
