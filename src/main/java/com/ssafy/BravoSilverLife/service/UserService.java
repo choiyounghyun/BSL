@@ -48,10 +48,14 @@ public class UserService {
     }
 
     public int changePhoneNumber(String phoneNumber, String authNumber, String newPhoneNumber) {
-        Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
+        Optional<User> user = userRepository.findByPhoneNumber(phoneNumber); //기존번호로 user 정보 찾고
+        PhoneAuth phoneAuth = phoneAuthRepository.findByPhoneNumber(newPhoneNumber); //새 폰번호 인증번호 확인
+
+        if((phoneAuth.getPhoneAuth()).equals(authNumber)){ // 새 폰번호 인증번호 확인 시
+            user.get().changePhoneNumber(newPhoneNumber); // user 정보에서 핸드폰 번호 변경
+        }
 //        PhoneAuth phoneAuth = phoneAuthRepository.findByPhoneNumber(phoneNumber);
-        user.get().changePhoneNumber(newPhoneNumber);
-        phoneAuthRepository.deleteByPhoneNumber(phoneNumber);
+        phoneAuthRepository.deleteByPhoneNumber(phoneNumber); //기존 번호 인증번호 삭제
 
         return 1;
     }

@@ -40,7 +40,7 @@ public class UserController {
 
     @Data
     static class changePhoneNumberRequest {
-        @NotEmpty
+
         private String phoneNumber;
         @NotEmpty
         private String newPhoneNumber;
