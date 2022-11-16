@@ -32,15 +32,15 @@ function Profile(props) {
         <div className="profile__region">
           <p>관심지역</p>
           <select onChange={handleSelect} value={Selected}>
-            {selectList.map(item => (
-              <option value={item} key={item}>
+            {selectList.map((item, idx) => (
+              <option value={item} key={idx}>
                 {item}
               </option>
             ))}
           </select>
           <select>
             {(Selected === "강북" ? gangbook : gangdong).map(sub => (
-              <option>{sub}</option>
+              <option key={sub}>{sub}</option>
             ))}
           </select>
           <div className="profile__region-btn"></div>
