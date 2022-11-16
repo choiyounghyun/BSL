@@ -19,9 +19,10 @@ import RankingDetail from "../screens/RankingDetail";
 function Router({ getUserData }) {
   const location = useLocation();
   const [authenticate, setAuthenticate] = useState(false); // true이면 로그인
+  const [userId, setUserId] = useState('')
 
   return (
-    <div className="router">
+    < div className="router" >
       <Suspense>
         <TransitionGroup className="transition-group">
           <CSSTransition
@@ -43,10 +44,10 @@ function Router({ getUserData }) {
               </Route>
               <Route path="/ranking" element={<Ranking />}></Route>
               <Route path="/ranking/detail/:id" element={<RankingDetail />} />
-              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signin" element={<SignIn setUserId={setUserId} />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/mypage" element={<MyPage />} />
-              <Route path="/anal" element={<Analysis />} />
+              <Route path="/anal" element={<Analysis userId={userId} />} />
             </Routes>
           </CSSTransition>
         </TransitionGroup>

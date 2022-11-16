@@ -5,7 +5,7 @@ import authService from "./sign/AuthService"
 import axios from 'axios'
 import { color } from '@mui/system'
 
-const SignIn = ({ setAuthenticate }) => {
+const SignIn = ({ setAuthenticate, setUserId }) => {
 
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
@@ -25,6 +25,7 @@ const SignIn = ({ setAuthenticate }) => {
           navigate('/'); // login 완료시 main page로 이동
           console.log(id)
           // window.location.reload()
+          setUserId(id)
         },
         (error) => {
           alert("아이디 혹은 비밀번호를 확인해주세요")
@@ -55,7 +56,7 @@ const SignIn = ({ setAuthenticate }) => {
               value={id}
               placeholder="아이디"
               onChange={(e) => {
-                setId(e.target.value);
+                setId(e.target.value)
               }}
               required
             />
