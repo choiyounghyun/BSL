@@ -5,6 +5,7 @@ import SideBar from './SideBar'
 import axios from 'axios'
 import './Analysis.css'
 
+import Loading_Logo from '../../assets/AnalysisImages/BSL_Loading_Logo.png'
 import Logo from '../../assets/AnalysisImages/BSL_Logo.png'
 
 const Analysis = () => { // 상권분석
@@ -72,7 +73,7 @@ const Analysis = () => { // 상권분석
 		<>
 			{isLoading === false &&
 				<div className='loading_wrap flip'>
-					<img src={Logo} alt='Logo' />
+					<img src={Loading_Logo} alt='Logo' />
 				</div>
 			}
 			{isLoading === true &&
