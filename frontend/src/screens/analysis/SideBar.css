@@ -6,6 +6,7 @@
 
   width: 100%;
   height: 100%;
+  /* font-family: 'andong'; */
 }
 
 .search_input_options_wrap {
@@ -92,3 +93,9 @@
     transform: rotate(-1deg);
   }
 }
+
+/* 
+@font-face {
+  font-family: "andong";
+  src: url("../../assets/font/Katuri.ttf");
+} */
