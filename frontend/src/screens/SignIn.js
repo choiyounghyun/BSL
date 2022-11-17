@@ -6,7 +6,7 @@ import axios from 'axios'
 import { color } from '@mui/system'
 import kakaologinimg from "../assets/images/kakaologin.png"
 
-const SignIn = ({ setAuthenticate, setUserId }) => {
+const SignIn = ({ setAuthenticate }) => {
 
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
@@ -37,7 +37,6 @@ const SignIn = ({ setAuthenticate, setUserId }) => {
           getuserdata(refreshtoken);
           navigate('/'); // login 완료시 main page로 이동
           // window.location.reload()
-          setUserId(id)
         },
         (error) => {
           alert("아이디 혹은 비밀번호를 확인해주세요")
