@@ -150,6 +150,15 @@ const BookMarkPlace = ({ optionDataList, userId, userBookMark }) => {
     getExactlyDongName(itemDetailListSave[index].longitude, itemDetailListSave[index].latitude)
   }
 
+  const deleteBookmarkData = async (e, userID, itemNo) => {
+    if (userID === '') {
+      alert('로그인이 필요한 서비스입니다.')
+    } else {
+      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}`
+      const response = await axios.delete(postBookMarkURL)
+    }
+  }
+
   return (
     <div className="bookmark_wrap">
       {userId === '' && <div className="need_login_page_wrap">
@@ -215,8 +224,8 @@ const BookMarkPlace = ({ optionDataList, userId, userBookMark }) => {
             </div>
           </div>
           <div className="detail_icon_wrap">
-            <BsFillBookmarkStarFill className="bookmark_icon_wrap" size="24" color="#E9E93A"
-            // onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
+            <BsFillBookmarkStarFill className="bookmark_icon_wrap" size="24" color="red"
+              onClick={(e) => deleteBookmarkData(e, userId, itemDetailData.articleNo)}
             />
             <BsLink45Deg className="link_icon_wrap" size="24" color="black"
               onClick={() => window.open(`${itemDetailData.cpPcArticleUrl}`)} />

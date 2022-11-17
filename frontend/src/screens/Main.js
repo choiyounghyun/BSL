@@ -6,14 +6,20 @@ import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
 import { Token } from "@mui/icons-material";
+import axios from "axios";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
   useEffect(() => {
-    if ((localStorage.getItem("user")) === null) {
+    if ((localStorage.getItem("user") === null)) {
       setIsLogin(false)
-    } else { getuserInfo() }
+    }
+    else {
+      getuserInfo()
+
+    }
   })
+
 
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
@@ -23,17 +29,22 @@ function Main(props) {
     if (userinfo !== (localStorage.getItem("user"))) {
       setUserinfo(localStorage?.getItem("user"))
       setIsLogin(true)
-    } else {
-      // setUsertoken(localStorage?.getItem("token"))
+    }
+    else {
       setIsLogin(true)
     }
   };
 
+
   const handleLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("userdata");
     setUserinfo("");
   };
+
+
+
   const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
   const menuToggle = () => {
