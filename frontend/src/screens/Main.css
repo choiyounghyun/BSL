@@ -232,6 +232,7 @@
   position: relative;
   z-index: 3;
   overflow: hidden;
+  background-color: black;
   transition: all 3s ease;
   display: flex;
   animation: fadeout 2s;
@@ -261,28 +262,39 @@
   }
 }
 
+.middle-menu__bg {
+  position: absolute;
+  width: 40vw;
+  height: 60vh;
+  top: 20%;
+  opacity: 0.6;
+}
+
+.middle-menu__bg > img {
+  width: 100%;
+  height: 100%;
+}
+
 .middle-menu__analysis {
   position: absolute;
-  top: 30%;
+  top: 10%;
   left: 0.5vw;
   width: 12vw;
   height: 4vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ff6347;
 }
 
 .middle-menu__ranking {
   position: absolute;
-  top: 50%;
+  top: 10%;
   right: 0.5vw;
   width: 12vw;
   height: 4vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ff7f50;
 }
 
 .middle-menu__analysis-title,
@@ -293,20 +305,40 @@
   font-weight: bold;
 }
 
-.middle-menu__analysis-description {
+.middle-menu__description-main {
   position: absolute;
-  top: 44%;
-  left: 0.5vw;
-  color: #ff6347;
-  font-size: 20px;
-  font-weight: bold;
+  top: 84%;
+  left: 10vw;
+  color: white;
+  font-size: 1vw;
 }
 
-.middle-menu__ranking-description {
+.middle-menu__description-ranking {
   position: absolute;
-  top: 64%;
-  right: 0.5vw;
-  color: #ff7f50;
+  top: 34%;
+  left: 40vw;
+  color: white;
+  font-size: 1vw;
+}
+
+.middle-menu__description-analysis {
+  position: absolute;
+  top: 29%;
+  left: -15vw;
+  color: white;
+  font-size: 1vw;
+}
+
+.middle-menu__description-analysis.--active {
+  font-size: 1vw;
+  transform: translateX(17vw);
+  transition: all 2s ease;
+}
+
+.middle-menu__description-ranking.--active {
+  font-size: 1vw;
+  transform: translateX(0vw);
+  transition: all 2s ease;
 }
 
 .middle-menu__user {

@@ -32,9 +32,10 @@
 .container-left {
   width: 40vw;
   height: 100vh;
-  background-color: #ff6347;
   /* display: flex;
   justify-content: center; */
+  background-image: url("../assets/images/ranking-coffee.jpg");
+  background-size: cover;
   filter: brightness(80%);
 }
 

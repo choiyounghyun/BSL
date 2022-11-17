@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 // import ranking from "../assets/images/ranking-side.jpg";
 import { Link } from "react-router-dom";
 import BrandCard from "../components/BrandCard.js";
+import rankingLeft from "../assets/images/ranking-coffee.jpg";
 import chicken from "../assets/images/chicken.png";
 import pizza from "../assets/images/pizza.png";
 import boonsik from "../assets/images/boonsik.png";
