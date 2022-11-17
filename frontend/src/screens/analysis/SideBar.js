@@ -125,7 +125,6 @@ const SectorsList = [
   { label: '중국식' },
   { label: '출장조리' },
   { label: '커피숍' },
-  { label: '키즈카페' },
   { label: '탕류(보신용)' },
   { label: '통닭(치킨)' },
   { label: '패밀리레스트랑' },
