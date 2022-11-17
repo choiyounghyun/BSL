@@ -3,14 +3,15 @@ import "./SignIn.css"
 import { Link, useNavigate } from 'react-router-dom'
 import authService from "./sign/AuthService"
 import axios from 'axios'
-import { color } from '@mui/system'
 import kakaologinimg from "../assets/images/kakaologin.png"
+import logoimg from "../assets/AnalysisImages/BSL_Logo.png"
+import bgimg from "../assets/images/bg.jpg"
+
 
 const SignIn = ({ setAuthenticate }) => {
 
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
-  const [ACCESS_TOKEN, setACCESS_TOKEN] = useState("")
   const [loginInfo, setLoginInfo] = useState(false)
 
   const navigate = useNavigate()
@@ -53,11 +54,14 @@ const SignIn = ({ setAuthenticate }) => {
   return (
 
     <section>
-      <div>
+      <div className="login_background">
+        {/* <img src={bgimg} alt="bgimg"></img> */}
         <div className="signin-div">
           <form onSubmit={(event) => handleLogin(event)} className="signinform">
             <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
-              <h1 className="title-h1" title="메인화면으로 돌아가기">Bravo Silver Life</h1>
+              <h1 className="title-h1" title="메인화면으로 돌아가기">
+                <img src={logoimg} alt="logoimg" />
+              </h1>
             </Link>
             <span>아이디와 비밀번호를 입력해주세요</span>
             <input
@@ -87,7 +91,6 @@ const SignIn = ({ setAuthenticate }) => {
           </form>
           <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
             <img src={kakaologinimg} className="kakaologinimg">
-
             </img>
           </a>
           <p className="gosignup">
@@ -95,7 +98,6 @@ const SignIn = ({ setAuthenticate }) => {
             <Link className="gosignupLink" to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>
           </p>
         </div>
-
       </div>
     </section >
   )

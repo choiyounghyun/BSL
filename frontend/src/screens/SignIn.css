@@ -1,8 +1,14 @@
+/* .login_background {
+  background-color: blue;
+  height: 100vw;
+  width: 100vh;
+} */
+
 .signin-div {
   width: 450px;
   min-width: 450px;
-  height: 500px;
-  min-height: 500px;
+  height: 600px;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;

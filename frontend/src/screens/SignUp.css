@@ -1,8 +1,8 @@
 .signupdiv {
-  width: 40vw;
-  min-width: 500px;
-  height: 50vh;
-  min-height: 500px;
+  width: 450px;
+  min-width: 450px;
+  height: 600px;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,9 +17,14 @@
 .title-h1 {
   font-weight: bold;
   margin: 20px;
+  padding: auto auto 20px 20px;
   font-size: 42px;
 }
 
+.title-h1:hover {
+  font-size: 42px;
+
+}
 
 .signupform {
   justify-content: center;
@@ -28,8 +33,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0 50px;
-  height: 100%;
+  padding: 0 30px;
+  /* height: 100%; */
   text-align: center;
 }
 
@@ -39,6 +44,7 @@ input {
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  outline: 3px;
 }
 
 .getauthnumber {
@@ -49,20 +55,63 @@ input {
   background-color: rgb(205, 205, 205);
   border-radius: 10px;
   border: 1px solid white;
-  padding: 10px 45px;
-  font-size: 14px;
+  padding: 10px 68px;
+  font-size: 18px;
   font-weight: bold;
 }
 
-.signupbutton {
-  margin-top: 10px;
-  width: 100px;
+.getauthnumber:hover {
+  margin: 10px 0 5px 0;
   width: auto;
   color: black;
   background-color: rgb(205, 205, 205);
   border-radius: 10px;
   border: 1px solid white;
-  padding: 10px 45px;
-  font-size: 14px;
+  padding: 10px 78px;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.signupbutton {
+  margin-top: 10px;
+  width: auto;
+  color: black;
+  background-color: #FBD8AF;
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px 86px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.signupbutton:hover {
+  margin: 10px 0 5px 0;
+  width: auto;
+  color: black;
+  background-color: #FBD8AF;
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px 108px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.gosignin {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  align-self: start;
+  margin-top: 15px;
+  padding-left: 50px;
+  width: 100%;
+}
+
+.gosigninLink:hover {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
 }
