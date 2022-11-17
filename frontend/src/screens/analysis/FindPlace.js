@@ -23,10 +23,12 @@ import floor_img from '../../assets/AnalysisImages/stairs.png'
 import subway_img from '../../assets/AnalysisImages/subway.png'
 import { BsFillBookmarkStarFill, BsLink45Deg } from "react-icons/bs"
 
+import Rating from '@mui/material/Rating'
+
 import { Chart } from "react-google-charts"
 import person from '../../assets/AnalysisImages/person.png'
 
-const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
+const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
   const [isClickButton, setIsClickButton] = useState(1)
   const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
@@ -44,6 +46,10 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
   const [dayData, setDayData] = useState([])
   const [dayAvgData, setDayAvgData] = useState(0)
   const [perHourPopulationData, setPerHourPopulationData] = useState([])
+
+  const [itemNearStoreScore, setItemNearStoreScore] = useState(0)
+  const [itemNearStationScore, setItemNearStationScore] = useState(0)
+  const [itemNearPopulationScore, setItemNearPopulationScore] = useState(0)
 
   useEffect(() => {
     if (emptyStore.length !== 0) {
@@ -137,6 +143,18 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     getExactlyDongName(detailResponse.data.longitude, detailResponse.data.latitude)
   }
 
+  const getItemNearStoreScore = async (place) => {
+    const getNearStoreNumURL = `https://k7c208.p.ssafy.io/api/v1/store/stores?dong=${place}&category=${optionDataList.sector}`
+    const nearStoreResponse = await axios.get(getNearStoreNumURL)
+
+    console.log(nearStoreResponse.data.length)
+    if (nearStoreResponse.data.length >= 50) {
+      setItemNearStoreScore(0.5)
+    } else {
+      setItemNearStoreScore(5 - ((Math.trunc(nearStoreResponse.data.length / 5)) * 0.5))
+    }
+  }
+
   const getNearStation = async (lng, lat) => {
     const getNearStationURL = 'https://dapi.kakao.com/v2/local/search/category.json'
     const myAppKey = '6166cc0d53447a16f521f4fbe7c3422c'
@@ -154,6 +172,11 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     })
 
     setNearestStation(stationResponse.data.documents[0])
+    if (stationResponse.data.documents[0].distance >= 1000) {
+      setItemNearStationScore(0.5)
+    } else {
+      setItemNearStationScore(5 - ((Math.trunc(stationResponse.data.documents[0].distance / 100)) * 0.5))
+    }
   }
 
   const getExactlyDongName = async (lng, lat) => {
@@ -165,6 +188,7 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     })
 
     getFloatPopulationData(response.data.documents[1].region_3depth_name)
+    getItemNearStoreScore(response.data.documents[0].region_3depth_name)
   }
 
   const getFloatPopulationData = async (place) => {
@@ -179,10 +203,21 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
       ["주중", response.data.day],
       ["주말", response.data.weekend],
     ])
+
     setDayData([
       response.data.mon, response.data.tues, response.data.wed, response.data.thur, response.data.fri, response.data.sat, response.data.sun
     ])
+
     setDayAvgData(response.data.dayAvg)
+
+    if (response.data.dayAvg < 500) {
+      setItemNearPopulationScore(0.5)
+    } if (response.data.dayAvg >= 5000) {
+      setItemNearPopulationScore(5)
+    } else {
+      setItemNearPopulationScore((Math.trunc(response.data.dayAvg / 500)) * 0.5)
+    }
+
     setPerHourPopulationData([
       ["Hour", "유동인구수", { role: "style" }],
       ["0~3", response.data.firstHour, colors[1]],
@@ -194,29 +229,29 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
     ])
   }
 
-  const postBookmarkData = async (userID, itemNo, itemAddress, itemUrl, itemPrice) => {
-    const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
-    const response = await axios.post(postBookMarkURL)
+  const postBookmarkData = async (e, userID, itemNo, itemAddress, itemUrl, itemPrice) => {
+    if (userID === '') {
+      alert('로그인이 필요한 서비스입니다.')
+    } else {
+      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
+      const response = await axios.post(postBookMarkURL)
+    }
   }
 
   return (
     <div className="option_wrap">
       <div className="button_group_wrap">
         <div className="button_layer_wrap">
-          <button type="button" className={`${isClickButton === 1 ? 'button-active' : 'button'}`}
-            onClick={() => (isClickButton !== 1 ? setIsClickButton(1) : setIsClickButton(0))}>
-            업종
-          </button>
           <button type="button" className={`${isClickButton === 2 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 2 ? setIsClickButton(2) : setIsClickButton(0))}>
             가격
           </button>
-        </div>
-        <div className="button_layer_wrap">
           <button type="button" className={`${isClickButton === 3 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 3 ? setIsClickButton(3) : setIsClickButton(0))}>
             크기 및 층수
           </button>
+        </div>
+        <div className="show_item_button_layer_wrap">
           <button type="button" className={`${isClickButton === 4 ? 'button-active' : 'button'}`}
             onClick={() => (isClickButton !== 4 ? setIsClickButton(4) : setIsClickButton(0))}>
             매물
@@ -224,20 +259,6 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
         </div>
       </div>
 
-      {isClickButton === 1 && <div className="sector_options_wrap">
-        <Autocomplete
-          {...sector} value={sector || null}
-          onChange={(event, newSector) => {
-            // setDataList(dataList.sector)
-            setCompleteDataList(newSector)
-            setSector(newSector)
-          }}
-          id="controllable-states-demo"
-          options={SectorsList}
-          sx={{ width: 280 }}
-          renderInput={(params) => <TextField {...params} label="업종 선택" />}
-        />
-      </div>}
       {isClickButton === 2 && <div className="price_options_wrap">
         <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group">거래유형</FormLabel>
@@ -427,10 +448,10 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
               </div>
             </div>
             <div className="detail_icon_wrap">
-              <BsFillBookmarkStarFill className="bookmark_wrap" size="24" color="gray"
-              // onClick={postBookmarkData(localStorage.getItem('user'), itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
+              <BsFillBookmarkStarFill className="bookmark_icon_wrap" size="24" color="#E9E93A"
+                onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
               />
-              <BsLink45Deg className="link_wrap" size="24" color="black"
+              <BsLink45Deg className="link_icon_wrap" size="24" color="black"
                 onClick={() => window.open(`${itemDetailData.cpPcArticleUrl}`)} />
             </div>
             <div className="detail_border_wrap">
@@ -463,6 +484,32 @@ const FindPlace = ({ optionDataList, setDataList, emptyStore, setEmptyStore, flo
               <Chart chartType="ColumnChart" width="300px" height="300px" data={perHourPopulationData}
                 options={hourOptions} />
             </div>
+            <div className="detail_border_wrap">
+              <hr />
+            </div>
+            <div className="item_score_wrap">
+              <div className="item_score_main_title">평가지수</div>
+              <div className="all_score_wrap">
+                <div className="compete_score_wrap">
+                  <div className="sub_title">역세권</div>
+                  <Rating name="read-only" sx={{
+                    "& .MuiRating-iconFilled": { color: "#B48158" }
+                  }} value={itemNearStationScore} precision={0.5} readOnly />
+                </div>
+                <div className="compete_score_wrap">
+                  <div className="sub_title">유동인구</div>
+                  <Rating name="read-only" sx={{
+                    "& .MuiRating-iconFilled": { color: "#B48158" }
+                  }} value={itemNearPopulationScore} precision={0.5} readOnly />
+                </div>
+                <div className="compete_score_wrap">
+                  <div className="sub_title">근처점포</div>
+                  <Rating name="read-only" sx={{
+                    "& .MuiRating-iconFilled": { color: "#B48158" }
+                  }} value={itemNearStoreScore} precision={0.5} readOnly />
+                </div>
+              </div>
+            </div>
           </div>}
         </div>}
       </div>}
@@ -478,7 +525,7 @@ const options = {
   legend: "none",
   pieSliceText: "label",
   pieStartAngle: 0,
-  is3D: true,
+  is3D: false,
   slices: {
     0: { color: "#915B37" },
     1: { color: "#D7AB7F" },

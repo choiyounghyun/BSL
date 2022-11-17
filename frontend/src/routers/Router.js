@@ -19,31 +19,41 @@ import RankingDetail from "../screens/RankingDetail";
 function Router({ getUserData }) {
   const location = useLocation();
   const [authenticate, setAuthenticate] = useState(false); // true이면 로그인
+  const [userId, setUserId] = useState("");
 
   return (
     <div className="router">
       <Suspense>
-        {/* <TransitionGroup className="transition-group">
+        <TransitionGroup className="transition-group">
           <CSSTransition
             key={location.pathname === "/ranking" ? location.pathname : null}
             classNames="sidefade"
             timeout={1000}
-          > */}
-        <Routes location={location}>
-          <Route
-            path="/:params"
-            element={<OnSocialLogin getUserData={getUserData} />}
-          />
-          <Route path="/" element={<Main />} />
-          <Route path="/ranking" element={<Ranking />}></Route>
-          <Route path="/ranking/detail/:id" element={<RankingDetail />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/anal" element={<Analysis />} />
-        </Routes>
-        {/* </CSSTransition>
-        </TransitionGroup> */}
+          >
+            <Routes location={location}>
+              <Route
+                path="/:params"
+                element={<OnSocialLogin getUserData={getUserData} />}
+              />
+              <Route path="/" element={<Main />} />
+              <Route path="/article">
+                <Route index element={<Community />} />
+                <Route path="support" element={<SupportList />} />
+                <Route path="share" element={<ShareList />} />
+                <Route path="request" element={<RequestList />} />
+              </Route>
+              <Route path="/ranking" element={<Ranking />}></Route>
+              <Route path="/ranking/detail/:id" element={<RankingDetail />} />
+              <Route
+                path="/signin"
+                element={<SignIn setUserId={setUserId} />}
+              />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/anal" element={<Analysis userId={userId} />} />
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
       </Suspense>
     </div>
   );

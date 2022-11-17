@@ -6,36 +6,63 @@ import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
 import { Token } from "@mui/icons-material";
+import axios from "axios";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
   useEffect(() => {
+<<<<<<< HEAD
     if (localStorage.getItem("user") === null) {
       setIsLogin(false);
     } else {
       getuserInfo();
     }
   });
+=======
+    if ((localStorage.getItem("user") === null)) {
+      setIsLogin(false)
+    }
+    else {
+      getuserInfo()
+
+    }
+  })
+>>>>>>> 0294912cfce1d6d5276122f4af9a3e20d71f7cb4
+
 
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
 
   const getuserInfo = () => {
+<<<<<<< HEAD
     if (userinfo !== localStorage.getItem("user")) {
       setUserinfo(localStorage?.getItem("user"));
       setIsLogin(true);
     } else {
       // setUsertoken(localStorage?.getItem("token"))
       setIsLogin(true);
+=======
+    if (userinfo !== (localStorage.getItem("user"))) {
+      setUserinfo(localStorage?.getItem("user"))
+      setIsLogin(true)
+    }
+    else {
+      setIsLogin(true)
+>>>>>>> 0294912cfce1d6d5276122f4af9a3e20d71f7cb4
     }
   };
+
 
   const handleLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("userdata");
     setUserinfo("");
   };
+
+
+
   const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
   const menuToggle = () => {

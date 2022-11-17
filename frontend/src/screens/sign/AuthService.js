@@ -7,12 +7,6 @@ const signin = (id, password) => {
       id, password
     })
     .then((response) => {
-      console.log(response.data.accessToken);
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `Bearer ${response.data.accesstoken}`;
-      // return response.data
-
       if (response.data.accessToken !== "") {
         localStorage.setItem('user', JSON.stringify(response.data))
       }
@@ -30,7 +24,7 @@ const signup = (id, nickname, password, phoneNumber, authNumber) => {
     .then((response) => {
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data))
-        console.log(response.data.token)
+        // console.log(response.data.token)
       }
       return response.data
     })
