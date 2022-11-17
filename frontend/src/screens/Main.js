@@ -16,7 +16,6 @@ function Main(props) {
     }
     else {
       getuserInfo()
-
     }
   })
 
@@ -57,13 +56,13 @@ function Main(props) {
 
   const loginbutton = (
     <>
-      <div className="middle-menu__user-login">
-        <Link to="/signin" className="middle-menu__user-login__link">
+      <div className="middle-menu__user-login" title="로그인 하러가기">
+        <Link to="/signin" className="middle-menu__user-login__link" >
           SIGN IN
         </Link>
       </div>
-      <div className="middle-menu__user-join">
-        <Link to="/signup" className="middle-menu__user-join__link">
+      <div className="middle-menu__user-join" title="회원가입 하러가기">
+        <Link to="/signup" className="middle-menu__user-join__link" >
           SIGN UP
         </Link>
       </div>
@@ -72,7 +71,7 @@ function Main(props) {
 
   const logoutbutton = (
     <>
-      <div className="middle-menu__user-logout" onClick={() => handleLogout()}>
+      <div className="middle-menu__user-logout" onClick={() => handleLogout()} title="로그아웃 하기">
         <Link to="/" className="middle-menu__user-logout__link">
           LOGOUT
         </Link>

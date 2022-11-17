@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import authService from "./sign/AuthService"
 import axios from 'axios'
 import { color } from '@mui/system'
+import kakaologinimg from "../assets/images/kakaologin.png"
 
 const SignIn = ({ setAuthenticate, setUserId }) => {
 
@@ -61,6 +62,7 @@ const SignIn = ({ setAuthenticate, setUserId }) => {
             </Link>
             <span>아이디와 비밀번호를 입력해주세요</span>
             <input
+              title="아이디를 입력해주세요"
               type="text"
               id="id"
               autoComplete="off"
@@ -72,6 +74,7 @@ const SignIn = ({ setAuthenticate, setUserId }) => {
               required
             />
             <input
+              title="비밀번호를 입력해주세요"
               type="password"
               id="password"
               value={password}
@@ -81,20 +84,21 @@ const SignIn = ({ setAuthenticate, setUserId }) => {
               }}
               required
             />
-            <div className="signinbuttondiv">
-              <p className="p">
-                회원가입을 하겠습니까?<br />
-                <Link to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>
-              </p>
-            </div>
             <button type="submit" className="signinButton">로그인</button>
           </form>
-          <button className="kakaosignin">
-            <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" style={{ textDecoration: 'none', color: "black" }}>카카오톡 로그인하기</a>
-          </button>
+          <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
+            <img src={kakaologinimg} className="kakaologinimg">
+
+            </img>
+          </a>
+          <p className="gosignup">
+            회원가입을 하시겠습니까?<br />
+            <Link className="gosignupLink" to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>
+          </p>
         </div>
+
       </div>
-    </section>
+    </section >
   )
 }
 

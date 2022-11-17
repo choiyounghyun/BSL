@@ -1,7 +1,7 @@
 .signin-div {
-  width: 40vw;
-  min-width: 500px;
-  height: 50vh;
+  width: 450px;
+  min-width: 450px;
+  height: 500px;
   min-height: 500px;
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0 50px;
+  padding: 0 30px;
   /* height: 100%; */
   text-align: center;
 }
@@ -40,44 +40,78 @@
   font-size: 42px;
 }
 
+.title-h1:hover {
+  font-size: 42px;
+
+}
+
 input {
-  background-color: #eee;
+  background-color: #E8F0FE;
   border: none;
   padding: 12px 15px;
-  margin: 8px 0;
+  margin: 8px 8px;
   width: 100%;
 }
 
 .signinButton {
-  margin-top: 10px;
+  margin: 30px 0 5px 0;
   width: 100px;
   width: auto;
   color: black;
-  background-color: rgb(205, 205, 205);
+  background-color: #FBD8AF;
   border-radius: 10px;
   border: 1px solid white;
-  padding: 10px 45px;
-  font-size: 14px;
+  padding: 10px 95px;
+  font-size: 18px;
   font-weight: bold;
 }
 
-.signinbuttondiv {
-  text-align: left;
-  flex-direction: column;
-  justify-content: space-between;
-
-
+.signinButton:hover {
+  margin: 30px 0 5px 0;
+  width: 126px;
+  width: auto;
+  color: black;
+  background-color: #FBD8AF;
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px 108px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.p {
+.kakaologinimg {
+  width: 244px;
+  height: 47px;
+}
+
+.kakaologinimg:hover {
+  width: 280px;
+  height: 70x;
+}
+
+.gosignup {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
   letter-spacing: 0.5px;
-  margin: 20px 0 30px;
+  margin: 20px 0 0 0;
+  align-self: start;
+  padding: 15px 50px;
+  width: 100%;
 }
 
-.kakaosignin {
+.gosignupLink:hover {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
+}
+
+
+
+
+/* .kakaosignin {
   border-radius: 10px;
   border: 1px solid white;
   background-color: yellow;
@@ -88,4 +122,4 @@ input {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
-}
+} */
