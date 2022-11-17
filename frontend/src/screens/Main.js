@@ -86,22 +86,8 @@ function Main(props) {
   );
   return (
     <div id="main" data-barba="wrapper">
-      <div className="trans-left-img">
-        <img
-          src={mainChicken}
-          alt="main-left-img"
-          className="trans-left-img__img"
-        />
-      </div>
-      <div className="trans-right-img">
-        <img
-          src={mainPizza}
-          alt="main-right-img"
-          className="trans-right-img__img"
-        />
-      </div>
-      <div className="trans-clip">
-        <div className="trans-clip-mask"></div>
+      <div className="main-description">
+        문을 열고 당신의 2번째 인생을 시작하세요!
       </div>
       <div className="main-container">
         <header className="main-header">
