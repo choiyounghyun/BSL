@@ -5,9 +5,11 @@ import SideBar from './SideBar'
 import axios from 'axios'
 import './Analysis.css'
 
+import Loading_Logo from '../../assets/AnalysisImages/BSL_Loading_Logo.png'
 import Logo from '../../assets/AnalysisImages/BSL_Logo.png'
 
-const Analysis = ({ userId }) => { // 상권분석
+const Analysis = () => { // 상권분석
+	const [userId, setUserId] = useState('')
 	const [optionDataList, setOptionDataList] = useState({
 		place: '', sector: '', tradeType: 'all', floor: 'all',
 		monthly: [0, 100], deposit: [0, 100], sale: [0, 100], room: [0, 100]
@@ -16,10 +18,18 @@ const Analysis = ({ userId }) => { // 상권분석
 	const [dongName, setDongName] = useState('')
 	const [clusterId, setClusterId] = useState(0)
 	const [clusterMaxPage, setClusterMaxPage] = useState(0)
-	const [clusterInfoList, setClusterInfoList] = useState('')
 	const [emptyStore, setEmptyStore] = useState([])
-
 	const [floatingPopulationDong, setFloatingPopulationDong] = useState('')
+
+	const getuserId = (loginUser) => {
+		setUserId(loginUser.id)
+	}
+
+	useEffect(() => {
+		if (localStorage.getItem("userdata") !== null) {
+			getuserId(JSON.parse(localStorage.getItem("userdata")))
+		}
+	})
 
 	useEffect(() => {
 		console.log(clusterMaxPage)
@@ -63,7 +73,7 @@ const Analysis = ({ userId }) => { // 상권분석
 		<>
 			{isLoading === false &&
 				<div className='loading_wrap flip'>
-					<img src={Logo} alt='Logo' />
+					<img src={Loading_Logo} alt='Logo' />
 				</div>
 			}
 			{isLoading === true &&

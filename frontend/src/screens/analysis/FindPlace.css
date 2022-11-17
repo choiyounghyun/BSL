@@ -43,6 +43,7 @@
   height: 80%;
 
   margin: 5px 5px;
+  font-family: 'andong';
 }
 
 .show_item_button_layer_wrap button {
@@ -83,6 +84,7 @@
   text-align: center;
 
   cursor: pointer;
+  font-family: 'andong';
 }
 
 .sector_options_wrap {
@@ -95,12 +97,11 @@
 
 .price_options_wrap {
   width: 92%;
-  height: 200px;
+  height: 25vh;
   margin-top: 20px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
   overflow-y: scroll;
 }
@@ -490,4 +491,9 @@
 
 .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-color: red;
+}
+
+@font-face {
+  font-family: "andong";
+  src: url("../../assets/font/Katuri.ttf");
 }
