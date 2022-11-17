@@ -21,12 +21,12 @@
 }
 
 .go-to-main {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 70px;
   background: rgb(255, 255, 255, 1);
   margin: 10px;
-  padding: 10px;
-  border-radius: 25px;
+  padding: 0px 5px;
+  border-radius: 20px;
 
   display: flex;
   flex-direction: column;
