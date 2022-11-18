@@ -86,9 +86,6 @@ function Main(props) {
   );
   return (
     <div id="main" data-barba="wrapper">
-      <div className="main-description">
-        문을 열고 당신의 2번째 인생을 시작하세요!
-      </div>
       <div className="main-container">
         <header className="main-header">
           <div className="header__container">
@@ -106,7 +103,15 @@ function Main(props) {
             </div>
           </div>
         </header>
+
         <div className={`main-ground ${menu === "active" ? "--active" : ""}`}>
+          <div
+            className={`main-description  ${
+              menu === "active" ? "--active" : ""
+            }`}
+          >
+            문을 열고 당신의 2번째 인생을 시작하세요!
+          </div>
           <div className="ground-left">
             <div className="ground-left__img-wrapper">
               <img

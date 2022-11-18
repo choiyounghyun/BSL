@@ -8,11 +8,6 @@
   overflow: hidden !important;
 }
 
-.main-description {
-  z-index: 10;
-  color: white;
-}
-
 .main-container {
   display: flex;
   flex-direction: column;
@@ -364,6 +359,22 @@
   z-index: 5;
   position: absolute;
   top: 40%;
+}
+
+.main-description {
+  z-index: 10;
+  color: white;
+  position: absolute;
+  display: flex;
+  top: 25%;
+  left: 41%;
+  font-size: 1vw;
+  transition: all 2s ease;
+}
+
+.main-description.--active {
+  opacity: 0;
+  transition: all 1s ease;
 }
 
 .ground-right__title {
