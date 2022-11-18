@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 // import ranking from "../assets/images/ranking-side.jpg";
 import { Link } from "react-router-dom";
 import BrandCard from "../components/BrandCard.js";
+import Logo from "../assets/AnalysisImages/BSL_Logo.png";
 import rankingLeft from "../assets/images/ranking-coffee.jpg";
 import chicken from "../assets/images/chicken.png";
 import pizza from "../assets/images/pizza.png";
@@ -18,7 +19,7 @@ import joongsik from "../assets/images/joongsik.png";
 import yangsik from "../assets/images/yangsik.png";
 import drink from "../assets/images/drink.png";
 import fusion from "../assets/images/coffee.png";
-import logo from "../assets/images/mainlogo.svg";
+import RankingDetail from "./RankingDetail.js";
 
 function Ranking(props) {
   const [tagType, setTagType] = useState("popular");
@@ -60,8 +61,7 @@ function Ranking(props) {
         <div className="container-left">
           <Link to="/" className="home-btn__link">
             <div className="home-btn">
-              <img src={logo} alt="logo" />
-              <p>BSL</p>
+              <img src={Logo} alt="logo" />
             </div>
           </Link>
           <div className="select-category">창업 품목 선택하기</div>
@@ -78,9 +78,13 @@ function Ranking(props) {
                     alt={menu[idx]}
                     style={{ cursor: "pointer" }}
                   />
-                  <div className="titless">
-                    <p>{menu[idx]}</p>
-                  </div>
+                  <p
+                    className={`titless ${
+                      category === menu[idx] ? "active" : null
+                    }`}
+                  >
+                    {menu[idx]}
+                  </p>
                 </div>
               ))}
             </Row>
@@ -115,7 +119,7 @@ function Ranking(props) {
             </div>
           </div>
           <hr />
-          <div className="container-left__list">
+          <div className="container-right__list">
             <BrandCard type={tagType} category={category} />
           </div>
         </div>
