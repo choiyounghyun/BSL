@@ -1,13 +1,21 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 #ranking {
   position: absolute;
+  width: 90%;
   height: 100vh;
   overflow: hidden !important;
+  /* animation: change 2s ease forwards; */
 }
+/* 
+@keyframes change {
+  from {
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+} */
 
 .ranking-container {
   position: relative;
@@ -20,9 +28,7 @@
 .container-left {
   width: 40vw;
   height: 100vh;
-  background-color: #ff6347;
-  /* display: flex;
-  justify-content: center; */
+  background-color: #ffead2;
   filter: brightness(80%);
 }
 
@@ -35,13 +41,8 @@
 }
 
 .home-btn > img {
-  width: 5vw;
+  width: 17vw;
   height: 5vw;
-}
-
-.home-btn > p {
-  color: aliceblue;
-  font-size: 2.5vw;
 }
 
 .home-btn__link {
@@ -52,9 +53,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1vw;
-  margin-bottom: 2vw;
-  color: azure;
+  margin-top: 4vw;
+  margin-bottom: 3vw;
+  color: #8b4513;
   font-weight: bold;
   font-size: 1.5vw;
 }
@@ -65,11 +66,15 @@
 
 .titless {
   margin-top: 10px;
-  color: grey;
+  color: #f4a460;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.titless.active {
+  color: #8b4513;
 }
 
 .imgs-wrapper img {
@@ -82,12 +87,15 @@
   height: 50%;
 }
 
-.imgs-wrapper div.active {
-  filter: brightness(200%);
+.imgs-wrapper div.active > img {
+  filter: brightness(100%);
 }
 
 .container-right {
   width: 60vw;
+  /* margin: auto; */
+  margin-top: 2vw;
+  margin-left: 10vw;
 }
 
 .container-right__menu {
@@ -123,6 +131,8 @@
 .menu-btn1.active {
   color: #8b4513;
   font-size: 30px;
+  border-bottom: 2px solid #8b4513;
+  background-color: #ffead2;
 }
 
 .menu-btn2 {
@@ -141,6 +151,8 @@
 .menu-btn2.active {
   font-size: 30px;
   color: #8b4513;
+  border-bottom: 2px solid #8b4513;
+  background-color: #ffead2;
 }
 
 .category {
@@ -153,7 +165,7 @@
   margin-left: 8px;
   background-color: grey;
   margin-top: 4px;
-  color: white;
+  color: #8b4513;
   border-radius: 24px;
   padding: 12px;
   font-size: 12px;
@@ -161,4 +173,8 @@
 
 .category > div.active {
   background-color: #8b4513;
+}
+
+.container-right__list {
+  margin-top: 3vw;
 }

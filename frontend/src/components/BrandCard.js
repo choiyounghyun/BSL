@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import dummy from "../assets/images/dummy-img.png";
+import dummy from "../assets/images/mainlogo.svg";
 
 function BrandCard({ type, category }) {
   const [card, setCard] = useState([]);
