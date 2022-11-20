@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "./sign/AuthService";
 
 function MyPage() {
+  const [userNickname, setUserNickname] = useState("");
   const [userId, setUserId] = useState("");
   const [userphoneNumber, setUserphonNumber] = useState("");
   const [newphoneNumber, setNewphonNumber] = useState("");
@@ -24,6 +25,10 @@ function MyPage() {
     setUserId(loginUser.id);
   };
 
+  const getuserNickname = loginUser => {
+    setUserNickname(loginUser.nickname);
+  };
+
   const handlePutphoneNumber = async e => {
     e.preventDefault();
     try {
@@ -31,13 +36,15 @@ function MyPage() {
         .putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
         .then(response => {
           if (response !== 0) {
-            // localStorage.removeItem("userdata");
-            // localStorage.setItem("userdata", JSON.stringify(response.data));
+            const userdata = JSON.stringify({
+              id: userId,
+              nickname: userNickname,
+              phoneNumber: newphoneNumber
+            });
+            localStorage.removeItem("userdata");
+            localStorage.setItem("userdata", userdata);
             navigate("/");
           }
-          console.log(authNumber);
-          console.log(response);
-          // window.location.reload()
         });
     } catch (error) {
       console.log(error);
@@ -74,6 +81,7 @@ function MyPage() {
     if (localStorage.getItem("userdata") !== null) {
       getuserphoneNumber(JSON.parse(localStorage.getItem("userdata")));
       getuserId(JSON.parse(localStorage.getItem("userdata")));
+      getuserNickname(JSON.parse(localStorage.getItem("userdata")));
     }
   });
 
