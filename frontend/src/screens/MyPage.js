@@ -9,15 +9,13 @@ import authService from './sign/AuthService'
 function MyPage() {
   const [userId, setUserId] = useState("");
   const [userphoneNumber, setUserphonNumber] = useState("");
-  const [isphoneNumber, setIsphoneNumber] = useState(false);
   const [newphoneNumber, setNewphonNumber] = useState("");
   const [authNumber, setAuthNumber] = useState("")
  
 	const getuserphoneNumber = (loginUser) => {
     if (loginUser.phoneNumber !== null) {
 		setUserphonNumber(loginUser.phoneNumber)
-    setIsphoneNumber(true)
-  } else {setIsphoneNumber(false)}
+  } 
 	}
 
   const navigate = useNavigate()
@@ -26,13 +24,15 @@ function MyPage() {
     setUserId(loginUser.id)
   }
 
-  const handlePutphonNumber = async (e) => {
+  const handlePutphoneNumber = async (e) => {
     e.preventDefault();
     try {
       await authService.putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
         .then((response) => {
-          navigate('/')
-          window.location.reload()
+          if (response !== 0) {navigate('/')}
+          console.log(authNumber)
+          console.log(response);
+          // window.location.reload()
         }
         )
     } catch (error) {
@@ -66,7 +66,6 @@ function MyPage() {
 		if (localStorage.getItem("userdata") !== null) {
 			getuserphoneNumber(JSON.parse(localStorage.getItem("userdata")))
       getuserId(JSON.parse(localStorage.getItem("userdata")))
-      console.log(isphoneNumber);
 		}
 	})
 
@@ -78,7 +77,7 @@ function MyPage() {
         <img src={banner} alt="banner" />
       </div>
       <div className="mypage-container">
-        <form onSubmit={handlePutphonNumber} className="profileform">
+        <form onSubmit={handlePutphoneNumber} className="profileform">
           <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
             <h1 className="title-h1">
               <img src={logoimg} alt="logoimg" />
@@ -95,6 +94,18 @@ function MyPage() {
               value={newphoneNumber}
               onChange={(e) => {
                 setNewphonNumber(e.target.value);
+              }}
+              required
+            />
+            <input
+              className="authnumberinput"
+              title="인증번호를 입력해주세요"
+              type="number"
+              id="number"
+              placeholder="인증번호"
+              value={authNumber}
+              onChange={(e) => {
+                setAuthNumber(e.target.value);
               }}
               required
             />
