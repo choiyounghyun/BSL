@@ -94,6 +94,7 @@ public class UserService {
         UserDto responseUserDto = UserDto.builder()
                 .id(targetUser.getId())
                 .nickname(targetUser.getNickname())
+                .phoneNumber(targetUser.getPhoneNumber())
                 .build();
 
         return responseUserDto;

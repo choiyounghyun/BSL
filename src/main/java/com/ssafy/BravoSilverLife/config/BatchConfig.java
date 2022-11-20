@@ -60,7 +60,7 @@ public class BatchConfig {
                         StringBuilder sb = new StringBuilder();
                         List<Bookmark> bmlist = bookmarkRepository.findByUser(user);
                         for (Bookmark bookmark : bmlist) {
-                            sb.append(bookmark.getAddress()).append(" ").append(bookmark.getPrice()).append(" ");
+                            sb.append(bookmark.getAddress()).append(" ").append(bookmark.getPrice()).append("/").append(bookmark.getMonth()).append(" ").append(bookmark.getUrl()).append(" ");
                         }
                         if(sb.length() > 2){
                             System.out.println(sb);

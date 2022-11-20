@@ -37,6 +37,7 @@ public class MMSService {
     private static final String apiKey = "3be1a53cadc7d54d78210396ff2a14ec"; // SMS 관리툴에서 발급받은 API KEY 를 입력해 주세요.
 
     public static final String SMS_SEND_URL = "https://sms.gabia.com/api/send/sms"; // SMS 발송 API URL
+    public static final String LMS_SEND_URL = "https://sms.gabia.com/api/send/lms"; // LMS 발송 API URL
 
     public String userAuth() {
         String access_token = "";
@@ -142,10 +143,7 @@ public class MMSService {
     }
 
 
-
     public void sendBookMarkMMS(String phoneNumber, String accessToken, String description) {
-
-
 
 
         String authValue =
@@ -158,12 +156,58 @@ public class MMSService {
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("phone", phoneNumber) // 수신번호를 입력해 주세요. (수신번호가 두 개 이상인 경우 ',' 를 이용하여 입력합니다.ex)01011112222, 01033334444)
                 .addFormDataPart("callback", "01045588466") // 발신번호를 입력해 주세요.
-                .addFormDataPart("message", "북마크 매물 정보는 "+description) // SMS 내용을 입력해 주세요.
+                .addFormDataPart("message", "북마크 매물 정보는 " + description) // SMS 내용을 입력해 주세요.
                 .addFormDataPart("refkey", "YOUR_REF_KEY") // 발송 결과 조회를 위한 임의의 랜덤 키 값을 입력해 주세요.
                 .build();
 
         Request request = new Request.Builder()
                 .url(SMS_SEND_URL)
+                .post(requestBody)
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .addHeader("Authorization", "Basic " + authValue)
+                .addHeader("cache-control", "no-cache")
+                .build();
+
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Response 를 key, value 로 확인하실 수 있습니다.
+        HashMap<String, String> result = null;
+        try {
+            result = new Gson().fromJson(Objects.requireNonNull(response.body()).string(), HashMap.class);
+            for (String key : result.keySet()) {
+                System.out.printf("%s: %s%n", key, result.get(key));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void sendLMS(String accessToken, String phoneNumber) {
+
+
+        String authValue =
+                Base64.getEncoder().encodeToString(String.format("%s:%s", smsId,
+                        accessToken).getBytes(StandardCharsets.UTF_8)); // Authorization Header 에 입력할 값입니다.
+
+        // LMS 발송 API 를 호출합니다.
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("phone", "RECEIPT_PHONE_NUMBER")
+                .addFormDataPart("callback","CALLING_PHONE_NUMBER") // 발신번호를 입력해 주세요.
+                .addFormDataPart("message","LMS_CONTENT") // LMS 내용을 입력해 주세요.
+                .addFormDataPart("refkey","YOUR_REF_KEY") // 발송 결과 조회를 위한 임의의 랜덤 키 값을 입력해 주세요.
+                .addFormDataPart("subject","LMS_TITLE") // LMS 제목을 입력해 주세요.
+                .build();
+
+        Request request = new Request.Builder()
+                .url(LMS_SEND_URL)
                 .post(requestBody)
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .addHeader("Authorization", "Basic " + authValue)
