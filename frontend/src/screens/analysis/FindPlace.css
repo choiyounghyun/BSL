@@ -15,7 +15,8 @@
   justify-content: space-evenly;
 
   width: 100%;
-  height: 120px;
+  height: 22%;
+  max-height: 120px;
 }
 
 .button_layer_wrap {
@@ -106,6 +107,14 @@
   overflow-y: scroll;
 }
 
+.price_options_wrap label {
+  font-family: 'andong';
+}
+
+.price_options_wrap span {
+  font-family: 'andong';
+}
+
 .floor_options_wrap {
   width: 92%;
   margin-top: 20px;
@@ -115,9 +124,17 @@
   justify-content: center;
 }
 
+.floor_options_wrap label {
+  font-family: 'andong';
+}
+
+.floor_options_wrap span {
+  font-family: 'andong';
+}
+
 .items_list_wrap {
   width: 92%;
-  height: 30vh;
+  height: 75%;
   max-height: 200px;
   margin-top: 10px;
 
@@ -125,7 +142,8 @@
   flex-direction: column;
   justify-content: center;
 
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .items_wrap {
@@ -148,6 +166,9 @@
 }
 
 .empty_item_list_wrap {
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
 

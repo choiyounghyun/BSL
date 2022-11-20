@@ -1,5 +1,4 @@
 import React from "react"
-import { FaSearchLocation } from "react-icons/fa" // react에서 제공하는 icon 라이브러리
 import './SearchPlaceInput.css'
 
 const SearchPlaceInput = ({ place, setPlace, submitData }) => {
