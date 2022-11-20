@@ -183,16 +183,6 @@ function Main(props) {
             </div>
             <div className="ground-right__admin">
               {isLogin ? logoutbutton : loginbutton}
-              {/* <div className="middle-menu__user-login">
-                <Link to="/login" className="middle-menu__user-login__link">
-                  LOGIN
-                </Link>
-              </div>
-              <div className="middle-menu__user-join">
-                <Link to="/join" className="middle-menu__user-join__link">
-                  JOIN
-                </Link>
-              </div> */}
             </div>
           </div>
         </div>

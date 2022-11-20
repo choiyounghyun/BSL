@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios"
 
@@ -35,6 +35,9 @@ function OnSocialLogin() {
       }))
       localStorage.setItem("user", user || "");
       getuserdata(refreshtoken);
+      // if (userdata) {
+
+      // }
       navigate("/");
     } else {
       navigate("/signin");

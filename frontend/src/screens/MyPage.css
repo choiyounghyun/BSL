@@ -9,6 +9,7 @@
   overflow: hidden;
   display: flex;
   position: relative;
+  opacity: 0.9;
 }
 
 .mypage-banner > img {
@@ -26,11 +27,43 @@
 }
 
 .mypage-container {
-  width: 70%;
-  height: 60vw;
+  width: 500px;
+  min-width: 500px;
+  height: 650px;
+  min-height: 650px;
   position: absolute;
   margin: auto;
   top: 35%;
-  background-color: aliceblue;
+  background-color: white;
   z-index: 3;
+  box-shadow: 1px 2px 2px #592941;
+  border: 0.1em solid #592941;
+  border-radius: 0.5em;
+  justify-content: center
+}
+
+.title-h1 {
+  font-weight: bold;
+  margin: 20px;
+  padding: auto auto 20px 20px;
+  font-size: 42px;
+}
+
+.profileform {
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 30px;
+  text-align: center;
+}
+
+.profileinput {
+  background-color: #E8F0FE;
+  border: 1px solid white;
+  padding: 12px 15px;
+  width: 100%;
+  border-radius: 5px;
 }

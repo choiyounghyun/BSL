@@ -3,9 +3,8 @@ import "./SignIn.css"
 import { Link, useNavigate } from 'react-router-dom'
 import authService from "./sign/AuthService"
 import axios from 'axios'
-import kakaologinimg from "../assets/images/kakaologin.png"
 import logoimg from "../assets/AnalysisImages/BSL_Logo.png"
-import bgimg from "../assets/images/bg.jpg"
+import loginbanner from "../assets/images/login-banner.jpg"
 
 
 const SignIn = ({ setAuthenticate }) => {
@@ -24,10 +23,11 @@ const SignIn = ({ setAuthenticate }) => {
         },
       })
       .then((response) => {
-        localStorage.setItem("userdata", JSON.stringify(response.data) || "");
+        localStorage.setItem("userdata", JSON.stringify(response.data));
+        console.log(response);
       })
   }
-
+  // || ""
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -36,7 +36,7 @@ const SignIn = ({ setAuthenticate }) => {
           const refreshtoken = response?.refreshToken
           setLoginInfo("True")
           getuserdata(refreshtoken);
-          navigate('/'); // login 완료시 main page로 이동
+          navigate('/mypage'); // login 완료시 main page로 이동
           // window.location.reload()
         },
         (error) => {
@@ -54,8 +54,10 @@ const SignIn = ({ setAuthenticate }) => {
   return (
 
     <section>
-      <div className="login_background">
-        {/* <img src={bgimg} alt="bgimg"></img> */}
+      <div id="signin-page">
+        <div className="login-banner">
+          <img src={loginbanner} alt="banner"/>
+        </div>
         <div className="signin-div">
           <form onSubmit={(event) => handleLogin(event)} className="signinform">
             <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
@@ -63,8 +65,8 @@ const SignIn = ({ setAuthenticate }) => {
                 <img src={logoimg} alt="logoimg" />
               </h1>
             </Link>
-            <span>아이디와 비밀번호를 입력해주세요</span>
             <input
+              className="signinput"
               title="아이디를 입력해주세요"
               type="text"
               id="id"
@@ -77,6 +79,7 @@ const SignIn = ({ setAuthenticate }) => {
               required
             />
             <input
+              className="signinput"
               title="비밀번호를 입력해주세요"
               type="password"
               id="password"
@@ -89,11 +92,16 @@ const SignIn = ({ setAuthenticate }) => {
             />
             <button type="submit" className="signinButton">로그인</button>
           </form>
-          <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
+          <button className="kakaologinbutton" >
+            <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" style={{ textDecoration: "none", color: "black" }}>
+              카카오톡 로그인하기
+            </a>
+          </button>
+          {/* <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
             <img src={kakaologinimg} className="kakaologinimg">
             </img>
-          </a>
-          <p className="gosignup">
+          </a> */}
+          <p className="gosignup-p">
             회원가입을 하시겠습니까?<br />
             <Link className="gosignupLink" to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>
           </p>
@@ -105,4 +113,3 @@ const SignIn = ({ setAuthenticate }) => {
 
 
 export default SignIn
-

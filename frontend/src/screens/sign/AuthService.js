@@ -42,21 +42,30 @@ const getAuthNumber = (phoneNumber) => {
     })
 }
 
-const logout = () => {
-  localStorage.removeItem('user')
-}
-
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem('user'))
 }
 
+const putPhoneNumber = (phoneNumber, newPhoneNumber, authNumber) => {
+
+  return axios
+    .put("https://k7c208.p.ssafy.io/api/user/profile/phonenumber", {
+      phoneNumber, newPhoneNumber, authNumber
+    })
+    .then((response) => {
+      if (response.data.token) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+      }
+      return response.data
+    })
+}
 
 const authService = {
   signin,
   signup,
-  logout,
   getCurrentUser,
   getAuthNumber,
+  putPhoneNumber
 }
 
 export default authService

@@ -2,46 +2,117 @@ import React, { useState, useEffect } from "react";
 import "./MyPage.css";
 import axios from "axios";
 import banner from "../assets/images/mypage-banner.jpg";
+import logoimg from "../assets/AnalysisImages/BSL_Logo.png"
+import { Link, useNavigate } from 'react-router-dom'
+import authService from './sign/AuthService'
 
 function MyPage() {
-  const [userInfo, setUserInfo] = useState(null);
-  // useEffect(() => {
-  //   let token = localStorage.getItem("refreshToken");
-  //   console.log(token);
-  //   axios
-  //     .get("https://k7c208.p.ssafy.io/api/auth/userinfo", {
-  //       headers: {
-  //         RefreshToken: { token }
-  //       }
-  //     })
-  //     .then(res => {
-  //       console.log(res.userdata);
-  //       setUserInfo(res);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
-  useEffect(() => {
-    setUserInfo(localStorage.getItem("userdata"));
-  }, []);
+  const [userId, setUserId] = useState("");
+  const [userphoneNumber, setUserphonNumber] = useState("");
+  const [isphoneNumber, setIsphoneNumber] = useState(false);
+  const [newphoneNumber, setNewphonNumber] = useState("");
+  const [authNumber, setAuthNumber] = useState("")
+ 
+	const getuserphoneNumber = (loginUser) => {
+    if (loginUser.phoneNumber !== null) {
+		setUserphonNumber(loginUser.phoneNumber)
+    setIsphoneNumber(true)
+  } else {setIsphoneNumber(false)}
+	}
+
+  const navigate = useNavigate()
+
+  const getuserId = (loginUser) => {
+    setUserId(loginUser.id)
+  }
+
+  const handlePutphonNumber = async (e) => {
+    e.preventDefault();
+    try {
+      await authService.putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
+        .then((response) => {
+          navigate('/')
+          window.location.reload()
+        }
+        )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const sendAuthNumber = () => {
+    if (newphoneNumber !== "") {
+      axios.get(`https://k7c208.p.ssafy.io/api/auth/check/${newphoneNumber}`, {
+        newphoneNumber, authNumber
+      })
+        .then((res) => {
+          setAuthNumber(res.data.authNumber)
+          console.log((res));
+        })
+        .catch(error => {
+          if (error.response.status === 409) {
+            alert("중복된 번호입니다. 다른번호를 입력해 주세요")
+          }
+          console.log(error.response)
+        })
+    } else { alert("번호를 입력해주세요!!") };
+  }
+
+	useEffect(() => {
+    if (userphoneNumber === null) {
+      setUserphonNumber("")
+    }
+    
+		if (localStorage.getItem("userdata") !== null) {
+			getuserphoneNumber(JSON.parse(localStorage.getItem("userdata")))
+      getuserId(JSON.parse(localStorage.getItem("userdata")))
+      console.log(isphoneNumber);
+		}
+	})
+
+  // onSubmit={handleSignUp}
   return (
     <div id="my-page">
       <div className="mypage-banner">
         <img src={banner} alt="banner" />
-        <div className="mypage-title">
-          <h2>MYPAGE</h2>
-        </div>
       </div>
       <div className="mypage-container">
-        <div className="info">
-          <div className="info__name">{userInfo}</div>
+        <form onSubmit={handlePutphonNumber} className="profileform">
+          <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+            <h1 className="title-h1">
+              <img src={logoimg} alt="logoimg" />
+            </h1>
+          </Link>
+            <div>Id : {userId}</div>
+            <div>PhonNumber : {userphoneNumber}</div>
+            <input
+              className="newphoneinput"
+              title="새로운 핸드폰 번호를 입력해주세요"
+              type="number"
+              id="number"
+              placeholder="새로운 핸드폰 번호"
+              value={newphoneNumber}
+              onChange={(e) => {
+                setNewphonNumber(e.target.value);
+              }}
+              required
+            />
+          <div className="info__name">{userphoneNumber}</div>
           {/* <div className="info__number">{userInfo.nickname}</div>
           <div className="info__password">{userInfo.phonenumber}</div> */}
-        </div>
+          <button className="getauthnumber" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
+          <button className="signupbutton" type="submit" >휴대폰번호 수정</button>
+        </form>
       </div>
     </div>
   );
 }
 
 export default MyPage;
+
+
+{/* <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+<h1 className="title-h1" title="메인화면으로 돌아가기">
+  <img src={logoimg} alt="logoimg" />
+</h1>
+</Link> */}
