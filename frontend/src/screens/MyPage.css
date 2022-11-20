@@ -53,7 +53,7 @@
   box-shadow: 1px 2px 2px #592941;
   border: 0.1em solid #592941;
   border-radius: 0.5em;
-  justify-content: center
+  justify-content: center;
 }
 
 .title-h1 {
@@ -64,9 +64,10 @@
 }
 
 .profileform {
+  margin-top: 4vw;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -74,8 +75,38 @@
   text-align: center;
 }
 
+.title-h1 {
+  margin-bottom: 3vw;
+}
+
+.info-id {
+  margin-bottom: 1vw;
+  font-size: 24px;
+}
+
+.info-phone {
+  margin-bottom: 1vw;
+  font-size: 24px;
+}
+
+.profileform > input {
+  margin-bottom: 1vw;
+  border-radius: 8px;
+  height: 3vw;
+  padding-left: 8px;
+}
+
+.getauthnumber {
+  margin-top: 4vw;
+}
+
+/* .profileform > button {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+} */
+
 .profileinput {
-  background-color: #E8F0FE;
+  background-color: #e8f0fe;
   border: 1px solid white;
   padding: 12px 15px;
   width: 100%;
