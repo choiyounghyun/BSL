@@ -14,7 +14,6 @@ import RankingDetail from "../screens/RankingDetail";
 
 function Router({ getUserData }) {
   const location = useLocation();
-  const [authenticate, setAuthenticate] = useState(false); // true이면 로그인
   return (
     <div className="router">
       <Suspense>

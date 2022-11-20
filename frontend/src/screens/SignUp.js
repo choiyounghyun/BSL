@@ -4,7 +4,7 @@ import authService from './sign/AuthService'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import logoimg from "../assets/AnalysisImages/BSL_Logo.png"
-import bgimg from "../assets/images/bg.jpg"
+import signupbanner from "../assets/images/signup-banner.jpg"
 
 const SignUp = () => {
   const [id, setId] = useState("")
@@ -16,18 +16,20 @@ const SignUp = () => {
   const navigate = useNavigate()
 
   const sendAuthNumber = () => {
-
-
     if (phoneNumber !== "") {
-      console.log(phoneNumber);
       axios.get(`https://k7c208.p.ssafy.io/api/auth/check/${phoneNumber}`, {
         phoneNumber, authNumber
       })
-        .then((res) => {
-          setAuthNumber(res.data.authNumber)
-          console.log((res));
+        .then((response) => {
+          setAuthNumber(response.data.authNumber)
+          console.log((response));
         })
-
+        .catch(error => {
+          if (error.response.status === 409) {
+            alert("중복된 번호입니다. 다른번호를 입력해 주세요")
+          }
+          console.log(error.response)
+        })
     } else { alert("번호를 입력해주세요!!") };
   }
 
@@ -46,7 +48,10 @@ const SignUp = () => {
   }
 
   return (
-    <div  >
+    <div id="signup-page" >
+      <div className="signup-banner">
+        <img src={signupbanner} alt="banner"/>
+      </div>
       <div className='signupdiv'>
         <form onSubmit={handleSignUp} className="signupform">
           <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
@@ -54,8 +59,8 @@ const SignUp = () => {
               <img src={logoimg} alt="logoimg" />
             </h1>
           </Link>
-
           <input
+            className="signinput"
             title="닉네임을 입력해주세요"
             type="text"
             name="nickname"
@@ -65,6 +70,7 @@ const SignUp = () => {
             onChange={(e) => setNickname(e.target.value)}
           />
           <input
+            className="signinput"
             title="아이디를 입력해주세요"
             type="text"
             name="id"
@@ -74,6 +80,7 @@ const SignUp = () => {
             onChange={(e) => setId(e.target.value)}
           />
           <input
+            className="signinput"
             title="비밀번호를 입력해주세요"
             type="password"
             name="password"
@@ -83,6 +90,7 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
+            className="signinput"
             title="휴대폰번호를 입력해주세요"
             type="number"
             name="phoneNumber"
@@ -93,6 +101,7 @@ const SignUp = () => {
 
           />
           <input
+            className="signinput"
             title="인증번호를 입력해주세요"
             type="number"
             name="authNumber"
@@ -103,9 +112,8 @@ const SignUp = () => {
           />
           <button className="getauthnumber" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
           <button className="signupbutton" type="submit" >회원가입</button>
-
         </form>
-        <p className="gosignin">
+        <p className="gosignin-p">
           아이디가 있으신가요? <br />
           <Link className="gosigninLink" to="/signin" style={{ textDecoration: 'none', color: "black" }}>로그인하러가기</Link>
         </p>
