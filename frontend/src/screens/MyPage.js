@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import authService from './sign/AuthService'
 
 function MyPage() {
+  const [userNickname, setUserNickname] = useState("");
   const [userId, setUserId] = useState("");
   const [userphoneNumber, setUserphonNumber] = useState("");
   const [newphoneNumber, setNewphonNumber] = useState("");
@@ -24,15 +25,25 @@ function MyPage() {
     setUserId(loginUser.id)
   }
 
+  const getuserNickname = (loginUser) => {
+    setUserNickname(loginUser.nickname)
+  }
+
   const handlePutphoneNumber = async (e) => {
     e.preventDefault();
     try {
       await authService.putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
         .then((response) => {
-          if (response !== 0) {navigate('/')}
-          console.log(authNumber)
-          console.log(response);
-          // window.location.reload()
+          if (response !== 0) {
+            const userdata = JSON.stringify({
+              id: userId,
+              nickname: userNickname,
+              phoneNumber: newphoneNumber
+            });
+            localStorage.removeItem("userdata")
+            localStorage.setItem("userdata", userdata)
+            navigate('/')
+        }
         }
         )
     } catch (error) {
@@ -66,6 +77,7 @@ function MyPage() {
 		if (localStorage.getItem("userdata") !== null) {
 			getuserphoneNumber(JSON.parse(localStorage.getItem("userdata")))
       getuserId(JSON.parse(localStorage.getItem("userdata")))
+      getuserNickname(JSON.parse(localStorage.getItem("userdata")))
 		}
 	})
 
