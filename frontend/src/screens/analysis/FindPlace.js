@@ -229,12 +229,13 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
     ])
   }
 
-  const postBookmarkData = async (e, userID, itemNo, itemAddress, itemUrl, itemPrice) => {
+  const postBookmarkData = async (e, userID, itemNo, itemAddress, itemUrl, itemPrice, itemMonth) => {
     if (userID === '') {
       alert('로그인이 필요한 서비스입니다.')
     } else {
-      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
+      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}&month=${itemMonth}`
       const response = await axios.post(postBookMarkURL)
+      alert('북마크에 매물이 추가되었습니다.')
     }
   }
 
@@ -449,7 +450,7 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
             </div>
             <div className="detail_icon_wrap">
               <BsFillBookmarkStarFill className="bookmark_icon_wrap" size="24" color="#E9E93A"
-                onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
+                onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice, itemDetailData.rentPrice)}
               />
               <BsLink45Deg className="link_icon_wrap" size="24" color="black"
                 onClick={() => window.open(`${itemDetailData.cpPcArticleUrl}`)} />
