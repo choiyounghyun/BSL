@@ -63,8 +63,8 @@ const SignIn = ({ setAuthenticate }) => {
                 <img src={logoimg} alt="logoimg" />
               </h1>
             </Link>
-            <span>아이디와 비밀번호를 입력해주세요</span>
             <input
+              className="signinput"
               title="아이디를 입력해주세요"
               type="text"
               id="id"
@@ -77,6 +77,7 @@ const SignIn = ({ setAuthenticate }) => {
               required
             />
             <input
+              className="signinput"
               title="비밀번호를 입력해주세요"
               type="password"
               id="password"
@@ -89,10 +90,15 @@ const SignIn = ({ setAuthenticate }) => {
             />
             <button type="submit" className="signinButton">로그인</button>
           </form>
-          <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
+          <button className="kakaologinbutton" >
+            <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao" style={{ textDecoration: "none", color: "black" }}>
+              카카오톡 로그인하기
+            </a>
+          </button>
+          {/* <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
             <img src={kakaologinimg} className="kakaologinimg">
             </img>
-          </a>
+          </a> */}
           <p className="gosignup">
             회원가입을 하시겠습니까?<br />
             <Link className="gosignupLink" to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>

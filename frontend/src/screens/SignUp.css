@@ -6,8 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10% auto auto auto;
-  font-family: 'Montserrat', sans-serif;
+  margin: 5% auto auto auto;
+  /* font-family: 'Montserrat', sans-serif; */
   flex-direction: column;
   box-shadow: 1px 2px 2px #592941;
   border: 0.1em solid #592941;
@@ -38,13 +38,12 @@
   text-align: center;
 }
 
-input {
+.signinput {
   background-color: #eee;
-  border: none;
+  border: 1px solid white;
   padding: 12px 15px;
-  margin: 8px 0;
   width: 100%;
-  outline: 3px;
+  border-radius: 5px;
 }
 
 .getauthnumber {
@@ -57,7 +56,7 @@ input {
   border: 1px solid white;
   padding: 10px 68px;
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .getauthnumber:hover {
@@ -81,7 +80,7 @@ input {
   border: 1px solid white;
   padding: 10px 86px;
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .signupbutton:hover {

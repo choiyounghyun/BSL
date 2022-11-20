@@ -54,8 +54,8 @@ const SignUp = () => {
               <img src={logoimg} alt="logoimg" />
             </h1>
           </Link>
-
           <input
+            className="signinput"
             title="닉네임을 입력해주세요"
             type="text"
             name="nickname"
@@ -65,6 +65,7 @@ const SignUp = () => {
             onChange={(e) => setNickname(e.target.value)}
           />
           <input
+            className="signinput"
             title="아이디를 입력해주세요"
             type="text"
             name="id"
@@ -74,6 +75,7 @@ const SignUp = () => {
             onChange={(e) => setId(e.target.value)}
           />
           <input
+            className="signinput"
             title="비밀번호를 입력해주세요"
             type="password"
             name="password"
@@ -83,6 +85,7 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
+            className="signinput"
             title="휴대폰번호를 입력해주세요"
             type="number"
             name="phoneNumber"
@@ -93,6 +96,7 @@ const SignUp = () => {
 
           />
           <input
+            className="signinput"
             title="인증번호를 입력해주세요"
             type="number"
             name="authNumber"

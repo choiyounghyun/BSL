@@ -12,8 +12,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10% auto auto auto;
-  font-family: 'Montserrat', sans-serif;
+  margin: 5% auto auto auto;
+  /* font-family: 'Montserrat', sans-serif; */
   flex-direction: column;
   box-shadow: 1px 2px 2px #592941;
   border: 0.1em solid #592941;
@@ -51,12 +51,12 @@
 
 }
 
-input {
+.signinput {
   background-color: #E8F0FE;
-  border: none;
+  border: 1px solid white;
   padding: 12px 15px;
-  margin: 8px 8px;
   width: 100%;
+  border-radius: 5px;
 }
 
 .signinButton {
@@ -69,7 +69,7 @@ input {
   border: 1px solid white;
   padding: 10px 95px;
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .signinButton:hover {
@@ -114,8 +114,27 @@ input {
   transition: all 1s ease;
 }
 
+.kakaologinbutton {
+  width: 240px;
+  height: 47px;
+  background-color: #FEE500;
+  font-size: 18px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
 
-
+.kakaologinbutton:hover {
+  margin: 10px 0 5px 0;
+  height: 55px;
+  width: auto;
+  color: black;
+  /* background-color: #FBD8AF; */
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
 /* .kakaosignin {
   border-radius: 10px;
