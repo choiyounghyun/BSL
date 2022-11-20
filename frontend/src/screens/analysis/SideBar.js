@@ -11,7 +11,7 @@ import Logo from '../../assets/AnalysisImages/BSL_Logo.png'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 
-const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
+const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmptyStore }) => {
   const sideBarWidth = 330 // 사이드바 창 너비
   const [isSideBarOpen, setIsSideBarOpen] = useState(true) // 버튼을 눌러 창이 열렸는지 판단하는 변수
   const [xPosition, setXPosition] = useState(0) // 사이드바의 움직임을 구현하기 위한 사이드바의 x축 위치 변수
@@ -44,7 +44,13 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
         monthly: dataList.monthly, deposit: dataList.deposit, sale: dataList.sale, room: dataList.room
       }
       setOptionDataList(list)
-    } else;
+    } else if (place !== '' && sector == null) {
+      alert('업종을 선택해주세요.')
+    } else if (place === '' && sector !== null) {
+      alert('장소 및 역이름을 입력해주세요.')
+    } else {
+      alert('검색 업종 및 장소, 역이름을 입력해주세요.')
+    }
   }
 
   const mainnavigate = useNavigate()
@@ -72,7 +78,6 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
           <Autocomplete
             {...sector} value={sector || null}
             onChange={(event, newSector) => {
-              // setDataList(dataList.sector)
               setCompleteDataList(newSector)
               setSector(newSector)
             }}
@@ -87,10 +92,9 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
         </div>
 
         <TabMenu isSideBarOpen={isSideBarOpen}
-          dataList={dataList} setDataList={setDataList}
+          dataList={dataList}
           emptyStore={emptyStore} setEmptyStore={setEmptyStore}
           optionDataList={optionDataList}
-          floatingPopulationDong={floatingPopulationDong}
           userId={userId} />
 
         <button type="button" className="start_search_button"
@@ -125,7 +129,6 @@ const SectorsList = [
   { label: '중국식' },
   { label: '출장조리' },
   { label: '커피숍' },
-  { label: '키즈카페' },
   { label: '탕류(보신용)' },
   { label: '통닭(치킨)' },
   { label: '패밀리레스트랑' },

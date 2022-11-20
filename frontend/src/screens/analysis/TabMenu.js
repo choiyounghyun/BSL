@@ -6,7 +6,7 @@ import FindPlace from './FindPlace'
 import BookMarkPlace from './BookMarkPlace'
 import './TabMenu.css'
 
-const TabMenu = ({ userId, optionDataList, dataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
+const TabMenu = ({ userId, optionDataList, dataList, emptyStore, setEmptyStore }) => {
   const [userBookMark, setUserBookMark] = useState([])
 
   const getUserBookMarkList = async () => {
@@ -26,14 +26,13 @@ const TabMenu = ({ userId, optionDataList, dataList, setDataList, emptyStore, se
       fill
       onSelect={getUserBookMarkList}
     >
-      <Tab eventKey="search_page" title="매물 검색">
-        <FindPlace dataList={dataList} setDataList={setDataList}
+      <Tab eventKey="search_page" title="매물 검색" className='findplace_tab_page'>
+        <FindPlace dataList={dataList}
           emptyStore={emptyStore} setEmptyStore={setEmptyStore}
           optionDataList={optionDataList}
-          floatingPopulationDong={floatingPopulationDong}
           userId={userId} />
       </Tab>
-      <Tab eventKey="bookmark_page" title="북마크">
+      <Tab eventKey="bookmark_page" title="북마크" className='bookmark_tab_page'>
         <BookMarkPlace userId={userId} userBookMark={userBookMark}
           optionDataList={optionDataList} />
       </Tab>

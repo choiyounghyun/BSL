@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './KakaoMap.css' // 지도 CSS
 
-const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, setClusterMaxPage, setFloatingPopulationDong }) => { // searchPlace = 검색할 장소를 나타냄
+const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, setClusterMaxPage }) => { // searchPlace = 검색할 장소를 나타냄
   const kakao = window['kakao']
   const [centerYX, setCenterYX] = useState([0, 0])
 
@@ -43,12 +43,18 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
 
       const circle = new kakao.maps.Circle({
         center: new kakao.maps.LatLng(posData.latitude, posData.longitude), // 원의 중심좌표입니다
-        radius: (posData.count > 20 ? 60 : 30), // 원의 반지름입니다 m 단위 이며 선 객체를 이용해서 얻어옵니다
+        radius: (posData.count > 60 ? 100 :
+          posData.count > 40 ? 75 :
+            posData.count > 20 ? 50 : 25), // 원의 반지름입니다 m 단위 이며 선 객체를 이용해서 얻어옵니다
         strokeWeight: 1, // 선의 두께입니다
-        strokeColor: (posData.count > 20 ? '#FF0000' : '#FFFF00'), // 선의 색깔입니다
+        strokeColor: (posData.count > 60 ? '#FF0000' :
+          posData.count > 40 ? '#FF7F00' :
+            posData.count > 20 ? '#FFFF00' : '#008000'), // 선의 색깔입니다
         strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
         strokeStyle: 'solid', // 선의 스타일입니다
-        fillColor: (posData.count > 20 ? '#FF3333' : '#FFFF59'), // 채우기 색깔입니다
+        fillColor: (posData.count > 60 ? '#FF3333' :
+          posData.count > 40 ? '#FFA333' :
+            posData.count > 20 ? '#FFFF59' : '#36FF33'), // 채우기 색깔입니다
         fillOpacity: 0.4  // 채우기 불투명도입니다
       })
 
@@ -122,7 +128,6 @@ const KakaoMap = ({ optionDataList, setDongName, setMapAreaYX, setClusterId, set
 
   useEffect(() => {
     creatMap()
-    console.log(optionDataList)
   }, [optionDataList])
 
   return (

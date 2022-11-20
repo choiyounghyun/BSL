@@ -34,6 +34,32 @@
   padding: 10px 10px 5px 10px;
 }
 
+.empty_bookmark_wrap {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.empty_bookmark_warning_message {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.empty_bookmark_img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+
+  background: rgb(255, 255, 255, 1);
+  border-radius: 100%;
+  border: 3px solid rgb(212, 171, 116);
+
+  padding: 10px 10px 5px 10px;
+}
+
 .warn_message_wrap {
   color: black;
   font-size: 15px;

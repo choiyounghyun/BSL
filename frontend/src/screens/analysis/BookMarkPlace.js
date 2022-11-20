@@ -6,8 +6,6 @@ import axios from "axios"
 
 import empty_logo from '../../assets/AnalysisImages/logo-crying.svg'
 import close_img from '../../assets/AnalysisImages/close_button_img.png'
-import rent_img from '../../assets/AnalysisImages/for-rent.png'
-import sale_img from '../../assets/AnalysisImages/sale.png'
 import build_type from '../../assets/AnalysisImages/building.png'
 import room_size_img from '../../assets/AnalysisImages/plans.png'
 import floor_img from '../../assets/AnalysisImages/stairs.png'
@@ -40,7 +38,6 @@ const BookMarkPlace = ({ optionDataList, userId, userBookMark }) => {
     const getNearStoreNumURL = `https://k7c208.p.ssafy.io/api/v1/store/stores?dong=${place}&category=${optionDataList.sector}`
     const nearStoreResponse = await axios.get(getNearStoreNumURL)
 
-    console.log(nearStoreResponse.data.length)
     if (nearStoreResponse.data.length >= 50) {
       setItemNearStoreScore(0.5)
     } else {
@@ -88,8 +85,6 @@ const BookMarkPlace = ({ optionDataList, userId, userBookMark }) => {
     const getFloatPopulationURL = `https://k7c208.p.ssafy.io/api/v1/infra/popular?name=${place}`
 
     const response = await axios.get(getFloatPopulationURL)
-
-    console.log(response.data)
 
     setPopulationData([
       ["Task", "Hours per Day"],
@@ -154,8 +149,10 @@ const BookMarkPlace = ({ optionDataList, userId, userBookMark }) => {
     if (userID === '') {
       alert('로그인이 필요한 서비스입니다.')
     } else {
-      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}`
-      const response = await axios.delete(postBookMarkURL)
+      const deleteBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}`
+      await axios.delete(deleteBookMarkURL)
+      setIsDetailOpen(-1)
+      alert('북마크가 삭제되었습니다.')
     }
   }
 
@@ -166,8 +163,9 @@ const BookMarkPlace = ({ optionDataList, userId, userBookMark }) => {
         <div className="warn_message_wrap">로그인이 필요한 서비스입니다.</div>
       </div>}
       {userId !== '' && <div>
-        {itemDetailListSave.length === 0 && <div>
-          <div>북마크한 매물이 없습니다.</div>
+        {itemDetailListSave.length === 0 && <div className="empty_bookmark_wrap">
+          <img src={empty_logo} className='empty_bookmark_img' />
+          <div className="empty_bookmark_warning_message">북마크한 매물이 없습니다.</div>
         </div>}
         {itemDetailListSave.length !== 0 && <div>
           {
