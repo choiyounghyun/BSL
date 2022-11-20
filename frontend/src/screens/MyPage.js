@@ -71,6 +71,7 @@ function MyPage() {
 	})
 
   // onSubmit={handleSignUp}
+
   return (
     <div id="my-page">
       <div className="mypage-banner">
@@ -109,10 +110,3 @@ function MyPage() {
 }
 
 export default MyPage;
-
-
-{/* <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
-<h1 className="title-h1" title="메인화면으로 돌아가기">
-  <img src={logoimg} alt="logoimg" />
-</h1>
-</Link> */}

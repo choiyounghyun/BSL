@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import TextField from '@mui/material/TextField'
-import Autocomplete from '@mui/material/Autocomplete'
 
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -15,8 +13,6 @@ import Slider from '@mui/material/Slider' // 가격 설정 사용
 import './FindPlace.css'
 import empty_logo from '../../assets/AnalysisImages/logo-crying.svg'
 import close_img from '../../assets/AnalysisImages/close_button_img.png'
-import rent_img from '../../assets/AnalysisImages/for-rent.png'
-import sale_img from '../../assets/AnalysisImages/sale.png'
 import build_type from '../../assets/AnalysisImages/building.png'
 import room_size_img from '../../assets/AnalysisImages/plans.png'
 import floor_img from '../../assets/AnalysisImages/stairs.png'
@@ -28,9 +24,8 @@ import Rating from '@mui/material/Rating'
 import { Chart } from "react-google-charts"
 import person from '../../assets/AnalysisImages/person.png'
 
-const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptyStore, floatingPopulationDong }) => {
+const FindPlace = ({ userId, optionDataList, emptyStore }) => {
   const [isClickButton, setIsClickButton] = useState(1)
-  const [sector, setSector] = useState('') // 선택한 업종
   const [tradeType, setTradeType] = useState('all')
   const [monthly, setMonthly] = useState([0, 100])
   const [deposit, setDeposit] = useState([0, 100])
@@ -57,24 +52,7 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
     } else if (emptyStore.length === 0) {
       setIsClickButton(1)
     }
-    console.log(emptyStore)
   }, [emptyStore])
-
-  const setCompleteDataList = (getSector) => {
-    if (getSector !== null) {
-      const setOption = {
-        sector: getSector.label, tradeType: tradeType, floor: floor,
-        monthly: monthly, deposit: deposit, sale: sale, room: roomSize
-      }
-      setDataList(setOption)
-    } else {
-      const setOption = {
-        sector: null, tradeType: tradeType, floor: floor,
-        monthly: monthly, deposit: deposit, sale: sale, room: roomSize
-      }
-      setDataList(setOption)
-    }
-  }
 
   const handleTradType = (e) => {
     setTradeType(e.target.value)
@@ -135,7 +113,6 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
   const getDetailInfo = async (e, index) => {
     const getDetailURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-detail?articleNo=${emptyStore[index].articleNo}`
     const detailResponse = await axios.get(getDetailURL)
-    console.log(detailResponse.data)
 
     setItemDetailData(detailResponse.data)
     setIsDetailOpen(index)
@@ -147,7 +124,6 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
     const getNearStoreNumURL = `https://k7c208.p.ssafy.io/api/v1/store/stores?dong=${place}&category=${optionDataList.sector}`
     const nearStoreResponse = await axios.get(getNearStoreNumURL)
 
-    console.log(nearStoreResponse.data.length)
     if (nearStoreResponse.data.length >= 50) {
       setItemNearStoreScore(0.5)
     } else {
@@ -196,8 +172,6 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
 
     const response = await axios.get(getFloatPopulationURL)
 
-    console.log(response.data)
-
     setPopulationData([
       ["Task", "Hours per Day"],
       ["주중", response.data.day],
@@ -229,12 +203,13 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
     ])
   }
 
-  const postBookmarkData = async (e, userID, itemNo, itemAddress, itemUrl, itemPrice) => {
+  const postBookmarkData = async (e, userID, itemNo, itemAddress, itemUrl, itemPrice, itemMonth) => {
     if (userID === '') {
       alert('로그인이 필요한 서비스입니다.')
     } else {
-      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}`
-      const response = await axios.post(postBookMarkURL)
+      const postBookMarkURL = `https://k7c208.p.ssafy.io/api/v1/estate/article-bookmark?id=${userID}&articleNo=${itemNo}&address=${itemAddress}&url=${itemUrl}&price=${itemPrice}&month=${itemMonth}`
+      await axios.post(postBookMarkURL)
+      alert('북마크에 매물이 추가되었습니다.')
     }
   }
 
@@ -449,7 +424,7 @@ const FindPlace = ({ userId, optionDataList, setDataList, emptyStore, setEmptySt
             </div>
             <div className="detail_icon_wrap">
               <BsFillBookmarkStarFill className="bookmark_icon_wrap" size="24" color="#E9E93A"
-                onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice)}
+                onClick={(e) => postBookmarkData(e, userId, itemDetailData.articleNo, itemDetailData.exposureAddress, itemDetailData.cpPcArticleUrl, itemDetailData.warrantPrice, itemDetailData.rentPrice)}
               />
               <BsLink45Deg className="link_icon_wrap" size="24" color="black"
                 onClick={() => window.open(`${itemDetailData.cpPcArticleUrl}`)} />

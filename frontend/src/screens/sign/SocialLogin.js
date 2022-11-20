@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 function OnSocialLogin() {
   const params = useParams();
   const navigate = useNavigate();
-  const getuserdata = (refreshtoken) => {
+  const getuserdata = refreshtoken => {
     return axios
       .get("https://k7c208.p.ssafy.io/api/auth/userinfo", {
         headers: {
-          RefreshToken: refreshtoken,
-        },
+          RefreshToken: refreshtoken
+        }
       })
-      .then((response) => {
+      .then(response => {
         localStorage.setItem("userdata", JSON.stringify(response.data) || "");
-      })
-  }
+      });
+  };
 
   useEffect(() => {
     const tokens = params.params;
@@ -23,22 +23,18 @@ function OnSocialLogin() {
     const access_start = tokens?.search("accesstoken=");
 
     if (refresh_start === 0 && access_start) {
-
       const refreshtoken = tokens?.slice(refresh_start + 13, access_start - 1);
       const accesstoken = tokens?.slice(access_start + 12, tokens.length);
-      const user = (JSON.stringify({
+      const user = JSON.stringify({
         success: true,
         code: 0,
         msg: "Success",
         accessToken: accesstoken,
-        refreshToken: refreshtoken,
-      }))
+        refreshToken: refreshtoken
+      });
       localStorage.setItem("user", user || "");
       getuserdata(refreshtoken);
-      // if (userdata) {
-
-      // }
-      navigate("/");
+      navigate("/mypage");
     } else {
       navigate("/signin");
     }
