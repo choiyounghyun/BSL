@@ -29,7 +29,7 @@ const SearchPlaceInput = ({ place, setPlace, submitData }) => {
   return (
     <div className="input_place_wrap">
       {/* 검색창 */}
-      <input className='input_wrap' placeholder="장소 및 역이름 검색해주세요."
+      <input className='text_input_wrap' placeholder="장소 및 역이름 검색해주세요."
         type="text" value={place}
         onChange={textChange} onKeyPress={pressEnter}
       />
