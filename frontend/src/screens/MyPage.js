@@ -35,7 +35,7 @@ function MyPage() {
       await authService
         .putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
         .then(response => {
-          if (response !== 0) {
+          if (response === 1) {
             const userdata = JSON.stringify({
               id: userId,
               nickname: userNickname,
@@ -43,7 +43,10 @@ function MyPage() {
             });
             localStorage.removeItem("userdata");
             localStorage.setItem("userdata", userdata);
+
             navigate("/");
+          } else {
+            alert("인증번호를 확인해 주세요");
           }
         });
     } catch (error) {
@@ -129,13 +132,13 @@ function MyPage() {
           {/* <div className="info__number">{userInfo.nickname}</div>
           <div className="info__password">{userInfo.phonenumber}</div> */}
           <button
-            className="getauthnumber"
+            className="mypage-getauthnumber"
             type="button"
             onClick={() => sendAuthNumber()}
           >
             인증번호받기
           </button>
-          <button className="signupbutton" type="submit">
+          <button className="mypage-signupbutton" type="submit">
             휴대폰번호 수정
           </button>
         </form>

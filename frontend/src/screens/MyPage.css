@@ -58,7 +58,7 @@
 
 .title-h1 {
   font-weight: bold;
-  margin: 20px;
+  margin: 8px;
   padding: auto auto 20px 20px;
   font-size: 42px;
 }
@@ -76,11 +76,12 @@
 }
 
 .title-h1 {
-  margin-bottom: 3vw;
+  /* margin-bottom: 3vw; */
 }
 
 .info-id {
-  margin-bottom: 1vw;
+  margin-top: 1vw;
+  margin-bottom: 0.5vw;
   font-size: 24px;
 }
 
@@ -96,14 +97,22 @@
   padding-left: 8px;
 }
 
-.getauthnumber {
-  margin-top: 4vw;
+.mypage-getauthnumber {
+  margin-top: 2vw;
+  width: 10vw;
+  height: 2.5vw;
+  font-size: 1.3vw;
+  border-radius: 10px;
 }
 
-/* .profileform > button {
+.mypage-signupbutton {
   margin-top: 1vw;
-  margin-bottom: 1vw;
-} */
+  width: 10vw;
+  height: 2.5vw;
+  font-size: 1.3vw;
+  background-color: #fbd8af;
+  border-radius: 10px;
+}
 
 .profileinput {
   background-color: #e8f0fe;
