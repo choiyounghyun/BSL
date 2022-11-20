@@ -27,7 +27,6 @@ const SignIn = ({ setAuthenticate }) => {
         console.log(response);
       })
   }
-  // || ""
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -50,7 +49,6 @@ const SignIn = ({ setAuthenticate }) => {
     }
 
   }
-  // console.log(loginInfo)
   return (
 
     <section>
@@ -97,10 +95,6 @@ const SignIn = ({ setAuthenticate }) => {
               카카오톡 로그인하기
             </a>
           </button>
-          {/* <a href="http://k7c208.p.ssafy.io:8080/oauth2/authorization/kakao">
-            <img src={kakaologinimg} className="kakaologinimg">
-            </img>
-          </a> */}
           <p className="gosignup-p">
             회원가입을 하시겠습니까?<br />
             <Link className="gosignupLink" to="/signup" style={{ textDecoration: "none", color: "black" }}>회원가입 하러가기</Link>
