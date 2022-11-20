@@ -2,8 +2,6 @@ import React from "react"
 import './SearchPlaceInput.css'
 
 const SearchPlaceInput = ({ place, setPlace, submitData }) => {
-  // let [placeName, setPlaceName] = useState('') // 검색어 입력창에 입력한 값 변수
-
   const textChange = (e) => { // 입력한 값이 변경될때마다 작동되는 함수
     setPlace(e.target.value) // 입력할 때마다 변화한 값을 적용
   }
