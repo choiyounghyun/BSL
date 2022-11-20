@@ -374,6 +374,7 @@ public class EstateServiceImpl implements EstateService {
                 .address(bookmark.getAddress())
                 .price(bookmark.getPrice())
                 .articleNo(bookmark.getArticleNo())
+                .month(bookmark.getMonth())
                 .url(bookmark.getUrl())
                 .build();
 

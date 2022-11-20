@@ -25,4 +25,5 @@ public class Bookmark {
     String address;
     String url;
     String price;
+    String month;
 }

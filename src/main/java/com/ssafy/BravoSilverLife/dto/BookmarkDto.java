@@ -16,6 +16,7 @@ public class BookmarkDto {
     String address;
     String url;
     String price;
+    String month;
 
     public static BookmarkDto of(Bookmark bookmarkEntity) {
 
@@ -24,6 +25,7 @@ public class BookmarkDto {
                 .address(bookmarkEntity.getAddress())
                 .price(bookmarkEntity.getPrice())
                 .url(bookmarkEntity.getUrl())
+                .month(bookmarkEntity.getMonth())
                 .build();
 
         return bookmarkDto;
