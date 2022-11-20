@@ -3,6 +3,8 @@ import "./SignUp.css"
 import authService from './sign/AuthService'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import logoimg from "../assets/AnalysisImages/BSL_Logo.png"
+import bgimg from "../assets/images/bg.jpg"
 
 const SignUp = () => {
   const [id, setId] = useState("")
@@ -44,14 +46,17 @@ const SignUp = () => {
   }
 
   return (
-    <div className='signupdiv' >
-      <div>
+    <div  >
+      <div className='signupdiv'>
         <form onSubmit={handleSignUp} className="signupform">
           <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
-            <h1 className="title-h1" title="메인화면으로 돌아가기">Bravo Silver Life</h1>
+            <h1 className="title-h1" title="메인화면으로 돌아가기">
+              <img src={logoimg} alt="logoimg" />
+            </h1>
           </Link>
 
           <input
+            title="닉네임을 입력해주세요"
             type="text"
             name="nickname"
             placeholder="닉네임"
@@ -60,6 +65,7 @@ const SignUp = () => {
             onChange={(e) => setNickname(e.target.value)}
           />
           <input
+            title="아이디를 입력해주세요"
             type="text"
             name="id"
             placeholder="아이디"
@@ -68,6 +74,7 @@ const SignUp = () => {
             onChange={(e) => setId(e.target.value)}
           />
           <input
+            title="비밀번호를 입력해주세요"
             type="password"
             name="password"
             placeholder="비밀번호"
@@ -76,6 +83,7 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
+            title="휴대폰번호를 입력해주세요"
             type="number"
             name="phoneNumber"
             placeholder="휴대전화번호"
@@ -85,6 +93,7 @@ const SignUp = () => {
 
           />
           <input
+            title="인증번호를 입력해주세요"
             type="number"
             name="authNumber"
             placeholder="인증번호"
@@ -94,9 +103,12 @@ const SignUp = () => {
           />
           <button className="getauthnumber" type="button" onClick={() => sendAuthNumber()}>인증번호받기</button>
           <button className="signupbutton" type="submit" >회원가입</button>
-          <Link to="/signin" style={{ textDecoration: 'none', color: "black" }}>로그인하러가기</Link>
-        </form>
 
+        </form>
+        <p className="gosignin">
+          아이디가 있으신가요? <br />
+          <Link className="gosigninLink" to="/signin" style={{ textDecoration: 'none', color: "black" }}>로그인하러가기</Link>
+        </p>
       </div>
     </div >
   )

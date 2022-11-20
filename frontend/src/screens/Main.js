@@ -5,36 +5,32 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import mainChicken from "../assets/images/main-chicken.jpg";
 import mainPizza from "../assets/images/main-pizza.jpg";
 import logo from "../assets/images/mainlogo.svg";
+import mainMiddle from "../assets/images/main-middle.jpg";
 import { Token } from "@mui/icons-material";
 import axios from "axios";
 // import mainCook from "../assets/images/main-cook.jpg";
 
 function Main(props) {
   useEffect(() => {
-    if ((localStorage.getItem("user") === null)) {
-      setIsLogin(false)
+    if (localStorage.getItem("user") === null) {
+      setIsLogin(false);
+    } else {
+      getuserInfo();
     }
-    else {
-      getuserInfo()
-
-    }
-  })
-
+  });
 
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
   const [userinfo, setUserinfo] = useState("");
 
   const getuserInfo = () => {
-    if (userinfo !== (localStorage.getItem("user"))) {
-      setUserinfo(localStorage?.getItem("user"))
-      setIsLogin(true)
-    }
-    else {
-      setIsLogin(true)
+    if (userinfo !== localStorage.getItem("user")) {
+      setUserinfo(localStorage?.getItem("user"));
+      setIsLogin(true);
+    } else {
+      setIsLogin(true);
     }
   };
-
 
   const handleLogout = () => {
     setIsLogin(false);
@@ -42,8 +38,6 @@ function Main(props) {
     localStorage.removeItem("userdata");
     setUserinfo("");
   };
-
-
 
   const [fade, setFade] = useState("");
   const [menu, setMenu] = useState("");
@@ -54,15 +48,17 @@ function Main(props) {
       setMenu("");
     }
   };
-
+  const switchRanking = () => {
+    setTimeout(setFade("fade"), 3000);
+  };
   const loginbutton = (
     <>
-      <div className="middle-menu__user-login">
+      <div className="middle-menu__user-login" title="로그인 하러가기">
         <Link to="/signin" className="middle-menu__user-login__link">
           SIGN IN
         </Link>
       </div>
-      <div className="middle-menu__user-join">
+      <div className="middle-menu__user-join" title="회원가입 하러가기">
         <Link to="/signup" className="middle-menu__user-join__link">
           SIGN UP
         </Link>
@@ -72,39 +68,32 @@ function Main(props) {
 
   const logoutbutton = (
     <>
-      <div className="middle-menu__user-logout" onClick={() => handleLogout()}>
+      <div
+        className="middle-menu__user-logout"
+        onClick={() => handleLogout()}
+        title="로그아웃 하기"
+      >
         <Link to="/" className="middle-menu__user-logout__link">
           LOGOUT
+        </Link>
+      </div>
+      <div className="middle-menu__user-mypage">
+        <Link to="/mypage" className="middle-menu__user-mypage__link">
+          MYPAGE
         </Link>
       </div>
     </>
   );
   return (
     <div id="main" data-barba="wrapper">
-      <div className="trans-left-img">
-        <img
-          src={mainChicken}
-          alt="main-left-img"
-          className="trans-left-img__img"
-        />
-      </div>
-      <div className="trans-right-img">
-        <img
-          src={mainPizza}
-          alt="main-right-img"
-          className="trans-right-img__img"
-        />
-      </div>
-      <div className="trans-clip">
-        <div className="trans-clip-mask"></div>
-      </div>
       <div className="main-container">
         <header className="main-header">
           <div className="header__container">
             <div className="header__head">
               <div
-                className={`header__head-circle ${menu === "active" ? "--active" : ""
-                  }`}
+                className={`header__head-circle ${
+                  menu === "active" ? "--active" : ""
+                }`}
                 onClick={menuToggle}
               >
                 <div className="header__head-circle-in">
@@ -114,7 +103,15 @@ function Main(props) {
             </div>
           </div>
         </header>
+
         <div className={`main-ground ${menu === "active" ? "--active" : ""}`}>
+          <div
+            className={`main-description  ${
+              menu === "active" ? "--active" : ""
+            }`}
+          >
+            문을 열고 당신의 2번째 인생을 시작하세요!
+          </div>
           <div className="ground-left">
             <div className="ground-left__img-wrapper">
               <img
@@ -128,15 +125,14 @@ function Main(props) {
             </div>
           </div>
           <div className={`middle-menu ${menu === "active" ? "--active" : ""}`}>
-            {/* <div className="middle-menu__bg">
-              <img src={mainCook} alt="main-cook" />
-            </div> */}
+            <div className="middle-menu__bg">
+              <img src={mainMiddle} alt="main-middle" />
+            </div>
             <div className="middle-menu__analysis">
               <Link to="/anal" style={{ textDecoration: "none" }}>
                 <div className="middle-menu__analysis-title">상권분석</div>
               </Link>
             </div>
-            <div className="middle-menu__analysis-description"></div>
             <div className="middle-menu__ranking">
               <Link to="/ranking" style={{ textDecoration: "none" }}>
                 <div
@@ -147,7 +143,27 @@ function Main(props) {
                 </div>
               </Link>
             </div>
-            <div className="middle-menu__ranking-description"></div>
+            <div
+              className={`middle-menu__description-analysis ${
+                menu === "active" ? "--active" : ""
+              }`}
+            >
+              상권분석에서 최적의 위치를
+            </div>
+            <div
+              className={`middle-menu__description-ranking ${
+                menu === "active" ? "--active" : ""
+              }`}
+            >
+              인기매장에서 최고의 브랜드를
+            </div>
+            <div
+              className={`middle-menu__description-main ${
+                menu === "active" ? "--active" : ""
+              }`}
+            >
+              당신의 2번째 인생을 시작해보세요
+            </div>
             <div className="middle-menu__user"></div>
           </div>
           <div className={`ground-right ${fade ? { menuToggle } : ""}`}>
