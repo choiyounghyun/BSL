@@ -11,13 +11,26 @@
   position: relative;
 }
 
+.mypage-logo {
+  display: flex;
+}
+
+.mypage-logo > img {
+  width: 12vw;
+  height: 3vw;
+  position: absolute;
+  top: 12%;
+  left: 12%;
+  z-index: 4;
+}
+
 .mypage-banner > img {
   width: 100%;
 }
 
 .mypage-title > h2 {
   position: absolute;
-  top: 50px;
+  top: 120px;
   left: 200px;
   font-size: 6vw;
   color: aliceblue;
@@ -26,11 +39,11 @@
 }
 
 .mypage-container {
-  width: 70%;
-  height: 60vw;
+  width: 60%;
+  height: 40vw;
   position: absolute;
   margin: auto;
-  top: 35%;
+  top: 65%;
   background-color: aliceblue;
   z-index: 3;
 }
