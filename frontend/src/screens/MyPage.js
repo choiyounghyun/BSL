@@ -16,7 +16,7 @@ function MyPage() {
   const getuserphoneNumber = loginUser => {
     if (loginUser.phoneNumber !== null) {
       setUserphonNumber(loginUser.phoneNumber);
-    }
+    } else { setUserphonNumber("") }
   };
 
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function MyPage() {
     e.preventDefault();
     try {
       await authService
-        .putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
+        .putPhoneNumber(userId, newphoneNumber, authNumber)
         .then(response => {
           if (response === 1) {
             const userdata = JSON.stringify({
@@ -107,8 +107,7 @@ function MyPage() {
           <input
             className="newphoneinput"
             title="새로운 핸드폰 번호를 입력해주세요"
-            type="number"
-            id="number"
+            type="string"
             placeholder={userphoneNumber}
             value={newphoneNumber}
             onChange={e => {
@@ -119,8 +118,7 @@ function MyPage() {
           <input
             className="authnumberinput"
             title="인증번호를 입력해주세요"
-            type="number"
-            id="number"
+            type="string"
             placeholder="인증번호"
             value={authNumber}
             onChange={e => {
@@ -148,3 +146,4 @@ function MyPage() {
 }
 
 export default MyPage;
+

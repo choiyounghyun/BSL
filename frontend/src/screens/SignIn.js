@@ -35,7 +35,7 @@ const SignIn = ({ setAuthenticate }) => {
           const refreshtoken = response?.refreshToken
           setLoginInfo("True")
           getuserdata(refreshtoken);
-          navigate('/mypage'); // login 완료시 main page로 이동
+          navigate('/'); // login 완료시 main page로 이동
           // window.location.reload()
         },
         (error) => {
@@ -54,7 +54,7 @@ const SignIn = ({ setAuthenticate }) => {
     <section>
       <div id="signin-page">
         <div className="login-banner">
-          <img src={loginbanner} alt="banner"/>
+          <img src={loginbanner} alt="banner" />
         </div>
         <div className="signin-div">
           <form onSubmit={(event) => handleLogin(event)} className="signinform">
