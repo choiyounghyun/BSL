@@ -188,7 +188,7 @@ public class MMSService {
 
     }
 
-    public void sendLMS(String accessToken, String phoneNumber) {
+    public void sendLMS(String phoneNumber, String accessToken, String description) {
 
 
         String authValue =
@@ -199,11 +199,11 @@ public class MMSService {
         OkHttpClient client = new OkHttpClient();
 
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("phone", "RECEIPT_PHONE_NUMBER")
-                .addFormDataPart("callback","CALLING_PHONE_NUMBER") // 발신번호를 입력해 주세요.
-                .addFormDataPart("message","LMS_CONTENT") // LMS 내용을 입력해 주세요.
+                .addFormDataPart("phone", phoneNumber)
+                .addFormDataPart("callback","01045588466") // 발신번호를 입력해 주세요.
+                .addFormDataPart("message","북마크 매물 정보는 " + description) // LMS 내용을 입력해 주세요.
                 .addFormDataPart("refkey","YOUR_REF_KEY") // 발송 결과 조회를 위한 임의의 랜덤 키 값을 입력해 주세요.
-                .addFormDataPart("subject","LMS_TITLE") // LMS 제목을 입력해 주세요.
+                .addFormDataPart("subject","[BSL]") // LMS 제목을 입력해 주세요.
                 .build();
 
         Request request = new Request.Builder()

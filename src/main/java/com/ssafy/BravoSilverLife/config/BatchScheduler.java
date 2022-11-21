@@ -24,7 +24,7 @@ public class BatchScheduler {
 
     private final BatchConfig batchConfig;
 
-    @Scheduled(cron = "0 31 01 * * *")
+    @Scheduled(cron = "0 49 01 * * *")
     public void runJob() {
 
         // job parameter 설정

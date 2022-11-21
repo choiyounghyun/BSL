@@ -64,7 +64,7 @@ public class BatchConfig {
                         }
                         if(sb.length() > 2){
                             System.out.println(sb);
-                            mmsService.sendBookMarkMMS(user.getPhoneNumber(), mmsService.userAuth(), String.valueOf(sb));
+                            mmsService.sendLMS(user.getPhoneNumber(), mmsService.userAuth(), String.valueOf(sb));
 
                         }
 

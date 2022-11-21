@@ -41,7 +41,7 @@ public class UserController {
     @Data
     static class changePhoneNumberRequest {
 
-        private String phoneNumber;
+        private String id;
         @NotEmpty
         private String newPhoneNumber;
         @NotEmpty
@@ -66,7 +66,7 @@ public class UserController {
     public int changePhoneNumber(@RequestBody @Valid UserController.changePhoneNumberRequest request) {
 
         try {
-            return userService.changePhoneNumber(request.phoneNumber, request.authNumber, request.newPhoneNumber);
+            return userService.changePhoneNumber(request.id, request.authNumber, request.newPhoneNumber);
         } catch (Exception e) {
             System.out.println("예외발생");
             return 0;
