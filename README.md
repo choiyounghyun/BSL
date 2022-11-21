@@ -176,7 +176,7 @@
       </a>
     </td>
     <td align="center">
-      <a href="" target="_blank">
+      <a href="https://github.com/mokokodev" target="_blank">
         정관철<br />(Backend)
       </a>
     </td>
