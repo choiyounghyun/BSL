@@ -46,11 +46,11 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem('user'))
 }
 
-const putPhoneNumber = (phoneNumber, newPhoneNumber, authNumber) => {
+const putPhoneNumber = (id, newPhoneNumber, authNumber) => {
 
   return axios
     .put("https://k7c208.p.ssafy.io/api/user/profile/phonenumber", {
-      phoneNumber, newPhoneNumber, authNumber
+      id, newPhoneNumber, authNumber
     })
     .then((response) => {
       if (response.data.token) {

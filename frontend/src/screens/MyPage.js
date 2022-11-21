@@ -16,7 +16,7 @@ function MyPage() {
   const getuserphoneNumber = loginUser => {
     if (loginUser.phoneNumber !== null) {
       setUserphonNumber(loginUser.phoneNumber);
-    }
+    } else { setUserphonNumber("") }
   };
 
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function MyPage() {
     e.preventDefault();
     try {
       await authService
-        .putPhoneNumber(userphoneNumber, newphoneNumber, authNumber)
+        .putPhoneNumber(userId, newphoneNumber, authNumber)
         .then(response => {
           if (response === 1) {
             const userdata = JSON.stringify({
