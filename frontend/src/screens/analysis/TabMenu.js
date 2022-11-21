@@ -6,7 +6,7 @@ import FindPlace from './FindPlace'
 import BookMarkPlace from './BookMarkPlace'
 import './TabMenu.css'
 
-const TabMenu = ({ userId, optionDataList, dataList, emptyStore, setEmptyStore }) => {
+const TabMenu = ({ userId, optionDataList, emptyStore, setEmptyStore, tradeType, setTradeType, monthly, setMonthly, deposit, setDeposit, sale, setSale, floor, setFloor, roomSize, setRoomSize }) => {
   const [userBookMark, setUserBookMark] = useState([])
 
   const getUserBookMarkList = async () => {
@@ -27,10 +27,17 @@ const TabMenu = ({ userId, optionDataList, dataList, emptyStore, setEmptyStore }
       onSelect={getUserBookMarkList}
     >
       <Tab eventKey="search_page" title="매물 검색" className='findplace_tab_page'>
-        <FindPlace dataList={dataList}
+        <FindPlace
           emptyStore={emptyStore} setEmptyStore={setEmptyStore}
           optionDataList={optionDataList}
-          userId={userId} />
+          userId={userId}
+          tradeType={tradeType} setTradeType={setTradeType}
+          monthly={monthly} setMonthly={setMonthly}
+          deposit={deposit} setDeposit={setDeposit}
+          sale={sale} setSale={setSale}
+          floor={floor} setFloor={setFloor}
+          roomSize={roomSize} setRoomSize={setRoomSize}
+        />
       </Tab>
       <Tab eventKey="bookmark_page" title="북마크" className='bookmark_tab_page'>
         <BookMarkPlace userId={userId} userBookMark={userBookMark}
