@@ -24,14 +24,14 @@ import Rating from '@mui/material/Rating'
 import { Chart } from "react-google-charts"
 import person from '../../assets/AnalysisImages/person.png'
 
-const FindPlace = ({ userId, optionDataList, emptyStore }) => {
+const FindPlace = ({ userId, optionDataList, emptyStore, tradeType, setTradeType, monthly, setMonthly, deposit, setDeposit, sale, setSale, floor, setFloor, roomSize, setRoomSize }) => {
   const [isClickButton, setIsClickButton] = useState(1)
-  const [tradeType, setTradeType] = useState('all')
-  const [monthly, setMonthly] = useState([0, 100])
-  const [deposit, setDeposit] = useState([0, 100])
-  const [sale, setSale] = useState([0, 100])
-  const [floor, setFloor] = useState('all')
-  const [roomSize, setRoomSize] = useState([0, 100])
+  // const [tradeType, setTradeType] = useState('all')
+  // const [monthly, setMonthly] = useState([0, 100])
+  // const [deposit, setDeposit] = useState([0, 100])
+  // const [sale, setSale] = useState([0, 100])
+  // const [floor, setFloor] = useState('all')
+  // const [roomSize, setRoomSize] = useState([0, 100])
 
   const [isDetailOpen, setIsDetailOpen] = useState(-1)
   const [itemDetailData, setItemDetailData] = useState({})

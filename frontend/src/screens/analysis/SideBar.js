@@ -22,6 +22,13 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
   })
   const [sector, setSector] = useState(null) // 선택한 업종
 
+  const [tradeType, setTradeType] = useState('all')
+  const [monthly, setMonthly] = useState([0, 100])
+  const [deposit, setDeposit] = useState([0, 100])
+  const [sale, setSale] = useState([0, 100])
+  const [floor, setFloor] = useState('all')
+  const [roomSize, setRoomSize] = useState([0, 100])
+
   useEffect(() => { // 사이드바가 열리고 닫힐 때마다 입력된 값 초기화
     setPlace('')
   }, [isSideBarOpen])
@@ -40,8 +47,8 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
   const submitData = (e) => {
     if (place !== '' && sector !== null) {
       const list = {
-        place: place, sector: sector.label, tradeType: dataList.tradeType, floor: dataList.floor,
-        monthly: dataList.monthly, deposit: dataList.deposit, sale: dataList.sale, room: dataList.room
+        place: place, sector: sector.label, tradeType: tradeType, floor: floor,
+        monthly: monthly, deposit: deposit, sale: sale, room: roomSize
       }
       setOptionDataList(list)
     } else if (place !== '' && sector == null) {
@@ -92,10 +99,16 @@ const SideBar = ({ userId, optionDataList, setOptionDataList, emptyStore, setEmp
         </div>
 
         <TabMenu isSideBarOpen={isSideBarOpen}
-          dataList={dataList}
           emptyStore={emptyStore} setEmptyStore={setEmptyStore}
           optionDataList={optionDataList}
-          userId={userId} />
+          userId={userId}
+          tradeType={tradeType} setTradeType={setTradeType}
+          monthly={monthly} setMonthly={setMonthly}
+          deposit={deposit} setDeposit={setDeposit}
+          sale={sale} setSale={setSale}
+          floor={floor} setFloor={setFloor}
+          roomSize={roomSize} setRoomSize={setRoomSize}
+        />
 
         <button type="button" className="start_search_button"
           onClick={submitData}>
